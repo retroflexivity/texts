@@ -1,0 +1,159 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[left=2.5cm,
+            right=2.5cm,
+            top=2.5cm,
+            bottom=2.5cm,
+            bindingoffset=0cm]{geometry}
+% \usepackage{array}
+% \usepackage[indent=0pt]{parskip}
+\usepackage{hyphsubst}
+\usepackage{setspace}
+\onehalfspacing
+
+% \usepackage{float}
+% \usepackage{graphicx}
+% \graphicspath{ {./images/} }
+% \usepackage{subfig}
+% \usepackage{enumerate}
+\usepackage[normalem]{ulem} % underlining
+% \usepackage{booktabs} % tables
+% \PassOptionsToPackage{table}{xcolor}% coloring tables
+
+% LANGUAGE + FONT
+		    
+\usepackage[english, russian]{babel}
+
+\usepackage{natbib}
+\bibpunct[: ]{[}{]}{;}{a}{}{,}
+\bibliographystyle{rusnat}
+
+\usepackage{fontspec}  
+\setmainfont{Gentium Plus}
+
+% DRAWING
+
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{trees,arrows}
+\usetikzlibrary{positioning}
+
+% LINGUISTICS 
+
+%\usepackage{gb4e}
+\usepackage{expex}
+\lingset{aboveglftskip=0ex, belowglpreambleskip=0ex, belowexskip=1ex, aboveexskip=1ex, interpartskip=1ex}
+
+\gathertags
+\usepackage[glossaries]{leipzig}
+\newleipzig{cmpr}{cmpr}{Comparative}
+\newleipzig{sprl}{sprl}{Superlative}
+\newleipzig{indef}{indef}{Indefinite}
+% \makeglossaries
+
+\usepackage{stmaryrd}
+
+% MATH
+\usepackage{amssymb}
+
+\begin{document}
+% \begin{sloppypar}
+
+% -------------------------- текстиктекстиктекстик -----------------------------
+
+\textbf{Определенные неиндивиды в латышском языке}
+
+\textit{Тезисы на секцию «нелексикалистские подходы к языковым явлениям»}\\\\
+В латышском языке категория определенности именной группы маркируется на флексии прилагательных: они могут иметь «определенную» и «неопределенную» форму (\nextx).
+
+\pex<base>
+    \a \begingl
+        \gla balt-s krekls//
+        \glb белый-\M{}.\Indef{} рубашка//
+        \glft 'a white shirt'//
+    \endgl
+    \a \begingl
+        \gla balt-ais krekls//
+        \glb белый-\M{}.\Def{} рубашка//
+        \glft 'the white shirt'//
+    \endgl
+\xe
+
+Тем не менее, этот маркер не влечет неопределенности именной группы. Определенное множество прилагательных требует определенной формы даже в неопределенных контекстах. Среди них --- классифицирующие, или родовые (kind-referring), прилагательные, то есть такие, которые вместе с существительным выражают «хорошо устоявшиеся классы» \citep{carlson1977, trugman2005} (\nextx).
+
+\pex<kind>
+    \a<nkind> \begingl
+        \gla balt-s lācis//
+        \glb белый-\M.\Indef{} медведь//
+        \glft 'белый медведь (медведь-альбинос)'//
+    \endgl 
+    \a<kind> \begingl
+        \gla balt-ais lācis//
+        \glb белый-\M.\Def{} медведь//
+        \glft 'белый (полярный) медведь'//
+    \endgl
+\xe
+
+В (\getfullref{kind.nkind}) \textit{balts} --- обычное интерсективное прилагательное, выражающее цвет индивида. В (\getfullref{kind.kind}) \textit{baltais} указывает на вид медведя, и словосочетание некомпозиционально: семантический вклад \textit{белый} здесь уникален и отличается, например, от такового в подобном же словосочетании \textit{белый чай}.
+
+При этом ИГ типа \textit{baltais lācis} может реферировать и к уже вызванному в дискурсе медведю, и к новому. Что еще более необычно --- такие ИГ сохраняют маркер определенности даже под кванторами:
+
+\ex<qu> \begingl
+        \gla katr-s politisk-ais spēks pārstāv savu notikumu interpretāciju//
+        \glb каждый-\M{} политический-\M.\Def{} сила представляет свою событий интерпретацию//
+        \glft 'Каждая политическая сила представляет свою интерпретацию событий'//
+    \endgl
+\xe
+
+В (\getref{qu}) ИГ в единственном числе, поэтому нельзя прибегнуть к объяснению через частичный квантор в духе \citep{matt2023}. Мы можем прийти к выводу, что такие именные группы действительно семантически не являются определенными.
+
+Однако что, если не собственно определенность, в таком случае лицензирует маркер определенности? \citep{rutpro2006} предлагают для литовского синтаксический анализ, где маркер определенности --- рефлекс передвижения существительного в специальную функциональную проекцию ClassP. Но такой анализ упускает важное семантическое обобщение: вышеупомянутое требование, чтобы классифицирующий предикат выражал устоявшийся класс, очень похоже на требование возбужденности индивида в дискурсе для определенности в обычных контекстах.
+
+Действительно, возможность определенного окончания прямо коррелирует с существованием концепта в общем дискурсе. Сравните (\nextx).
+
+\pex<disc>
+    \a<cmn> \begingl
+        \gla šodien uz ielas atradu elektrisk-o (\judge{*}-u) tējkann-u//
+        \glb сегодня на улице нашел электрический-\M.\Def.\Acc{} (-\Indef) чайник-\Acc{}//
+        \glft 'Сегодня я нашел на улице электрический чайник'//
+    \endgl
+    \a<uncmn> \begingl
+    \gla šodien uz ielas atradu elektrisk-u (\judge{*}-o) zirnekl-i//
+    \glb сегодня на улице нашел электрический-\M.\Indef.\Acc{} (-\Def) паук-\Acc{}//
+    \glft 'Сегодня я нашел на улице электрического паука'//
+\endgl
+\xe
+
+Электрические чайники (\getfullref{disc.cmn}) --- известные индивиды в широком постиндустриальном дискурсе. Электрические пауки же встречаются реже, потому классифицирующее прочтение для такого предиката недоступно. В тех же терминах \textit{baltais krekls} в (\getfullref{ldisc.cmn}) --- известный в локальном дискурсе индивид, а \textit{balts krekls} (\getfullref{ldisc.uncmn}) --- неизвестный.
+
+\pex<ldisc>
+    \a<cmn> \begingl
+        \gla rīt atkal uzvilkšu balt-o krekl-u//
+        \glb завтра опять надену белый-\M.\Def.\Acc{} рубашка-\Acc{}//
+        \glft 'Завтра опять надену (ту же) белую рубашку'//
+    \endgl
+    \a<uncmn> \begingl
+        \gla rīt nopirkšu balt-u krekl-u//
+        \glb завтра куплю белый-\M.\Indef.\Acc{} рубашка-\Acc{}//
+        \glft 'Завтра куплю белую рубашку'//
+    \endgl
+\xe
+
+С другой стороны, названия сортов всегда требуют определенного окончания (\nextx). Этим они похожи на имена собственные, которые ведут себя как определенные индивиды (не позволяют прочтений de dicto и пр.).
+
+\ex<proper>
+    \begingl
+        \gla šo jauno arbūza šķiru es nosaukšu par balt-o arbūz-u//
+        \glb этот новый арбуза сорт я назову о белый-\M.\Def.\Acc{} арбуз-\Acc{}//
+        \glft 'Этот новый сорт арбуза я назову белым арбузом'//
+    \endgl
+\xe
+
+Мы утверждаем, что определенное окончание способно маркировать определенность как индивида, так и предиката, причем ни одно не влечет другого. Описать это можно, например, через динамический тип окончания; на докладе мы представим такой анализ, углубимся в связанные с ним проблемы и опишем его следствия для общей семантики референции.
+
+\printglossaries
+
+\bibliography{ref}
+
+% \end{sloppypar}
+\end{document}
