@@ -1,0 +1,182 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[left=2.5cm,
+            right=2.5cm,
+            top=2.5cm,
+            bottom=2.5cm,
+            bindingoffset=0cm]{geometry}
+% \usepackage{array}
+% \usepackage[indent=0pt]{parskip}
+\usepackage{hyphsubst}
+\usepackage{setspace}
+\singlespacing
+
+\usepackage{hyperref}
+% \usepackage{float}
+% \usepackage{graphicx}
+% \graphicspath{ {./images/} }
+% \usepackage{subfig}
+% \usepackage{enumerate}
+\usepackage[normalem]{ulem} % underlining
+% \usepackage{booktabs} % tables
+% \PassOptionsToPackage{table}{xcolor}% coloring tables
+
+% LANGUAGE + FONT
+		    
+\usepackage[english, russian]{babel}
+
+\usepackage{natbib}
+\renewcommand{\bibsection}{~\\\textbf{References}}
+\bibpunct[: ]{[}{]}{;}{a}{}{,}
+\bibliographystyle{rusnat}
+
+\usepackage{fontspec}  
+\setmainfont{Gentium Plus}
+
+% DRAWING
+
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usetikzlibrary{shapes.geometric}
+    \usetikzlibrary{trees,arrows}
+\usetikzlibrary{positioning}
+
+% LINGUISTICS 
+
+%\usepackage{gb4e}
+\usepackage{expex}
+\lingset{aboveglftskip=0ex, belowglpreambleskip=0ex, belowexskip=1ex, aboveexskip=1ex, interpartskip=0ex}
+
+\gathertags
+\usepackage[glossaries]{leipzig}
+\newleipzig{cmpr}{cmpr}{Comparative}
+\newleipzig{sprl}{sprl}{Superlative}
+\newleipzig{indef}{indef}{Indefinite}
+% \makeglossaries
+
+\usepackage{stmaryrd}
+
+% MATH
+\usepackage{amssymb}
+
+\begin{document}
+\begin{sloppypar}
+
+% -------------------------- текстиктекстиктекстик -----------------------------
+
+\textbf{Baltic evidence to external aspect}\\~
+
+
+Aspect in Latvian is often described in the same terms as Slavic aspect [2], as it also has
+perfectivising prefixes (\nextx). These prefixes add telic interpretation to the verb as well as
+normally change aspect to perfective. Some of them additionally induce lexical meaning
+change; others, like \textit{no-} in (\getfullref{base.pfv})\footnote{This and other Russian examples are constructed as the authors are native speakers of Russian. Latvian
+examples are elicited, unless stated otherwise.}, do not.
+
+\pex<base>
+    \a<ipfv> \begingl
+        \gla Katru dienu sūtī-ju viņam vēstules//
+        \glb every day send-\Pst{} him letters//
+        \glft ‘I used to send him letters every day.’//
+    \endgl
+    \a<pfv> \begingl
+        \gla Vakar no-sūtī-ju viņam vēstuli//
+        \glb yesterday \Pfv-send-\Pst{} him letter//
+        \glft ‘I sent him a letter yesterday.’//
+    \endgl    
+\xe
+
+(\getfullref{base.ipfv}) is understood as a habitual action in the past, whereas (\getfullref{base.pfv}) is an episodic action. Same opposition applies in Russian (\nextx).
+
+\pex<>
+    \a<ipfv> \begingl
+        \gla Každy den’ ja sla-l jemu pis’ma//
+        \glb every day I send-\Pst{} him letters//
+        \glft ‘I used to send him letters every day.’//
+    \endgl
+    \a \begingl
+        \gla Včera ja po-sla-l jemu pis’mo//
+        \glb yesterday I \Pfv-send-\Pst{} him letter//
+        \glft ‘I sent him a letter yesterday.’//
+    \endgl
+\xe
+
+In Slavic languages all imperfective contexts require imperfective morphology [1]. When carrying present morphology, verbs with
+perfective prefixes refer to future. Conversely, Latvian allows the so-called perfective present (PP), where verbs with perfective prefixes are used in typical present contexts [2]. Although it is unavailable as progressive (\textit{I am sending him a letter right now} in Latvian is expressed with an imperfective verb), perfective is felicitous in habituals and praesens historicum (\nextx).
+
+\pex<pp>
+    \a<hab> \begingl
+        \gla Varētu teikt, ka \textbf{ne-ēdu} kūciņas, bet tad es melotu — gadā vienu, varbūt divas kūciņas \textbf{ap-ēdu}.//
+        \glb can.\Cond{} say that not-eat.\Prs{} cakes but then I lie.\Cond{} {} year one maybe two cakes \Pfv-eat.\Prs{}//
+        \glft ‘I could say that I don’t eat cakes, but then I would be lying – I eat one, maybe two cakes per year.’ \trailingcitation{[2]}//
+    \endgl
+
+    \a<ph> \begingl 
+        \gla dzejnieks pārsvītro visus trīs “Tu” un vietā \textbf{uz-raksta} “Es”//
+        \glb poet cross.out.\Prs{} all three “You” and instead \Pfv-write.\Prs{} “I”//
+        \glft ‘[In the fourth part of the action ...] the poet crosses out all three “You” and writes “I” instead.’\trailingcitation{[3]}//
+    \endgl
+\xe
+
+Overall, PP is available when the culmination of the event is asserted. In progressive, on the contrary, it is outside of the evaluation time, so prefixless form is used.
+
+Still, Slavic languages require imperfective in such contexts. When telic interpretation is needed
+in present, Russian employs imperfectivising affixes like -yva- and -a-. Compare (\getref{pp.hab}) with the semantically identical Russian (\nextx).
+
+\ex<rus>
+    \begingl
+        \gla {na samom dele} ja \textbf{s-jed-a-ju} odin-dva v god.//
+        \glb {in fact} I [\Pfv-eat]-\Ipfv-\Prs{} one-two per year//
+        \glft ‘[One could say that I don’t eat cakes, but] in fact I eat one-two cakes per year.’ //
+    \endgl
+\xe
+
+[2] proposes that Latvian verbs are bi-aspectual, but that is problematic [1]. In [1] authors
+claim that the difference between the Baltic and Slavic system is the degree of
+grammaticalisation. More precisely, "[in Slavic] the perfective present has basically become a
+perfective future", however in Baltic languages it is not a strict requirement.
+We are to employ S. Tatevosov’s analysis [4] of Russian, which suggests that aspect is
+external to the verb. The difference between verb-internal and verb-external aspect is (\nextx).
+
+\pex<>
+    \a<> [CP … [F\textsubscript{i+1}P … [F\textsubscript{i}P … [F\textsubscript{i-1}P … [VP … [V \textbf{PFV} na-pisa] ] ] ] ] ]\hfill internal
+    \a<> [CP … [F\textsubscript{i+1}P … [F\textsubscript{i}P … \textbf{PFV} [F\textsubscript{i-1}P … [VP … [V na-pisa] ] ] ] ] ]\hfill external
+\xe
+
+Aspect merges in AspP with a constraint that it should comply with the uppermost “aspectual”
+affix, such as perfectifising prefix \textit{s-} and imperfectivising suffix \textit{-a-} in (\getref{rus}).
+We thus propose that Latvian PP, i. e., usage of perfectivised verbs in present, is in fact
+imperfective, like in such contexts in Slavic languages. The question arises what is the reason
+for Latvian to allow imperfective aspect to combine with perfectivising prefixes. We have two
+options: to posit a null imperfectiviser functionally similar to Russian \textit{-yva-}, or to to allow free
+variation of aspect relative to “aspectual” affixes.
+
+Against the first hypothesis stands the fact that in Russian, \textit{-yva-} is mostly used with lexically saturated prefixes and combines quite unproductively with perfectivisers that do not induce meaning change. In the Russian
+translation of (\getfullref{pp.ph}), bare imperfective is used instead (\nextx).
+
+\ex<>
+    \begingl
+        \gla … poet … pish-et / \ljudge*na-pis-yva-jet “Ja”//
+        \glb … poet … write-PRS / \Pfv-write-\Ipfv-\Prs{} “I”//
+        \glft ‘[In the fourth part of the action ...] the poet crosses out all three “You” and writes “I” instead.’//
+    \endgl
+\xe
+
+This would lead us to propose that the Latvian imperfectiviser is not only null, but also
+unprecedently productive, a poor theoretical choice. We will review the properties
+of an “aspectless” analysis and problems related to it. We believe that Latvian data, which is
+similar to Russian except for the availability of aspectual interpretations, is a strong argument
+towards Tatevosov’s external aspect analysis.
+\\~
+
+\textbf{References}
+
+[1] Holvoet, A., Daugavet, A., \& Žeimantienė, V. (2022). The Perfective present in
+Lithuanian. Baltic Linguistics, 12 (12), 249-293. https://doi.org/10.32798/bl.925
+[2] Horiguchi, D. "Some remarks on Latvian aspect". Valoda: nozīme un forma 4:22-32.
+[3] Saulīte, B. et al. Latvian National Corpora Collection – Korpuss.lv
+Proceedings of the 13th Language Resources and Evaluation Conference (LREC), 2022,
+5123–5129.
+[4] Tatevosov, S. Comparative syntax and semantics of Slavic. Course at CreteLing 2023.
+
+\end{sloppypar}
+\end{document}

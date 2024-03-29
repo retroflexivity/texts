@@ -1,0 +1,464 @@
+\documentclass{beamer}
+\usefonttheme{serif}
+\usecolortheme[named=black]{structure}
+\setbeamertemplate{footline}[frame number]{}
+\setbeamertemplate{navigation symbols}{}
+
+\usepackage[normalem]{ulem} % underlining
+
+% LANGUAGE + FONT
+		    
+\usepackage[english]{babel}
+
+\usepackage{natbib}
+\bibpunct[: ]{[}{]}{;}{a}{}{,}
+\bibliographystyle{rusnat}
+
+\usepackage{fontspec}  
+\setmainfont{Gentium Plus}
+
+% DRAWING
+
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{trees,arrows}
+\usetikzlibrary{positioning}
+
+% LINGUISTICS 
+
+%\usepackage{gb4e}
+\usepackage{expex}
+\lingset{aboveglftskip=0ex, belowglpreambleskip=0ex, belowexskip=1ex, aboveexskip=1ex, interpartskip=1ex}
+
+\gathertags
+\usepackage[glossaries]{leipzig}
+\newleipzig{freq}{freq}{Frequentative}
+\newleipzig{add}{add}{Additive particle}
+\newleipzig{nfin}{nfin}{Non-Finite}
+\newleipzig{npst}{npst}{Non-Past}
+\newleipzig{int}{int}{Intensifier}
+\newleipzig{pssg}{poss.2sg}{Discoursive non-possessive}
+% \makeglossaries
+
+\usepackage{stmaryrd}
+
+\usepackage[linguistics]{forest}
+
+% MATH
+\usepackage{amssymb}
+
+\title{IS-driven idiosyncrasies of the Northern Khanty SELF-intensifier}
+\author{Arkady Shaldov}
+\institute{HSE Moscow}
+\date{TFS Osnabrück, 20.09.23}
+
+\begin{document}
+
+% -------------------------- текстиктекстиктекстик -----------------------------
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}
+    \frametitle{TOC}
+
+    \tableofcontents
+
+\end{frame}
+
+\section{Intro}
+\subsection{On Khanty}
+
+\begin{frame}
+    \frametitle{Northern Khanty, Kazym dialect}
+    
+    \begin{itemize}
+        \item Ob-Ugric < Uralic
+        \item Khanty-Mansi Autonomous Okrug, Middle Russia
+        \item Spoken by some 10,000 people (mostly elderly) --- Threatened
+        \item High dialect variation
+    \end{itemize}
+    
+    ~\\~\\ Data gathered via direct elicitation (2022--2023, Kazym village)
+    
+\end{frame}
+
+\subsection{On intensifiers}
+
+\begin{frame}
+    \frametitle{Intro: intensifiers}
+
+    Focus expressions that contrast the individual with others related via a salient relation\\~\\
+
+    Adnominal
+    \pex
+        \a Mr. Jones’ dog is indeed more sophisticated than Jones \textbf{himself}. (Jones vs Jones’ dog)
+        \a Even the presenter \textbf{herself} didn’t believe in the hypothesis. (the presenter vs. the presenter’s opponents)
+    \xe
+
+    \only<1>{Adverbial (left out today)
+    \ex
+        The old woman crossed the street \textbf{herself}. (without help)
+    \xe}
+    
+    \pause
+
+    ~\\~\\Eckard's analysis [Eckardt 2001]:
+
+    \begin{itemize}
+        \item an intensifier is an identity function $\lambda x \in D_e. ID(x)$
+        \item for it to be meaningful, it must be focused
+        \item when it is focused, focus alternatives are relation functions (dog-of, opponent-of etc.)
+    \end{itemize}
+
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Lyutikova's [2001] hierarchy}
+
+    Lyutikova proposes there are several readings of intensifiers (naming mine for consistency):
+
+    \begin{itemize}
+        \item contrastive: \textit{It was not John's brother but John himself.}
+        \item additive: \textit{John himself agreed with the critics.}
+        \item scalar: \textit{The King himself ordered it.}
+        \item contrastively topicalized: \textit{John's wife left, John himself stayed.}
+    \end{itemize}
+
+    ~\\~\\There is a typological availability hierarchy of the readings:
+    \ex additive, contrastive >> contrastive-topical, scalar \xe
+\end{frame}
+
+\section{Khanty data}
+\subsection{Available readings}
+
+\begin{frame}
+    \frametitle{NKh adnominal intensifier}
+
+    \textit{λʉw} (also 3SG personal pronoun; along w/ \textit{λiw} 3PL, \textit{λin} 3DU)\\~\\
+
+    The contrastive and additive readings are available.
+    
+    \ex<base1> \begingl
+        \glpreamble \{Is it Vasya's brother laying there in the snow?\}//
+        \gla ăntɵ śit waśaj-en λʉw u-λ//
+        \glb no this Vasya-\Pssg{} \Int{} lay-\Npst{}//
+        \glft 'No, it's Vasya himself laying.'//
+    \endgl    
+    \xe
+    \ex<base2> \begingl
+        \glpreamble \{Is it true that Pasha's wife doesn't want to get a dog?\}//
+        \gla pašaj-en λʉw ănt λăŋχa-λ amp tăj-ti//
+        \glb Pasha-\Pssg{} \Int{} \Neg{} want-\Npst{} dog own-\Nfin.\Npst{}//
+        \glft 'Pasha himself doesn't want to get a dog.'//
+    \endgl    
+    \xe
+    
+\end{frame}    
+
+
+\begin{frame}
+    \frametitle{\textit{λʉw} must have its \textit{intensificatum} topical}
+    
+    In the scalar reading, the individual is new to discourse and focused (this is likely what creates the scale).\\~\\
+    
+    \onslide<2>{NKh does not allow it}
+    
+    \ex<foc>\begingl
+    \gla\ljudge{*}president λʉw waśaj-en sawot kɵšaj-a oməs-s-əλλe//
+    \glb president \Int{} Vasya-\Pssg{} factory head-\Dat{} put-\Pst{}-\Tsg{}>\Sg{}//
+    \glft 'The president himself appointed Vasya as the head of the factory.'//
+    \endgl
+    \xe
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{\textit{λʉw} must not be contrastively topicalized}
+    
+    \textit{λʉw} is only marginally available in contrastively topicalized reading.
+    
+    \ex<ct>
+    \begingl
+    \glpreamble \{Petya's wife went to the city\}//
+    \gla \ljudge{*}petˊaj-en λʉw juλəŋ χaś-əs//
+    \glb Petya-\Pssg{} \Int{} at\_home stay-\Pst{} //
+    \glft 'Petya himself stayed at home.'//
+    \endgl
+    \xe
+    
+\end{frame}
+
+\subsection{Syntactic positions}
+
+\begin{frame}
+    \frametitle{Syntactic positions}
+
+    \textit{λʉw} is an \textbf{adnominal} intensifier\\~\\
+    
+    It would be expected an intensifier phrase is available in any syntactic position\\~\\
+    
+    \pause
+    
+    \onslide{But it's not the case}
+    
+    \begin{itemize}
+        \item \textit{λʉw} can only be a subject of a phrase
+    \end{itemize}    
+
+\end{frame}    
+
+\begin{frame}
+    \frametitle{\textit{λʉw} can only be a subject of a phrase}
+
+    \only<1>{
+        \textit{λʉw} can be a subject of a clause, irrespective of the case it bears
+
+        \ex<subj>
+            \begingl
+                \gla kašen rɵpatnik λʉw joχtə-s pa ime-λ tɵ-s//
+                \glb every worker \Int{} come-\Pst{} and wife-\Poss.\Tsg{} bring-\Pst{}//
+                \glft 'Every worker came himself and brought his wife.'//
+            \endgl    
+        \xe    
+
+        \ex<dsubj>
+            \begingl
+                \gla mašaj-en λʉw-eλa śit ăn mos-λ, λʉw puχ-əλ-a mos-λ//
+                \glb Masha \Int-\Dat{} this \Neg{} be\_needed-\Npst{} (s)he son-\Poss.\Tsg{} be\_needed-\Npst{}//
+                \glft 'Masha herself doesn't need it, it's Masha's son who needs it.'//
+            \endgl    
+        \xe    
+    }    
+
+    \only<2>{
+        \textit{λʉw} can be a possessor, i. e. a subject of a DP.
+
+        \ex<poss> \begingl
+            \glpreamble \{Is it Misha's father's parka?\}//
+            \gla ăntɵ śit mišaj-en \textbf{λʉw} molśe-λ//
+            \glb \Neg{} \Dem{} Misha-\Poss{}.\Ssg{} \Int{} parka-\Poss{}.\Tsg{}//
+            \glft 'No, it's Misha's own parka.'//
+        \endgl    
+        \xe
+
+    }    
+
+    \only<3>{
+        \textit{λʉw} cannot be an object
+
+        \ex<do> \begingl
+            \gla \ljudge*ma waśaj-en λʉw-ti ask-s-ɛm//
+            \glb I Vasya-\Poss{}.\Ssg{} \Int-\Acc{} call-\Pst{}-\Fsg{}>\Sg{}//
+            \glft ‘I asked Vasya himself \{but he sent his son instead\}.'//
+            \endgl
+        \xe    
+
+        \ex<io>\begingl
+            \glpreamble \{Did you tell it Pasha's wife?\}//
+            \gla \ljudge*ma pašaj-en λʉw-eλa iśi śit oλəŋ-ən lup-s-əm//
+            \glb I Pasha-\Pssg{}-\Dat{} \Int{}-\Dat{} \Add{} this about-\Loc{} tell-\Pst-\Fsg{}//
+            \glft  'I told it Pasha himself, too.'//
+        \endgl    
+        \xe
+    }    
+
+    \only<4>{
+        The subject of passive included
+
+        \ex<pass>
+            \begingl
+                \glpreamble \{Why is Vasya's son going?\}//
+                \gla waśaj-en λʉw mojaŋa woχ-s-a, puχ-əλ χɵn//
+                \glb Vasya-\Pssg{} \Int{} to\_visit call-\Pst-\Pass{} son-\Poss.\Tsg{} \Neg{}//
+                \glft 'Vasya himself was invited, not his son.'//
+            \endgl    
+        \xe    
+    }    
+
+\end{frame}    
+
+\section{Analysis}
+
+\begin{frame}
+    \frametitle{Summarizing}
+
+    \begin{itemize}
+        \item \textit{λʉw} is only available as a subject of a phrase
+        \item \textit{λʉw} requires its argument (intensificatum) to be topical
+        \item \textit{λʉw} is poor in contrastive topic
+    \end{itemize}
+
+    How to unite the idiosyncrasies?\\~\\
+
+    \pause
+
+    \textbf{The get-out requirement}. the intensificatum must move out of the intensifier DP
+
+    \begin{forest}
+        for tree={s sep=30pt}
+        [XP
+            [DP [mašajen, roof, name=to]]
+            [DP
+               [DP, [mašajen, roof, name=from]]
+               [DP [λʉw, roof]]
+            ]
+        ]
+        \draw[->] (from) to[out=south west, in=south] (to);
+    \end{forest}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{The proposal}
+
+    \textbf{The get-out requirement}. the intensificatum must (overtly) move out of the intensifier DP\\~\\
+
+    The requirement can be satisfied via topic movement to TopP\\~\\
+
+    \only<1>{
+        There is overt topic movement in NKh indeed
+
+        \ex
+           \begingl
+            \gla śi jupijn taməś woj ma ănt pa wantijλ-s-əm.//
+            \glb \Dem{} after such beast I \Neg{} \Add{} see-\Pst{}-\Fsg{}//
+            \glft 'Since then I haven't seen such a beast.'//
+           \endgl 
+        \xe
+    }
+
+    \pause 
+    
+    \begin{itemize}
+        \item The movement is blocked when there is an argument higher
+        \item The movement is impossible when the intensificatum is focused
+        \item It is the whole intensifier DP that moves when it is contrastively topicalized
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{The movement is blocked when there is an argument higher}
+
+    \ex<do> \begingl
+        \gla \ljudge*ma waśaj-en λʉw-ti ask-s-ɛm//
+        \glb I Vasya-\Poss{}.\Ssg{} \Int-\Acc{} call-\Pst{}-\Fsg{}>\Sg{}//
+        \glft ‘I asked Vasya himself \{but he sent his son instead\}.'//
+        \endgl
+    \xe
+
+    \textit{ma} 'I' would move instead of \textit{waśajen}, as it is topical\\~\\
+
+    It is still unclear if the intensifier would be allowed in double focus sentences
+\end{frame}    
+
+
+\begin{frame}
+    \frametitle{Possessors}
+    
+    Where does the intensificatum move when \textit{λʉw} is a possessor?
+    
+    \ex<poss> \begingl
+        \glpreamble \{I was searching for the house of Andrey's parents but\} //
+        \gla ma antrej-en		λʉw	χot-əλ		wojət-s-ɛm//
+        \glb I Andrey-\Pssg{}	\Int{}	house-\Poss.\Tsg{} find-\Pst-\Fsg>\Sg{}//
+        \glft ‘I found the home of Andrey himself.’//
+        \endgl
+        \xe
+        
+    There is possessive agreement in NKh which seems to require a topical possessor\\~\\
+
+    It is obligatory with \textit{λʉw}\\~\\
+    
+    We suggest it is because the intensificatum moves to Spec,PossP
+\end{frame}
+
+\begin{frame}
+    \frametitle{The movement is impossible when the intensificatum is focused}
+    
+    \ex<foc>\begingl
+    \gla\ljudge{*}president λʉw waśaj-en sawot kɵšaj-a oməs-s-əλλe//
+    \glb president \Int{} Vasya-\Pssg{} factory head-\Dat{} put-\Pst{}-\Tsg{}>\Sg{}//
+    \glft 'The president himself appointed Vasya as the head of the factory.'//
+    \endgl
+    \xe
+    
+    As \textit{president} is new and focused, it cannot be extracted
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{It is the whole intensifier DP that moves when it is contrastively topicalized}
+    
+    \ex<ct>
+        \begingl
+        \glpreamble \{Petya's wife went to the city\}//
+            \gla \ljudge{*}petˊaj-en λʉw juλəŋ χaś-əs//
+            \glb Petya-\Pssg{} \Int{} at\_home stay-\Pst{} //
+            \glft 'Petya himself stayed at home.'//
+    \endgl
+    \xe
+                        
+    % \begin{forest}
+    %     for tree={s sep=30pt}
+    %     [TopP
+    %         [DP
+    %             [DP{[TOP]} [petjajen, roof, name=specint]]
+    %             [DP [λʉw, roof]]
+    %         ]
+            % [DP
+            %     [DP, [mašajen, roof, name=from]]
+            %     [DP [λʉw, roof]]
+            % ]
+            % [TP
+                % [DP{[TOP]} [\st{petjajen λʉw}, roof, name=subj]]
+            
+                % [VP [juλəŋ χaśəs, roof]]
+        %     ]
+        % ]
+        % \draw[->] (from) to[out=south west, in=south] (to);
+    % \end{forest}
+\end{frame}
+
+\begin{frame}
+    \frametitle{The constraint might be phonological}
+
+    Phonologically empty DPs don't obey the constraint\\~\\
+
+    \begingl
+        \gla mašaj-en		aŋki	uš-a		wɛr-s-əm,	∅	λʉw-ti		śit	ăntɵ//
+        \glb Masha-\Poss.\Ssg{}	mother mind-\Dat{} make-\Pst-\Fsg{}	PRO \Int{}-\Acc{}	\Dem{}	\Neg{}//
+        \glft 'Masha's mother, I recognized, but her(self), I did not.'//
+    \endgl
+
+    \pause 
+    ~\\~\\ Such an anaphora would be unexpected, were \textit{λʉw} a personal pronoun\\~\\
+
+    It must be an intensifier with a PRO --- despite contrastively topicalized on left periphery and accusative.
+
+\end{frame}
+
+\section{Conclusion}
+
+\begin{frame}
+    \frametitle{Concluding}
+
+    \begin{itemize}
+        \item We have seen that NKh intensifier obeys Lyutikova's hierarchy: additive, contrastive >> 
+        *contrastive-topical, *scalar
+        \item Together with the subjecthood requirement, they result in three constraints to be explained
+        \pause
+        \item The explanation: a constraint that the intensificatum be extracted from the DP
+        \pause
+        \item The focused-intensifier-topical-intensificatum requirement might be the key to solving Lyutikova's hierarchy
+        
+        
+    \end{itemize}
+
+\end{frame}
+
+\end{document}

@@ -1,0 +1,93 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[left=2.5cm,
+            right=2.5cm,
+            top=2.5cm,
+            bottom=2.5cm,
+            bindingoffset=0cm]{geometry}
+% \usepackage{array}
+% \usepackage[indent=0pt]{parskip}
+\usepackage{hyphsubst}
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{hyperref}
+% \usepackage{float}
+% \usepackage{graphicx}
+% \graphicspath{ {./images/} }
+% \usepackage{subfig}
+% \usepackage{enumerate}
+\usepackage[normalem]{ulem} % underlining
+% \usepackage{booktabs} % tables
+% \PassOptionsToPackage{table}{xcolor}% coloring tables
+
+% LANGUAGE + FONT
+		    
+\usepackage[english]{babel}
+
+% \usepackage{natbib}
+% \renewcommand{\bibsection}{~\\\textbf{References}}
+% \bibpunct[: ]{[}{]}{;}{a}{}{,}
+% \bibliographystyle{rusnat}
+
+\usepackage[style=authoryear]{biblatex}
+\addbibresource{ref.bib}
+
+
+\usepackage{fontspec}  
+\setmainfont{Gentium Plus}
+
+% DRAWING
+
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{trees,arrows}
+\usetikzlibrary{positioning}
+
+% LINGUISTICS 
+
+%\usepackage{gb4e}
+\usepackage{expex}
+\lingset{aboveglftskip=0ex, belowglpreambleskip=0ex, belowexskip=1ex, aboveexskip=1ex, interpartskip=0ex}
+
+\gathertags
+\usepackage[glossaries]{leipzig}
+\newleipzig{cmpr}{cmpr}{Comparative}
+\newleipzig{sprl}{sprl}{Superlative}
+\newleipzig{indef}{indef}{Indefinite}
+% \makeglossaries
+
+\usepackage{stmaryrd}
+
+% MATH
+\usepackage{amssymb}
+
+\begin{document}
+\begin{sloppypar}
+
+% -------------------------- текстиктекстиктекстик -----------------------------
+
+\textbf{Partitive specificity and kind reference in Latvian}
+
+There are significant parallels between individual and kind reference across languages, and it has been observed that kinds share properties with definite expressions \parencite[a.m.o.]{carlson1977referencekindsenglish, chierchia1998referencekindslanguages, krifka1995genericityintroduction}. E.g., English \textit{the} can refer to both individuals (\textit{the lion is roaring}) and kinds (\textit{the lion is extinct}).
+
+Baltic languages offer further evidence. These languages employ a special suffix restricted to adjectives, often interpreted as conveying definiteness \parencite[160]{sereikaite2019strongvsweak,holvoet2012semanticmapdefinite,kalnaca2021latviangrammar}. Additionally, this marker is obligatory with classifying adjectives \parencite{rutkowski2006classifyingadjectivesnoun}, i. e., those that denote a subclass within the noun's class \parencite{mcnally2004relationaladjectivesproperties}. However, unlike the definite article, this marker remains obligatory even when the entire phrase doesn't refer to a kind. \parencite{sereikaite2017kindreferencedps} proposes that it is polysemous between \textsc{iota} and \textsc{down} operators, but compositionality questions arise.
+
+This paper argues that the Latvian marker \textit{-ai-} conveys not definiteness, but rather partitive specificity \parencite{enc1991semanticsspecificity}, scoping under the adjective. In simpler terms, it requires the existence of a unique salient (plural) individual within the noun's extension, of which the DP's referent is a part.
+
+\ex<>
+    \begingl
+        \glpreamble \{There were new shirts in a clothing store.\}//
+        \gla Jānis sev nopirka sarkan-o kreklu//
+        \glb Jānis himself bought red-\Def{}.\Acc{} shirt//
+        \glft 'Jānis bought himself a red shirt.'//
+    \endgl
+\xe
+
+This aligns with the conceptualization of kinds as pluralities of subkinds proposed in \parencite{krifka1995genericityintroduction}. Under this view, \textit{-ai-} can be assigned a unified interpretation in terms of partitive specificity. The analysis is formalized using dynamic semantics \parencite{heim1982semanticsdefiniteindefinite,dekker1996valuesvariablesdynamic} and extends to account the use of \textit{-ai-} with \textit{ad-hoc} kinds \parencite[82]{mendia2019referenceadhoc,holvoet2012semanticmapdefinite}. Furthermore, the paper explores the previously unregarded fact that \textit{-ai-} is used with classifying relational nouns as well, and the consequences of it for the analysis.
+
+% \bibliography{../../ref}
+\printbibliography
+
+\end{sloppypar}
+\end{document}

@@ -1,0 +1,158 @@
+%& -job-name=definiteness_bucharest_23
+
+\documentclass[a4paper, 12pt]{article}
+\usepackage[left=2.5cm,
+            right=2.5cm,
+            top=2.5cm,
+            bottom=2.5cm,
+            bindingoffset=0cm]{geometry}
+% \usepackage{array}
+% \usepackage[indent=0pt]{parskip}
+\usepackage{hyphsubst}
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{hyperref}
+% \usepackage{float}
+% \usepackage{graphicx}
+% \graphicspath{ {./images/} }
+% \usepackage{subfig}
+% \usepackage{enumerate}
+\usepackage[normalem]{ulem} % underlining
+% \usepackage{booktabs} % tables
+% \PassOptionsToPackage{table}{xcolor}% coloring tables
+
+% LANGUAGE + FONT
+		    
+\usepackage[english, russian]{babel}
+
+\usepackage{natbib}
+\renewcommand{\bibsection}{~\\\textbf{References}}
+\bibpunct[: ]{[}{]}{;}{a}{}{,}
+\bibliographystyle{rusnat}
+
+\usepackage{fontspec}  
+\setmainfont{Gentium Plus}
+
+% DRAWING
+
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{trees,arrows}
+\usetikzlibrary{positioning}
+
+% LINGUISTICS 
+
+%\usepackage{gb4e}
+\usepackage{expex}
+\lingset{aboveglftskip=0ex, belowglpreambleskip=0ex, belowexskip=1ex, aboveexskip=1ex, interpartskip=0ex}
+
+\gathertags
+\usepackage[glossaries]{leipzig}
+\newleipzig{cmpr}{cmpr}{Comparative}
+\newleipzig{sprl}{sprl}{Superlative}
+\newleipzig{indef}{indef}{Indefinite}
+% \makeglossaries
+
+\usepackage{stmaryrd}
+
+% MATH
+\usepackage{amssymb}
+
+\begin{document}
+\begin{sloppypar}
+
+% -------------------------- текстиктекстиктекстик -----------------------------
+
+\textbf{Latvian classificatory adjectives as definite predicates}
+
+In Latvian, there are no articles, but adjectives may carry a definiteness marker /-ai/ \citep[160]{kalnaca2021}.\footnote{Data is gathered via elicitation, unless stated otherwise.}
+
+\pex<base>
+    \a \begingl
+        \gla balt-s krekls//
+        \glb white-\Nom{} shirt//
+        \glft 'a white shirt'//
+    \endgl
+    \a \begingl
+        \gla balt-ai-s krekls//
+        \glb white-\Def{}-\Nom{} shirt//
+        \glft 'the white shirt'//
+    \endgl
+\xe
+
+However, when the adjective is \textsc{classificatory}, or kind-referring, the marker is used independently of definiteness of the referent. It is debated what classificatory adjectives are (see \citep[48]{morzycki2016} for discussion), but it is suggested that these must refer to 'well-established kinds' \citep{trugman2005}. It is a property of a noun phrase rather than an adjective itself. (\getfullref{kind.kind}-\getref{kind.tea}) are examples of classificatory adjectives, (\getfullref{kind.nkind}) is not.
+
+\pex<kind>
+    \a<nkind> \begingl
+        \gla balt-s lācis//
+        \glb white-\Nom{} bear//
+        \glft 'a white bear'//
+    \endgl 
+    \a<kind> \begingl
+        \gla balt-ai-s lācis//
+        \glb white-\Def{}-\Nom{} bear//
+        \glft 'a / the polar bear'//
+    \endgl
+    \a<tea> \begingl
+        \gla balt-ā teja//
+        \glb white-\F.\Def{}.\Nom{} tea//
+        \glft '(the) white \{unfermented\} tea'//
+    \endgl
+\xe
+
+% В (\getfullref{kind.nkind}) \textit{balts} --- обычное интерсективное прилагательное, выражающее цвет индивида. В (\getfullref{kind.kind}) \textit{baltais} указывает на вид медведя, и словосочетание некомпозиционально: семантический вклад \textit{белый} здесь уникален и отличается, например, от такового в подобном же словосочетании \textit{белый чай}.
+
+The marker is preserved even in the scope of indefinite quantifiers (\nextx).
+
+\ex<qu> \begingl
+        \gla bez saistības ar \textbf{kād-iem} semantisk-aj-iem vai pragmatisk-aj-iem valodas apguves jautājum-iem.//
+        \glb without relation to any-\Pl.\Dat{} semantic-\Def-\Pl.\Dat{} or pragmatic-\Def-\Pl.\Dat{} language acquisition question-\Pl.\Dat{}//
+        \glft 'unrelated to any semantic or pragmatic questions of language acquisition.'//\trailingcitation{Latvian National Corpus}
+    \endgl
+\xe
+
+Concerning the classificatory adjective marking in Lithuanian, \citep{rutpro2006} propose a syntactic account where classificatory adjectives are said to be base-generated in Spec,NP. The N head then moves to some hypothetical ClasP, and the marker is required to licence the trace. However, it doesn't explain why the same affix marks definiteness as well.
+
+In my talk I would like to entertain an alternative, semantic explanation. The idea is that Trugman's 'well-establishedness' is a sort of predicate definiteness, i. e., availability of the predicate expressed by the adjective-noun pair in the discourse. Indeed, common concepts (\getfullref{disc.cmn}) require the marker, while uncommon ones don't (\getfullref{disc.uncmn}).
+
+\pex<disc>
+    \a<cmn> \begingl
+        \gla šodien uz ielas atradu elektrisk-o (\judge{*}-u) tējkann-u//
+        \glb today on street found electric-\M.\Def.\Acc{} (\Indef) kettle-\Acc{}//
+        \glft 'Today I found an electric kettle in the street.'//
+    \endgl
+    \a<uncmn> \begingl
+    \gla šodien uz ielas atradu elektrisk-u (\judge{*}-o) zirnekl-i//
+    \glb today on street found electric-\M.\Indef.\Acc{} (\Def) spider-\Acc{}//
+    \glft 'Today I found an electric spider in the street.'//
+\endgl
+\xe
+
+Classificatory NPs thus act similarly to global uniques. The latter also carry the definiteness marker in Latvian (\nextx).
+
+\ex<global>
+    \begingl
+        \gla kad uzsākās bads, saprātīg-ai-s Anglijas karalis lika audzēt kukurūzu//
+        \glb when started famine, smart-\Def-\Nom{} England king ordered grow corn//
+        \glft 'When the famine started, the smart king of England ordered to grow corn.'//
+    \endgl
+\xe
+
+% Curiously, for names of species, no discourse activation is required for the definite marker to arise (\nextx). In that sense they can be compared to proper names, which always refer to a single individual.
+
+% \ex<proper>
+%     \begingl
+%         \gla šo jauno arbūza šķiru es nosaukšu par balt-o arbūz-u//
+%         \glb this new watermelon kind I will\_call for white-\M.\Def.\Acc{} watermelon-\Acc{}//
+%         \glft 'I will call this new kind of watermelon 'white watermelon'.'//
+%     \endgl
+% \xe
+
+The question is how to formalize the intuitions about 'definite predicates'. I suggest that it can be seen as identifiability of the kind \citep{chierchia1998}, parallel to identifiability of the unique individual. For a monosemic analysis, non-standard semantics of classificatory adjectives would be needed. It is also unclear whether predicates in Latvian can become definite from context, like individuals, and why if not. Resolving these questions will both shed some light on the nature of classificatory adjectives and provide a new dimension to studies of definiteness.
+
+\bibliography{ref}
+
+\end{sloppypar}
+\end{document}
