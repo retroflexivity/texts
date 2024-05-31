@@ -1,0 +1,460 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[left=2.5cm,
+            right=2.5cm,
+            top=2.5cm,
+            bottom=2.5cm,
+            bindingoffset=0cm]{geometry}
+% \usepackage{array}
+% \usepackage[indent=0pt]{parskip}
+\setlength{\columnsep}{1cm}
+\raggedbottom
+\usepackage{hyphsubst}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+
+\usepackage{enumitem}
+\setlist{nosep}
+
+% \renewcommand{\thesection}{\arabic{section}.}
+% \renewcommand{\thesubsection}{}
+% \setlength{\columnsep}{1.6cm}
+\usepackage{sectsty}
+\sectionfont{\Large}
+\subsectionfont{\large}
+% \subsubsectionfont{\normalsize}
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{3ex plus 0ex minus .2ex}{2ex plus .2ex}
+% \titlespacing*{\subsection}
+% {0pt}{2ex plus 0ex minus .2ex}{0ex plus .2ex}
+
+
+\usepackage{hyperref}
+% \usepackage{float}
+% \usepackage{graphicx}
+% \graphicspath{ {./images/} }
+% \usepackage{subfig}
+% \usepackage{enumerate}
+\usepackage[normalem]{ulem} % underlining
+% \usepackage{booktabs} % tables
+% \PassOptionsToPackage{table}{xcolor}% coloring tables
+\usepackage{csquotes}
+\MakeOuterQuote{"}
+% \MakeInnerQuote{'}
+\usepackage[english]{babel}
+
+% LINGUISTICS 
+
+\usepackage{expex}
+\lingset{aboveglftskip=0ex, belowglpreambleskip=0ex, belowexskip=0ex, aboveexskip=1.5ex, interpartskip=0ex}
+\lingset{Everyex={\parskip=0pt}}
+\gathertags
+
+\let\expexgla\gla % dumb unicode-math conflict
+\AtBeginDocument{\let\gla\expexgla}
+
+\usepackage[glossaries]{leipzig}
+\newleipzig{cmpr}{cmpr}{Comparative}
+\newleipzig{sprl}{sprl}{Superlative}
+\newleipzig{indef}{indef}{Indefinite}
+
+% TYPOGRAPHY
+
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+% \usepackage{mathspec}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+
+\setmainfont{Libertinus Serif}
+\setsansfont{Libertinus Sans}
+\setmathfont{Libertinus Math}
+
+\DeclareEmphSequence{\bfseries}
+
+% BIBLIOGRAPHY		    
+
+% \usepackage{natbib}
+% \renewcommand{\bibsection}{~\\\textbf{References}}
+% \bibpunct[: ]{[}{]}{;}{a}{}{,}
+% \bibliographystyle{rusnat}
+
+\usepackage[style=authoryear,url=false,doi=false,isbn=false,eprint=false,date=year]{biblatex}
+\addbibresource{../../ref.bib}
+
+% DRAWING
+
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{trees,arrows}
+\usetikzlibrary{positioning}
+
+
+\begin{document}
+
+% -------------------------- текстиктекстиктекстик -----------------------------
+
+Arkady Shaldov, HSE, 29.05.2024
+
+{\huge A proper name semantics for kinds}
+
+\section{Introduction}
+
+\subsection{Kind reference}
+
+\emph{Kind reference} is the ability of NPs to refer to the intension of predicates as a whole. Diagnostic contexts are kind-level predicates \parencite{carlson1977referencekindsenglish}:
+
+\begin{itemize}
+    \item \textit{rare}
+    \item \textit{inhabit}
+    \item \textit{extinct}
+    \item \textit{invent} (DO)
+    \item etc.
+\end{itemize}
+
+Among the expressions that are usually considered to refer to kinds are
+
+\begin{itemize}
+    \item The kind-level singular \textit{the} \parencite{carlson1977referencekindsenglish}.
+\end{itemize}
+
+\pex<>
+    \a<> The mammoth is extinct.
+    \a<> The anteater eats ants.
+\xe
+
+\begin{itemize}
+    \item DPs in the taxonomic reading (quantifying over subkinds) \parencite{dayal2004numbermarkingdefiniteness}.     
+\end{itemize}    
+
+\pex<clasdet>
+    \a<some> Some anteaters are extinct.\trailingcitation{At least one of \{\textsc{giant ae., silky ae., \dots}\}}
+    \a<thepl> The anteaters are divided into two families.\trailingcitation{All of \{\textsc{giant ae., silky ae., \dots}\}}
+\xe
+
+\begin{itemize}
+    \item Bare plurals. Also note scopelessness \parencite{chierchia1998referencekindslanguages}.
+\end{itemize}
+    
+\pex<>
+    \a Huge angry anteaters inhabit South America.
+    \a I didn't see huge angry anteaters.\trailingcitation{only \textsc{anteaters} > $\neg$, not $\neg$ > \textsc{anteaters}}
+\xe
+    
+\begin{itemize}
+    \item \textit{kind-of} \parencite{carlson1977referencekindsenglish}
+\end{itemize}
+    
+\ex<>
+    He is the kind of person that always speaks first.
+\xe
+
+The first two refer to \emph{well-established kinds} (WEK). The last two refer to \emph{\textit{ad-hoc} kinds} \parencite{mendia2019referenceadhoc}. This work only concerns the former.
+
+\subsection{Classificatory adjectives}
+
+The classificatory adjectives are the structurally lowest, semantically peculiar class of adjectives.
+    
+    \pex<>
+        \a<> polar bear
+        \a<> technical architect
+        \a<> functional grammar
+    \xe
+
+\textcite{mcnally2004relationaladjectivesproperties} propose that they denote properties of kinds.
+
+\subsection{What are kinds?}
+
+It is unclear.
+
+\begin{itemize}
+    \item \textcite{carlson1977referencekindsenglish}: a special kind of entity.
+    \item \textcite{chierchia1998referencekindslanguages} (the Neocarlsonian approach): a special kind of entity --- an intensional totality of individuals.
+\end{itemize}
+
+WEK-denoting nouns are considered to be \emph{proper name--like} expressions \parencite{carlson1977referencekindsenglish,krifka1995genericityintroduction}. They pass the \textit{so-called} test.
+
+\ex<>
+    The giant anteater is so called because it can be more than two meters long.
+\xe
+
+(The anaphoric \textit{so} must refer to something; likely not the post-insertion content)
+
+\section{The concern of this work}
+
+\begin{itemize}
+    \item To capture the semantics of classificatory adjectives and taxonomic readings with an untyped semantics of \textcite{chierchia1984topicssyntaxsemantics}.
+    \begin{itemize}
+        \item The Neocarlsonian approach does not predict that relational nouns can be kind-referring, but they can.
+    \end{itemize}
+    \item To formalize the idea that WEK are referred to via proper names.
+\end{itemize}
+
+\section{Nominalized predicates}
+\subsection{The HST* \parencite{cocchiarella1974fregeansemanticsrealist,chierchia1984topicssyntaxsemantics}}
+
+An untyped lambda-calculus for natural language semantics.
+
+\begin{itemize}
+    \item Types are limited to
+    \begin{itemize}
+        \item individuals
+        \item N-ary predicates over \textbf{entities only}
+        \item functors (non-\textit{t}-ending)
+    \end{itemize}
+    \item All predicates have an individual counterpart.
+    \begin{itemize}
+        \item Predicates are turned individual by the Down-operator $^\cap $.
+        \item Individuals are turned predicate by the Up-operator $^\cup $.
+    \end{itemize}
+    \item This effectively allows predicates to range over predicates.
+    \begin{itemize}
+        \item Including ranging over expressions of different types.
+        \item Including self-predication and much more.
+    \end{itemize}
+\end{itemize}
+
+\emph{Note.} $^\cup $ and $^\cap $ are not type-shifters or semantics of null expressions. They are composition principles and come for free.
+
+\subsection{The Neocarlsonian semantics \parencite{chierchia1998referencekindslanguages}}
+
+Kinds are functions from worlds to totalities of individuals that belong to that kind.
+
+Linkean semantics for pluralities \parencite{link1983logicalanalysisplurals}: a join semilattice $\langle E,\oplus\rangle$ where elements above are mereological sums of elements below.
+\begin{itemize}
+    \item Part-of relation $\le$: e.g. $a\oplus b \le a\oplus b\oplus c$.
+    \item A kind is the uppermost element in the lattice.
+\end{itemize}
+
+Rethinking \textcite{chierchia1984topicssyntaxsemantics}'s \textsc{down} and \textsc{up} operators as type-shifters.
+\pex<>
+    \a<down> $^\cap P = \lambda s\,\iota x\in D_k.\,P_s(x)$
+    \a<up> $^\cup d = \lambda x.\,x\le d_s$
+\xe
+
+\textbf{Note.} It follows that only one-place predicates can correspond to kinds. This makes incorrect predictions (section \ref{rel}). Further employing the HST*: kinds are nominalized predicates with no connection to the content of the predicate.
+
+\section{Classificatory adjectives}
+
+\pex<cla>
+    \a<a> technical architect
+    \a<b> pulmonary disease
+    \a<c> brown bear
+\xe
+
+Tightly related to their nouns.
+
+\begin{itemize}
+    \item Non-compositional semantics.
+    \item Structurally lowest --- always linearily adjacent to the noun. In Lithuanian, unseparable by possessors \parencite{rutkowski2006classifyingadjectivesnoun}.    
+\end{itemize}
+
+\pex<>
+    \a \begingl
+        \gla žalia Reginos suknelė\trailingcitation{attributive}//
+        \glb green Regina-GEN dress//
+        \glft `Regina’s green dress’//
+    \endgl
+    \a \begingl
+        \gla Reginos žalioji arbata\trailingcitation{classificatory}//
+        \glb Regina-GEN green tea//
+        \glft `Regina’s green tea’\trailingcitation{Lithuanian}//
+    \endgl
+\xe
+
+\begin{itemize}
+    \item Available, but limited in predicative position. Require a compatible noun in the subject.
+    \begin{itemize}
+        \item[$\implies$] not compounds.
+    \end{itemize}
+\end{itemize}
+
+\pex<>
+    \a<> This architect is technical.
+    \a \{context: This guy is an architect.\}\\\ljudge*This guy is technical.
+\xe
+
+\emph{Note.} There can be more than one classificatory adjective.
+
+\pex<>
+    \a Scandinavian red fox
+    \a This red fox is Scandinavian.
+    \a \ljudge*This fox is Scandinavian red.
+\xe
+
+
+\subsection{Definite suffixes}
+
+Some languages (Serbian \parencite{rutkowski2005classificationprojectionpolish}, Lithuanian \parencite{rutkowski2006classifyingadjectivesnoun,holvoet2012semanticmapdefinite}, Latvian \parencite{holvoet2012semanticmapdefinite}) mark noun phrase definiteness on adjectives.
+
+\pex<lvnp>
+\a<bare> \begingl
+        \gla skudrlācis//
+        \glb anteater//
+        \glft `a/the anteater'//
+    \endgl
+    \a<attr> \begingl
+        \gla skaist-s skudrlācis//
+        \glb beautiful-\Nom{} anteater//
+        \glft `a/*the beautiful anteater'//
+    \endgl
+    \a<def> \begingl
+        \gla skaist-\emph{ai}-s skudrlācis//
+        \glb beautiful-\Def-\Nom{} anteater//
+        \glft `*a/the beautiful anteater'\trailingcitation{Latvian}//
+    \endgl
+\xe
+        
+The same marker is required on classificatory adjectives, without implying definiteness.
+        
+\ex
+    \begingl
+        \gla liel-\textbf{ai}-s skudrlācis//
+        \glb big-\Def-\Nom{} anteater//
+        \glft `a/the giant anteater (\textit{Myrmecophaga tridactyla})'//
+    \endgl
+\xe
+        
+\textbf{The idea here}: classificatory adjectives range over subkinds of the noun (or the noun with classificatory adjectives) \parencite[cf.][]{mcnally2004relationaladjectivesproperties}.
+
+\section{Kinds and proper names}\label{pn}
+
+WEK can be treated as proper names \parencite{carlson1977referencekindsenglish,heyer1985genericdescriptionsdefault,krifka1995genericityintroduction}
+
+\pex<>
+    \a<> \textit{Google} is so called because the creators dreamed of parsing a googol of pages.
+    \a<> \ljudge* My neighbour is so called because he is the only living soul for miles.
+    \a<> The anteater is so called because it eats ants.
+    \a<> The giant anteater is so called because it can be more than two meters long.
+\xe
+
+Conceptual similarity: kinds are rigid designators \parencite{krifka1995genericityintroduction}.
+
+Predicative position availability for classificatory adjectives is symmetrical to that of \textit{called}.
+
+\pex<>
+\a<> Such architects are called technical.
+\a<> \ljudge*Such guys are called technical.
+\xe
+
+\subsection{What are proper names?}
+
+Metalinguistic predicates that hold of all entities that bear the corresponding name \textcite[a.m.o.]{burge1973referencepropernames}. 
+
+\pex<>
+    \a<> I saw a Zachary today.
+    \a<> There are many Zacharies here.
+    \a<> The Zachary I told you about is following me.
+\xe
+
+Names in their standard usage (\textit{Zachary is crazy}) have a null determiner / are \textsc{iota} type-shifted: the unique most salient \textit{Zachary} \parencite{elbourne2005situationsindividuals}.
+
+\section{The proposal}
+
+Both nouns and classificatory adjectives are proper names.
+
+\begin{itemize}
+    \item One-place metalinguistic predicates over kinds.
+    \begin{itemize}
+        \item True for any kind that bears the name.
+    \end{itemize}
+    \item A \textsc{iota} is applied on every node in an NP's ext. projection to derive the unique kind.
+    \item A predicate is true for individuals as well as its subkinds.
+    \begin{itemize}
+        \item For any well-established predicates $p$ and $q$, if $\forall x[p(x)\implies q(x)]$, then $q(^\cap p)$
+    \end{itemize}
+\end{itemize}
+
+\pex<classem>
+    \a<n> $\llbracket \text{anteater} \rrbracket = \lambda k.\,\textsc{called}(\text{anteater})(k)$
+    \a<i> $\textsc{iota}\llbracket \text{anteater} \rrbracket = \iota k.\,\textsc{called}(\text{anteater})(k) = \textsc{anteater}$
+    \a<up> $^\cup \textsc{iota}\llbracket \text{anteater} \rrbracket = \lambda x.\,\textsc{anteater}(x)$
+    \a<a> $\llbracket \text{giant} \rrbracket  = \lambda k.\,\textsc{called}(\text{giant})(k)$
+    \a<pm> $\llbracket \text{giant anteater} \rrbracket = \lambda x.\,\textsc{called}(\text{giant})(k) \land \textsc{anteater}(x)$
+\xe
+
+In simpler terms,
+\begin{itemize}
+    \item the \textsc{anteater} is the kind that is called "anteater".
+    \item the \textsc{giant anteater} is the kind of anteater that is called "giant".
+\end{itemize}
+
+\textit{-ai-} is an opaque definiteness marker, with the semantics of \textsc{iota}. It naturally occurs on classificatory adjectives as well.
+
+\pex<>
+    \a<> $\llbracket \text{-ai-} \rrbracket (\llbracket  \text{liel- skudrlāci-}\rrbracket ) =  \iota k.\,\textsc{called}(\text{giant})(k) \land \textsc{anteater}(x)$
+\xe
+
+\section{Taxonomic NPs}
+
+Determiners can range over subkinds. Singular \textit{the} returns the kind itself.
+
+\pex<clasdet>
+    \a<the> The anteater inhabits South America.
+    \a<some> Some anteaters are extinct.
+    \a<thepl> The anteaters are divided into two families.
+\xe
+
+Earlier: kinds are true of their subkinds.
+
+\begin{itemize}
+    \item It follows that determiners can range over subkinds.
+\end{itemize}
+
+\ex<>
+    $\exists k.\,\textsc{anteater}(k) \land \textsc{extinct}(k)$
+\xe
+
+\begin{itemize}
+    \item Kinds are also true of themselves.
+    \item The totality of \textsc{anteater} subkinds is extensionally equal to \textsc{anteater}.
+    \item The \textsc{anteater} is singular.
+    \begin{itemize}
+        \item[$\implies$] To refer to the whole kind, singular \textit{the} is used.
+    \end{itemize}
+\end{itemize}
+
+\section{Additional: relational nouns against the Neocarlsonian semantics}\label{rel}
+
+If we accept the analysis above, we assume that classificatory adjectives and nouns range over kinds upon combining.
+
+Relational nouns (type $\langle e,t\rangle$) combine with classificatory adjectives: \textit{older brother}, \textit{personal assistant}, etc.
+
+\ex<rel>
+    \begingl
+        \glpreamble \{Context: Anna has two older brothers.\}//
+        \gla Anna-s vec-āk-\textbf{ai}-s brālis iegūva Nobela premiju//
+        \glb Anna-\Gen{} old-\Comp-\Def-\Nom{} brother received Nobel's prize//
+        \glft `An older brother of Anna has received Nobel's prize.'//
+    \endgl
+\xe
+
+\begin{itemize}
+    \item[$\implies$] Relational nouns denote kinds.
+\end{itemize}
+
+Neocarlsonian semantics cannot deal with it.
+\begin{itemize}
+    \item There is no totality of \textsc{brothers} to be the reference of the kind.
+    \item The result of applying \textsc{up} is always one-place, predicts $\llbracket \text{older brother}\rrbracket$ to be one-place.
+\end{itemize}
+
+\section{Summary}
+
+\begin{itemize}
+    \item Well-established kinds --- nouns, classificatory adjectives, (compounds\dots) --- are underlyingly proper names.
+    \item Classificatory adjectives range over subkinds.
+    \item The kind-level singular \textit{the} explained in terms of self-predication.
+    \item Neocarlsonian semantics does not capture the whole picture.
+    \item Still much work to do.
+    \begin{itemize}
+        \item The external semantics of kind-referring NPs is yet to be developed.
+        \item Everything is murky with ad-hoc kinds.
+    \end{itemize}
+\end{itemize}
+
+\printbibliography
+
+\end{document}
