@@ -356,7 +356,7 @@ This approach has several downsides. First, there is much stipulation: it postul
     $\llbracket \text{architect} \rrbracket = \lambda x_k\lambda y_o.\,\textsc{architect}(x) \land R(y,x)$\footnote{Where R is \textcite{carlson1977referencekindsenglish}'s realization relation, analogous to Chierchia's $\le$, that is, $R(x,y) = \,^\cup x(y)$.}
 \xe
 
-\textit{Technical} and other classificatory adjectives are, consequently, predicates over kinds. They combine with the noun via Predicate Modification, after which the kind variable gets saturated contextually (which resonates with the idea that kinds are definites, that is, available from the context). A technical architect is, then, someone who belongs to the kind defined by \textit{architect} and \textit{technical} (\nextx).
+\textit{Technical} and other classificatory adjectives are, consequently, predicates over kinds. They combine with the noun via a special compositional principle, after which the kind variable gets saturated contextually (which resonates with the idea that kinds are definites, that is, available from the context). A technical architect is, then, someone who belongs to the kind defined by \textit{architect} and \textit{technical} (\nextx).
 
 \ex<>
     $\llbracket \text{technical architect} \rrbracket = \lambda y_o.\,\exists x_k[\textsc{architect}(x)\land\textsc{technical}(x)\land R(y,x)]$
@@ -391,7 +391,7 @@ This is a predicate over kinds, that is, over predicates. But clearly what proce
 This is compatible with any theory of definiteness, be it a theory of uniqueness \parencite{russell1905denoting,strawson1950referring} or familiarity \parencite{heim1982semanticsdefiniteindefinite}. (\nextx) demonstrates the mechanism with the simple $\iota$ semantics \parencite{partee1986nounphraseinterpretation}. The uniqueness presupposition is trivially satisfied because nouns with classifying adjectives always refer to a well-established kind (similar to \Citeauthor{mcnally2004relationaladjectivesproperties}'s contextual saturation). The resulting unique kind can then be used predicatively to combine with attributive adjectives, individual-level determiners and any other content of a DP. In languages without adjectival definiteness, this process would be realized via the \textsc{iota} type-shifter, again, similar to noun phrases in articleless languages \parencite{dayal2004numbermarkingdefiniteness}.
 
 \pex<>
-\a<> $\llbracket \text{-ai-} \rrbracket = \lambda p.\,x$ such that $p(x)$ iff $|p|=1$, undefined otherwise
+\a<> $\llbracket \text{-ai-} \rrbracket = \lambda p.$ the only $x$ such that $p(x)$, if defined
 \a<> $\llbracket \text{-ai-} \rrbracket (\llbracket  \text{liel- skudrlāci-}\rrbracket ) =  \iota k.\,\textsc{giant}(k) \land \textsc{anteater}(k)$
 \a $^\cup \llbracket \text{-ai-} \rrbracket(\llbracket \text{liel- skudrlāci-} \rrbracket) = \lambda x.\, (\iota k.\,\textsc{giant}(k) \land \textsc{anteater}(k))(x)$
 \xe
