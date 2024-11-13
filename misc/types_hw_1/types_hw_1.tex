@@ -1,0 +1,235 @@
+\documentclass{article}
+\usepackage[includehead, top=1cm,bottom=1cm,left=1cm,right=1cm]{geometry}
+
+\pagenumbering{gobble}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Типы в языках программирования}
+\chead{Теоретическое домашнее задание 1}
+\rhead{Аркадий Шалдов}
+
+\usepackage{amssymb,stmaryrd}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\usepackage{braket}
+\setmainfont{Libertinus Serif}
+\setsansfont{Libertinus Sans}
+\setmathfont{Libertinus Math}
+
+\usepackage{ebproof}
+
+\DeclareMathOperator{\tsucc}{succ}
+\DeclareMathOperator{\tpred}{pred}
+\DeclareMathOperator{\tlet}{let}
+\DeclareMathOperator{\tin}{in}
+\DeclareMathOperator{\tthen}{then}
+\DeclareMathOperator{\telse}{else}
+\DeclareMathOperator{\tif}{if}
+\DeclareMathOperator{\colqq}{::=}
+
+\begin{document}
+\section*{\centering Система типов $\mathrm{IntBool}+\mathrm{Let}$}
+
+\begin{enumerate}
+    \item Выпишите в форме Бэкуса-Наура грамматику термов $t \in \mathrm{Tm}$ и типов $T \in \{\mathtt{Int}, \mathtt{Bool}\}$ языка $\mathrm{IntBool}+\mathrm{Let}$, поддерживающего логические значения и целые (не натуральные!) числа, условный оператор, взятие следующего числа, предыдущего числа, сложение и объявление новых имён через $\mathtt{let}$.
+    
+        $t \colqq \mathrm{true} \mid \mathrm{false} \mid \mathrm{zero} \mid \tsucc t \mid \tpred t \mid t_1 + t_2 \mid \tif t_1 \tthen  t_2 \telse t_3\mid x_1\mid\dots\mid x_n\mid \tlet t_1 = t_2\tin  t_3$
+        
+        $V =  \mathbb{I} \cup \mathbb{B} \cup \set{\mathrm{var}} \cup \set{\bot} $
+
+    \item Определите разумную денотационную семантику $\llbracket t\rrbracket$ для языка нетипизированных термов $\mathrm{Tm}$.\\
+    Что в данном контексте значит функциональность и тотальность? Докажите их.
+
+        \begin{enumerate}
+            \item $\llbracket x_{1\dots n}\rrbracket = \bot$
+            \item $\llbracket\mathrm{true}\rrbracket = T$
+            \item $\llbracket\mathrm{false}\rrbracket = F$
+            \item $\llbracket\mathrm{zero}\rrbracket = 0$
+            \item $\llbracket\tsucc t\rrbracket = \begin{cases}
+                \llbracket t\rrbracket + 1& \llbracket t\rrbracket \in \mathbb{I}\\
+                \bot
+            \end{cases}$
+            \item $\llbracket\tpred t\rrbracket = \begin{cases}
+                \llbracket t\rrbracket - 1& \llbracket t\rrbracket \in \mathbb{I}\\
+                \bot
+            \end{cases}$
+            \item $\llbracket t_1 + t_2\rrbracket = \begin{cases}
+                \llbracket t_1\rrbracket + \llbracket t_2\rrbracket & \llbracket t_1\rrbracket, \llbracket t_2\rrbracket \in \mathbb{I}\\
+                \bot
+            \end{cases}$
+            \item $\llbracket\tif t_1 \tthen t_2 \telse t_3\rrbracket = \begin{cases}
+                \llbracket t_2\rrbracket & \llbracket t_1\rrbracket = T\\
+                \llbracket t_3\rrbracket & \llbracket t_1\rrbracket = F\\
+                \bot
+            \end{cases}$
+            \item $\llbracket \tlet t_1 = t_2\tin t_3 \rrbracket = \begin{cases}
+                \llbracket[t_2/x]\,t_3\rrbracket & \llbracket x \rrbracket \in\mathrm{var}\\
+                \bot
+            \end{cases}$, 
+            
+            где $[q/p]\,r$ — выражение $r$, в котором все употребления $p$ заменены на $q$
+        \end{enumerate}
+
+        Тотальность — $\forall t\in \mathrm{Tm}\ \exists v(\llbracket t \rrbracket =v)$
+
+    \textbf{Док-во}. Будем говорить, что терм $t$ означен, если $\exists v(\llbracket t \rrbracket = v)$. Очев., каждая из констант (true, false, zero) и все переменные означены. Пусть $t$ означен. Тогда $\tsucc t$ и $\tpred t$ означены. Аналогично, если $t_1$ и $t_2$ означены, то $t_1+t_2$ означен; если $t_1$, $t_2$ и $t_3$ означены, то $\tif t_1 \tthen t_2 \telse t_3$ означен.  Тогда по структурной индукции любой терм $t$, не содержащий оператора $let$, означен.
+
+        $\tlet t_1 = t_2\tin t_3$ означен титтк $[t_2/t_1]\,t_3$ означен (или $t_1\notin\set{var}$). Пусть $t_2$ означен, и $t_3$ не содержит оператора $let$. Поскольку $t_1$ и $t_2$ являются термами, любое выражение, где $t_1$ заменено на $t_2$, также будет термом. Тогда по предыдущему абзацу $[t_2/t_1]\,t_3$ означен. Тогда по структурной индукции любой терм $\tlet t_1 = t_2\tin t_3$ означен. $\blacksquare$
+
+        Функциональность — $\forall t\in\mathrm{Tm}\ \forall v_1, v_2(\llbracket t \rrbracket = v_1 \land \llbracket t \rrbracket = v_2 \to v_1=v_2)$
+        
+        Доказывается аналогично. 
+
+    \item Определите small-step операционную семантику вычислений с кучей $H;t\to H';t'$ для языка $\mathrm{IntBool}+\mathrm{Let}$.\\
+    Докажите сильную нормализацию.
+
+        \begin{enumerate}
+            \item $
+            \begin{prooftree}
+                \hypo{H;t\to H';t'}
+                \infer1{H; \tsucc t\to H';\tsucc t'}
+            \end{prooftree}
+            $
+            \item $
+            \begin{prooftree}
+                \hypo{H;t\to H';t'}
+                \infer1{H; \tpred t\to H';\tpred t'}
+            \end{prooftree}
+            $
+            \item $
+            \begin{prooftree}
+                \hypo{H;t_1\to H';t_1'}
+                \infer1{H; \tif t_1 \tthen t_2 \telse t_3 \to H'; \tif t_1' \tthen t_2 \telse t_3 }
+            \end{prooftree}
+            $
+            \item $
+            \begin{prooftree}
+                \hypo{H;t_2\to H'; t_2'}
+                \infer1{H; \tlet t_1 = t_2\tin t_3 \to H; \tlet t_1 = t_2'\tin t_3}
+            \end{prooftree}
+            $
+            \item $
+            \begin{prooftree}
+                \hypo{t \in \mathrm{pos}\cup\mathrm{neg}}
+                \infer1{H; \tsucc(\tpred t) \to H; t}
+            \end{prooftree}
+            $
+            \item $
+            \begin{prooftree}
+                \hypo{t \in \mathrm{pos}\cup\mathrm{neg}}
+                \infer1{H; \tpred(\tsucc t) \to H; t}
+            \end{prooftree}
+            $
+            \item $H; \mathrm{zero} + t \to H; t$
+            \item $H; \tsucc t_1 + t_2 \to H; \tsucc(t_1 + t_2)$
+            \item $H; \tpred t_1 + t_2 \to H; \tpred(t_1 + t_2)$
+            \item $H; \tif \mathrm{true} \tthen t_1 \telse t_2 \to H; t_1$
+            \item $H; \tif \mathrm{false} \tthen t_1 \telse t_2 \to H; t_2$
+            \item $H; \tlet x = t_1\tin t_2 \to H\cup\set{x=t_1}, t_2 $
+            \item $
+            \begin{prooftree}
+                \hypo{(x=t)\in H}
+                \infer1{H; x \to H; t}
+            \end{prooftree}
+            $
+        \end{enumerate}
+
+        \textbf{Доказать сильную нормализацию} хз как.
+
+    \item Выпишите БНФ для множества значений $v \in V \subseteq \mathrm{Tm}$, погружённого в множество термов.\\
+    Докажите, что все они находятся в нормальной форме относительно $(\to)$.
+
+        \begin{itemize}
+            \item $v \colqq \mathrm{true} \mid \mathrm{false} \mid \mathrm{zero} \mid \mathrm{pos} \mid \mathrm{neg}$
+            \item $\mathrm{pos} \colqq \tsucc\mathrm{zero} \mid \tsucc \mathrm{pos}$
+            \item $\mathrm{neg} \colqq \tpred\mathrm{zero} \mid \tpred \mathrm{neg}$
+        \end{itemize}    
+    
+        Каждая из констант (true, false, zero) находится в НФ, т. к. не существует правила, выводящего что-либо из них.
+        
+        Докажем по индукции, что $\mathrm{pos}$ находится в НФ. $\tsucc \mathrm{zero}$ находится в НФ, т. к. $\mathrm{zero}$ находится в НФ, и не существует правила, выводящего что-либо из $\tsucc t$ или $\tsucc \mathrm{zero}$. Пусть $\mathrm{pos}$ находится в НФ. Тогда $\tsucc \mathrm{pos}$ находится в НФ, т. к. имеет форму $\tsucc (\tsucc t_1)$, но не существует правила, выводящего что-либо из $\tsucc t$ без посылки о выводимости чего-либо из $t$ или включающего подстроку $\tsucc(\tsucc$. 
+
+        Док-во для $\mathrm{neg}$ аналогично.
+
+    \item Докажите эквивалентность семантик $\llbracket t\rrbracket$ и $\varnothing;t\to^* H;n$ (где $n$ --- терм в нормальной форме). Иными словами, докажите следующее:
+    \begin{itemize}
+        \item Для любых терма $t$ и значения $v$, $\llbracket t\rrbracket = \llbracket v\rrbracket$ тогда и только тогда, когда $\varnothing;t\to^* H;v$ для некоторой кучи $H$;
+        \item Для любого терма $t$, $\llbracket t\rrbracket = \bot$ тогда и только тогда, когда ни для каких кучи $H$ и значения $v$ не верно, что $\varnothing;t\to^* H;v$.
+    \end{itemize}
+    
+        \begin{enumerate}
+            \item По индукции. Если $t = v$, то тривиально. Пусть $H;t\to^* H';v$ и $\llbracket t \rrbracket = \llbracket v \rrbracket $. Тогда 
+            \begin{itemize}
+                \item $H;\tsucc t \to^* H';\tsucc v$ и $\llbracket \tsucc t \rrbracket = \llbracket t \rrbracket  + 1 = \llbracket v \rrbracket + 1 = \llbracket \tsucc v \rrbracket $ (аналогично для $\tpred t$); 
+                \item $H;\tsucc(\tpred t) \to H;t \to^* H';v$ и $\llbracket \tsucc(\tpred t) \rrbracket = (\llbracket t \rrbracket - 1) + 1 = \llbracket t \rrbracket  = \llbracket v \rrbracket $ (аналогично для $\tpred(\tsucc t)$); 
+                \item $H;\mathrm{zero} + t \to H;t \to^* H';v$ и $\llbracket \mathrm{zero} + t \rrbracket = 0 + \llbracket t \rrbracket = \llbracket t \rrbracket = \llbracket v \rrbracket$;
+            \end{itemize}
+            Пусть $H;\tsucc t_1 + t_2 \to^* v$ и $\llbracket t_1 + t_2 \rrbracket = \llbracket v \rrbracket $. Тогда $H;\tsucc t_1 + t_2 \to H;\tsucc(t_1 + t_2) \to^* H';\tsucc(v)$ и $\llbracket \tsucc t_1 + t_2 \rrbracket = \llbracket t_1 \rrbracket  + 1 + \llbracket t_2 \rrbracket = \llbracket v \rrbracket + 1 = \llbracket \tsucc v \rrbracket$ (аналогично для $\tpred t_1 + t_2$).
+    
+            Пусть $H;t_1 \to^* H';\mathrm{true}$, $\llbracket t_1 \rrbracket = T$ и $H;t_2 \to^* H';v_2$. Тогда $H;\tif t_1 \tthen t_2 \telse t_3 \to H;t_2 \to^* H';t_2$ и $\llbracket \tif t_1 \tthen t_2 \telse t_3 \rrbracket = t_2$  (аналогично для $H;t_1 \to^* H';\mathrm{false}$).
+
+            
+            Пусть $H;t_1 \to^* H';v_1 $, $\llbracket t_1 \rrbracket = \llbracket v_1 \rrbracket$ и $\llbracket x \rrbracket \in \set{var}$. Тогда $H;\tlet x = t_1 \tin t_2 \to^* H';\tlet x = v_1 \tin t_2 \to H\cup\set{x = v_1};t_2$ и $\llbracket \tlet x = t_1 \tin t_2 \rrbracket = \llbracket [t_1/x]\,t_2 \rrbracket$. Докажем эквивалентность для $H\cup\set{x = v_1};t_2$ и $\llbracket [t_1/x]\,t_2 \rrbracket $. Пусть $(x=t)\in H$. Тогда $H;x\to H;t$ и $\llbracket [t/x]\,x \rrbracket = t$. Далее по индукции.
+
+            \item Обозначим как $H;t \not\to$, если $\neg\exists H',v \in V (H;t\to^* H'v)$.
+            
+            Если $\llbracket t \rrbracket \in \mathrm{var}$, то $t\not\in v$ и $t$ в НФ, т.е. $\emptyset;t\not\to$.
+            
+            Пусть $\llbracket \tsucc t \rrbracket = \bot$, т. е. $\llbracket t \rrbracket \not\in \mathbb{I}$. Тогда $t\not\in \mathrm{pos}\cup\mathrm{neg}$, и $\neg\exists t'\in\mathrm{pos}\cup\mathrm{neg}\ (t=\tpred t')$. Тогда $\emptyset;\tsucc t\not\to$. Для остальных операторов аналогично.
+        \end{enumerate}
+        
+    \item Введите правила типизации $\Gamma\vdash t:T$ языка $\mathrm{IntBool}+\mathrm{Let}$.\\
+    Докажите preservation и progress теоремы относительно $H;t\to H';t'$.
+        
+        $T = \mathbb{I} \mid \mathbb{B}$
+        
+        \begin{itemize}
+            \item $
+                \begin{prooftree}
+                    \hypo{x:T\in\Gamma}
+                    \infer 1{\Gamma\vdash x:T}
+                \end{prooftree}
+            $
+            \item $\llbracket\mathrm{true}\rrbracket : \mathbb{B}$
+            \item $\llbracket\mathrm{false}\rrbracket = \mathbb{B}$
+            \item $\llbracket\mathrm{zero}\rrbracket = \mathbb{I}$    
+            \item $
+                \begin{prooftree}
+                    \hypo{\Gamma\vdash t:\mathbb{I}}
+                    \infer 1{\Gamma\vdash \tsucc t:\mathbb{I}}
+                \end{prooftree}
+            $
+            \item $
+                \begin{prooftree}
+                    \hypo{\Gamma\vdash t:\mathbb{I}}
+                    \infer 1{\Gamma\vdash \tpred t:\mathbb{I}}
+                \end{prooftree}
+            $
+            \item $
+                \begin{prooftree}
+                    \hypo{\Gamma\vdash t_1,t_2:\mathbb{I}}
+                    \infer 1{\Gamma\vdash t_1 + t_2:\mathbb{I}}
+                \end{prooftree}
+            $
+            \item $
+                \begin{prooftree}
+                    \hypo{\Gamma\vdash t_1:\mathbb{B}\land t_2,t_3:\mathbb{T}}
+                    \infer 1{\Gamma\vdash \tif t_1 \tthen t_2 \telse t_3:\mathbb{T}}
+                \end{prooftree}
+            $
+            \item $
+                \begin{prooftree}
+                    \hypo{\Gamma\vdash t_1: T}
+                    \hypo{\Gamma\land x: T \vdash t_2 : U}
+                    \infer 2{\Gamma\vdash \tlet x = t_1 \tin t_2: U}
+                \end{prooftree}
+            $
+        \end{itemize}
+
+    \item Докажите здравость (корректность) введённой типизации относительно $\llbracket\_\rrbracket$.
+    \item Всегда ли верно, что если $\llbracket t\rrbracket \in \mathbb{Z}$ или $\llbracket t\rrbracket \in \mathbb{B}$, то $\cdot\vdash t:T$ для некоторого $T$? (Полна ли система типов?)
+    
+        Нет. Например, $\llbracket \tif \mathrm{true} \tthen 0 \telse \mathrm{false} \rrbracket \in \mathbb{Z}$; но так как $\neg\exists T(0,\mathrm{false}\in T)$, посылка для типизации условного оператора не выполняется, и $\neg\exists T: \cdot\vdash \tif \mathrm{true} \tthen 0 \telse \mathrm{false} : T$.
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,129 @@
+\documentclass{article}
+\usepackage[includehead, top=1cm,bottom=1cm,left=1cm,right=1cm]{geometry}
+
+\pagenumbering{gobble}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Типы в языках программирования}
+\chead{Теоретическое домашнее задание 2}
+\rhead{Аркадий Шалдов}
+
+\usepackage{amssymb,stmaryrd}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\usepackage{braket}
+\setmainfont{Libertinus Serif}
+\setsansfont{Libertinus Sans}
+\setmathfont{Libertinus Math}
+
+\usepackage{xcolor}
+
+\usepackage{ebproof}
+
+\ExplSyntaxOn
+\NewDocumentCommand{\opair}{m}
+ {
+  \langle\mspace{2mu}
+  \clist_set:Nn \l_tmpa_clist { #1 }
+  \clist_use:Nn \l_tmpa_clist {,\mspace{3mu plus 1mu minus 1mu}\allowbreak}
+  \mspace{2mu}\rangle
+}
+\NewDocumentCommand{\blist}{m}
+ {
+  [\mspace{2mu}
+  \clist_set:Nn \l_tmpa_clist { #1 }
+  \clist_use:Nn \l_tmpa_clist {,\mspace{3mu plus 1mu minus 1mu}\allowbreak}
+  \mspace{2mu}]
+}
+\ExplSyntaxOff
+\newcommand{\T}{\mathtt{T}}
+\newcommand{\F}{\mathtt{F}}
+
+
+\begin{document}
+\section*{\centering Тьюринг-полнота нетипизированного лямбда-исчисления}
+Машина Поста --- машина Тьюринга на бинарном алфавите. Закодируем описание и состояние машины лямбда-термами:
+\begin{itemize}
+  \item Будем кодировать алфавит с помощью \verb|True| и \verb|False|.
+  \item Состояния $q \in \{\bot\} \cup Q$ --- нумералами $0,\ldots,|Q|$ (терминальное состояние $\bot$ кодируется нулём).
+  \item Таблицу состояний $\delta : Q \times \{0, 1\} \to (\{\bot\} \cup Q) \times \{0, 1\} \times \{\mathtt{L}, \mathtt{S}, \mathtt{R}\}$ --- списком пар длины $|Q|$, где каждая компонента каждой пары --- $\mathtt{Pair}\;q\;(\mathtt{Pair}\;b\;n)$, где $q$ --- номер нового состояния, $b$ --- новый символ, $n$ --- $\lambda xyz.x$, $\lambda xyz.y$ или $\lambda xyz.z$).
+  \item Бесконечную ленту и головку --- парой списков символов, где в первом списке перечислены символы слева от головки (читая от головки), а во втором — справа (списки конечные, поскольку в любой момент на ленте записано только конечное количество символов).
+\end{itemize}
+Постройте замкнутый терм $\mathtt{Interpret}$ такой, что для любого описания таблицы $\delta$ и начального состояния
+\[s = \mathtt{Pair}\;q_0\;(\mathtt{Pair}\;[b_1,\ldots,b_n]\;[b'_1,\ldots,b'_m])\]
+про $R = \mathtt{Interpret}\;\delta\;s$ верно следующее:
+\begin{itemize}
+    \item Если у $R$ нет нормальной формы, соответствующая машина Поста не завершает свою работу на данном входе;
+    \item Если $R$ нормализуется, то $\mathrm{nf}(R)$ --- это состояние ленты в результате работы соответствующей машины.
+\end{itemize}
+
+\textit{P.S.} При желании можете вводить более удобную Вам нотацию для лямбда-термов (инфиксные операторы, кортежи), главное --- объясните, как она устроена.
+
+\textit{P.P.S.} Также, при желании, можете взять любую другую более удобную Вам кодировку; опять же, главное --- объясните, как она устроена.
+
+\subsection*{решение}
+
+Базовые комбинаторы:
+\begin{itemize}
+  \item $\mathtt{True} = \T = \lambda xy.\ x$
+  \item $\mathtt{False} = \F = \lambda xy.\ y$
+  \item $\opair{} = \lambda xyP.\ P\ x\ y$
+  \begin{itemize}
+    \item $\blist{x_1,\dots, x_n} = \opair{ x_1, \opair{ \dots, \opair{ x_n, \F }  }  } $
+  \end{itemize}
+  \item $\mathtt{get} = \lambda il.\ (i\ (\lambda l.\ l\ \F)\ l)\ \T$ — $n$-ный элемент списка $l$
+  \item $\mathtt{isnil} = \lambda l.\ l\ (\lambda xyz.\ \F)\ \T$
+\end{itemize}
+Будем кодировать
+\begin{itemize}
+  \item таблицу состояний машины $\delta$ как $\blist{\opair{\opair{q, \opair{b,n}}}, \opair{\opair{q, \opair{b,n}}}}$
+  \item состояние ленты $t$ как $\opair{\blist{b_0, \dots, b_n}, \blist{b'_1, \dots, b'_m}}$, где $b_0$ — ячейка под головкой, $b_1$ — ячейка слева от головки, $b'_1$ — ячейка справа от головки, и т. д. Будем считать, что за пределами списков все ячейки $\mathtt{False}$.
+  \item индексы состояний как натуральные числа: $q_0 = \lambda Sx.\ x$ и $q_n = \lambda Sx.\ S\ q_{n-1}$
+  \item положение дел $s$ как $\opair{q_i, t}$
+\end{itemize}
+Итак.
+\begin{itemize}
+  \item $\mathtt{rewr} = \lambda tb.\ \opair{\opair{b, t\ \T\ \F}, t\ \F}$
+  \begin{itemize}
+    \item получив состояние ленты $t$ и значение $b$, возвращает $t$, где вместо первого элемента первого списка (ячейки под головкой) записано $b$.
+  \end{itemize}
+  \item $\mathtt{shift} = \lambda tn.\ \opair{n\ (t\ \T\ \F)\ (t\ \T)\ (\opair{t\ \F\ \T, t\ \T}), n\ (\opair{t\ \T\ \T, t\ \F})\ (t\ \F)\ (t\ \F\ \F)}$
+  \begin{itemize}
+    \item получив состояние ленты $t$ и сдвиг $n = \lambda xyz.\ x/y/z$, возвращает сдвинутую ленту
+    \begin{itemize}
+      \item $\opair{\blist{b_1, \dots, b_n}, \blist{b_0, b'_1, \dots, b'_m}}$, если $n = \lambda xyz.\ x$
+      \item $\opair{\blist{b_0, \dots, b_n}, \blist{b'_1, \dots, b'_m}}$, если $n = \lambda xyz.\ y$
+      \item $\opair{\blist{b'_1, b_0 \dots, b_n}, \blist{b'_2, \dots, b'_m}}$, если $n = \lambda xyz.\ z$
+    \end{itemize}
+    \item в результате сдвига один из списков может оказаться пустым, так что введем еще и $\mathtt{xtnd}$, добавляющий в список еще одну (пустую) ячейку 
+  \end{itemize}
+  \item $\mathtt{xtnd} = \lambda t.\ \opair{\mathtt{isnil}\ (t\ \T)\ \opair{\F, \F}\ (t\ \T), \mathtt{isnil}\ (t\ \F)\ \opair{\F, \F}\ (t\ \F)}$
+  \begin{itemize}
+    \item принимает состояние ленты — пару списков и, если один из списков пуст ($\F$), заменяет его на список из одного $\F$ ($\opair{\F, \F}$)
+  \end{itemize}
+  \item $\mathtt{b} = \lambda qt.\ q\ (t\ \T\ \T)\ \F\ \T$\\
+  $\mathtt{n} = \lambda qt.\ q\ (t\ \T\ \T)\ \F\ \F$\\
+  $\mathtt{qi} = \lambda qt.\ q\ (t\ \T\ \T)\ \T$
+  \begin{itemize}
+    \item достают из состояния новое значение ($b$), сдвиг ($n$) и индекс нового состояния ($q_i$), соответвующие значению в текущей ячейке
+  \end{itemize}
+  \item $\mathtt{oper} = \lambda qt.\ \opair{\mathtt{qi}\ q\ t, \mathtt{xtnd}\ (\mathtt{shift}\ (\mathtt{rewr}\ t\ (\mathtt{b}\ q\ t))\ (\mathtt{n}\ q\ t)) } $
+  \begin{itemize}
+    \item получив состояние машины $q$ и состояние ленты $t$, возвращает новое положение дел с перезаписанным значением под головкой и сдвигом
+  \end{itemize}
+  \item $\mathtt{step} = \lambda \delta s.\ \mathtt{oper}\ (\mathtt{get}\ (s\ \T)\ \delta)\ (s\ \F)$
+  \begin{itemize}
+    \item шаг машины: преобразует таблицу состояний машины и положение дел в состояние машины и состояние ленты и возвращает новое положение дел
+  \end{itemize}
+  \item $\mathtt{eval} = \lambda e\delta s.\ (s\ \T)\ (e\ \delta\ (\mathtt{step}\ \delta\ s))\ (s\ \F)$ 
+  \begin{itemize}
+    \item шаг рекурсии: возвращает текущее состояние ленты, если машина в терминальном состоянии ($q_i = 0 = \F$), или вычисляет новое состояние ленты и отправляет его дальше
+  \end{itemize}
+  \item $\mathtt{Interpret} = \lambda \delta s_0.\  (\lambda x.\ \mathtt{eval}\ (x\ x)\ \delta\ s_0)\ (\lambda x.\ \mathtt{eval}\ (x\ x)\ \delta\ s_0)$
+  \begin{itemize}
+    \item обычный оператор неподвижной точки, зацикливающий $\mathtt{eval}$
+  \end{itemize}
+  
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,497 @@
+\documentclass{article}
+\usepackage[includehead,top=1cm,bottom=2cm,left=1cm,right=1cm]{geometry}
+
+\usepackage{fancyhdr}
+\usepackage{amssymb,stmaryrd}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\usepackage{braket}
+\setmainfont{Libertinus Serif}
+\setsansfont{Libertinus Sans}
+\setmonofont{Libertinus Mono}
+\setmathfont{Libertinus Math}
+
+\usepackage[unicode]{hyperref}
+
+\pagestyle{fancy}
+\lhead{Типы в языках программирования}
+\chead{Теоретическое домашнее задание 3}
+\rhead{Аркадий Шалдов}
+
+\usepackage{colonequals,mathpartir,mdframed,tasks,enumitem}
+
+\DeclareMathOperator{\tinl}{\mathtt{inl}}
+\DeclareMathOperator{\tinr}{\mathtt{inr}}
+\DeclareMathOperator{\tcase}{\mathtt{case}}
+\DeclareMathOperator{\tof}{\mathtt{of}}
+\DeclareMathOperator{\tabsurd}{\mathtt{absurd}}
+\DeclareMathOperator{\tstl}{\ \vdash\ }
+
+\ExplSyntaxOn
+\NewDocumentCommand{\opair}{m}
+ {
+    \langle\mspace{2mu}
+    \clist_set:Nn \l_tmpa_clist { #1 }
+    \clist_use:Nn \l_tmpa_clist {,\mspace{3mu plus 1mu minus 1mu}\allowbreak}
+    \mspace{2mu}\rangle
+}
+\ExplSyntaxOff
+
+\AtBeginDocument{%
+  \mathchardef\stdcomma=\mathcode`,
+  \mathcode`,="8000
+}
+\begingroup\lccode`~=`, \lowercase{\endgroup\def~}{\stdcomma\ }
+
+\begin{document}
+\section*{\centering Алгебраические типы данных и соответствие Карри-Говарда}
+Расширим STLC типами пар, типом-синглтоном, типами размеченных объединений и пустым типом.
+Другими словами, рассмотрим систему STLC+ADT, заданную следующим образом:
+\begin{mdframed}[
+    frametitle={\framebox{Syntax}},
+    frametitlebelowskip=0,
+    innertopmargin=0
+]
+\begin{align*}
+    t &\coloncolonequals x
+    \;|\; \lambda x.t \;|\; t\;t
+    \;|\; (t,t) \;|\; \pi_1\;t \;|\; \pi_2\;t \;|\; ()
+    \;|\; \mathtt{inl}\;t \;|\; \mathtt{inr}\;t
+    \;|\; \mathtt{case}\;t\;\mathtt{of}\;\{\;
+        \mathtt{inl}\;x\mapsto t;\;
+        \mathtt{inr}\;x\mapsto t\;\}
+    \;|\; \mathtt{absurd}\;t \\
+    T &\coloncolonequals X
+    \;|\; T \to T \;|\; T\times T \;|\; \top \;|\; T+T \;|\; \bot
+\end{align*}
+\end{mdframed}
+\begin{mdframed}[
+    frametitle={\framebox{$\Gamma\tstl t:T$}},
+    frametitlebelowskip=0,
+    innertopmargin=0
+]
+\begin{mathpar}
+\inferrule{x:T\in\Gamma}{\Gamma\tstl x:T}\textsc{(Var)}\and
+\inferrule{\Gamma,x:T\tstl u:U}{\Gamma\tstl\lambda x.u:T\to U}\textsc{(Abs)}\and
+\inferrule
+    {\Gamma\tstl f:T\to U\\\Gamma\tstl t:T}{\Gamma\tstl f\;t:U}\textsc{(App)}\and
+\inferrule
+    {\Gamma\tstl t_1:T_1\\\Gamma\tstl t_2:T_2}
+    {\Gamma\tstl(t_1,t_2):T_1\times T_2}\textsc{(Pair)}\and
+\inferrule
+    {\Gamma\tstl p:T_1\times T_2}{\Gamma\tstl \pi_i\;p:T_i}
+    \textsc{($\textsc{Proj}_i$)}\and
+\inferrule{ }{\Gamma\tstl ():\top}\textsc{(Unit)}\and
+\inferrule{\Gamma\tstl t:T_1}{\Gamma\tstl\mathtt{inl}\;t:T_1+T_2}\textsc{(InL)}\and
+\inferrule{\Gamma\tstl t:T_2}{\Gamma\tstl\mathtt{inr}\;t:T_1+T_2}\textsc{(InR)}\and
+\inferrule
+    {\Gamma\tstl t:T_1+T_2\\\Gamma,x:T_1\tstl u_1:U\\\Gamma,x:T_2\tstl u_2:U}
+    {\Gamma\tstl\mathtt{case}\;t\;\mathtt{of}\;\{\;
+        \mathtt{inl}\;x\mapsto u_1;\;
+        \mathtt{inr}\;x\mapsto u_2
+    \;\}:U}\textsc{(Cases)}\and
+\inferrule{\Gamma\tstl t:\bot}{\Gamma\tstl\mathtt{absurd}\;t:T}\textsc{(Absurd)}
+\end{mathpar}
+\end{mdframed}
+\begin{mdframed}[
+    frametitle={\framebox{$t\to t'$}},
+    frametitlebelowskip=0,
+    innertopmargin=0
+]
+\begin{mathpar}
+\inferrule{t\to t'}{\lambda x.t\to\lambda x.t'}\textsc{($\textsc{Lam}^\to$)}\and
+\inferrule{f\to f'}{f\;t\to f'\;t}\textsc{(AppL)}\and
+\inferrule{t\to t'}{f\;t\to f\;t'}\textsc{(AppR)}\and
+\inferrule{ }{(\lambda x.f)t\to[t/x]f}\textsc{($\beta$)}\and
+\inferrule{t_1\to t_1'}{(t_1,t_2)\to(t_1',t_2)}\textsc{(PairL)}\and
+\inferrule{t_2\to t_2'}{(t_1,t_2)\to(t_1,t_2')}\textsc{(PairR)}\and
+\inferrule{p\to p'}{\pi_i\;p\to\pi_i\;p'}\textsc{($\textsc{Proj}_i^\to$)}\and
+\inferrule{ }{\pi_i(t_1,t_2)\to t_i}\textsc{($\textsc{Proj}_i$-$\beta$)}\and
+\inferrule
+    {t\to t'}{\mathtt{inl}\;t\to\mathtt{inl}\;t'}\textsc{($\textsc{InL}^\to$)}\and
+\inferrule
+    {t\to t'}{\mathtt{inr}\;t\to\mathtt{inr}\;t'}\textsc{($\textsc{InR}^\to$)}\and
+\inferrule{t\to t'}
+    {\mathtt{case}\;t\;\mathtt{of}\;\{\;
+        \mathtt{inl}\;x\mapsto u_1;\;
+        \mathtt{inr}\;x\mapsto u_2
+    \;\}\to\mathtt{case}\;t'\;\mathtt{of}\;\{\;
+        \mathtt{inl}\;x\mapsto u_1;\;
+        \mathtt{inr}\;x\mapsto u_2
+    \;\}}\textsc{($\textsc{Cases}^\to$)}\and
+\inferrule{ }{\mathtt{case}\;(\mathtt{inl}\;t)\;\mathtt{of}\;\{\;
+        \mathtt{inl}\;x\mapsto u_1;\;
+        \mathtt{inr}\;x\mapsto u_2
+    \;\}\to[t/x]u_1}\textsc{(CaseL)}\and
+\inferrule{ }{\mathtt{case}\;(\mathtt{inr}\;t)\;\mathtt{of}\;\{\;
+        \mathtt{inl}\;x\mapsto u_1;\;
+        \mathtt{inr}\;x\mapsto u_2
+    \;\}\to[t/x]u_2}\textsc{(CaseR)}\and
+\inferrule
+    {t\to t'}{\mathtt{absurd}\;t\to\mathtt{absurd}\;t'}\textsc{($\textsc{Absurd}^\to$)}
+\end{mathpar}
+\end{mdframed}
+(Примечание: напомним, что обозначение $\bot$ здесь --- не значение ``бессмысленных'' или ``зацикливающихся'' термов, а отдельный ``пустой'' тип.)
+\subsection*{Задачи}
+\begin{enumerate}
+    \item Постройте теоретико-множественную семантику данного исчисления. Другими словами,
+    \begin{enumerate}
+        \item По заданной оценке базовых типов (набору множеств $[A],[B],[C],\ldots$) постройте оценку каждого типа $T$\\(соответствующее ему множество $[T]$).
+        \item Пусть $\Gamma\tstl t:T$. Постройте оценку терма $t$, т.е. функцию $\llbracket \Gamma \tstl t : T\rrbracket: [\Gamma]\to[T]$.
+        (Оценка контекста строится следующим образом: $[\cdot] = \{\cdot\}$, $[\Gamma,x:T]=[\Gamma]\times[T]$.)
+    \end{enumerate}
+    \newpage
+
+
+    \item Постройте логическую семантику данного исчисления. Другими словами,
+    \begin{enumerate}
+        \item Постройте функцию $\varphi:\mathrm{Type}(\mathrm{Var})\to\mathrm{Fm}(\mathrm{Var})$, отображающую типы STLC+ADT в формулы \\
+        логики высказываний\footnote{\href{https://ru.wikipedia.org/wiki/\%D0\%9B\%D0\%BE\%D0\%B3\%D0\%B8\%D0\%BA\%D0\%B0\_\%D0\%B2\%D1\%8B\%D1\%81\%D0\%BA\%D0\%B0\%D0\%B7\%D1\%8B\%D0\%B2\%D0\%B0\%D0\%BD\%D0\%B8\%D0\%B9}{\texttt{https://ru.wikipedia.org/wiki/Логика\_высказываний}}} над одним и тем же алфавитом базовых типов (атомарных высказываний) $\mathrm{Var}$.
+    
+        \begin{mdframed}
+            \begin{enumerate}
+                \item $\varphi (X) = \mathrm{Var}$
+                \item $\varphi (T_1\to T_2) = \varphi(T_1)\to \varphi(T_2)$
+                \item $\varphi (T_1\times T_2) = \varphi(T_1)\land \varphi(T_2)$
+                \item $\varphi (T_1 + T_2) = \varphi(T_1)\lor \varphi(T_2)$
+                \item $\varphi (\top) = \top$
+                \item $\varphi(\bot) = \bot$
+            \end{enumerate}
+        \end{mdframed}
+
+        \item Пусть $\cdot\tstl t:T$. Докажите, что $\varphi(T)$ является тавтологией.
+        
+        \begin{mdframed}
+            Единственное правило типизации, совместимое с нулевым контекстом — $\cdot\tstl():\top$. Далее по индукции:
+            \begin{itemize}
+                \item Пусть $x: T\tstl u: U$ и $\varphi(T) = \top \tstl \varphi(U) = \top$. Тогда если $\cdot\tstl \lambda x.\,u : T\to U$, то $\varphi(T\to U) = \top \to \top = \top$.
+                \item Пусть $\cdot\tstl f:T\to U$, $\cdot \tstl t: T$ и $\varphi(T\to U) = \varphi (T) = \top$. Тогда если $\cdot \tstl f\ t:U$, то $\top\to\varphi(U) = \top$ и $\varphi(U)=\top$ по \textit{modus ponens}.
+                \item Пусть $\cdot \tstl t_1: T_1$, $\cdot \tstl t_2: T_2$ и $\varphi(T_1)=\varphi(T_2)=\top$. Тогда если $\cdot \tstl (t_1,t_2): T_1\times T_2$, то $\varphi(T_1 \times T_2) = \top \land \top = \top$.
+                \item Пусть $\cdot \tstl p: T_1\times T_2$ и $\varphi(T_1\times T_2)=\top$. Тогда если $\cdot \tstl \pi_1 p: T_1$, то $\varphi(T_1)\land\varphi(T_2) = \top$ и $\varphi(T_1) = \top$ (по AND-1 в нотации Гилберта). Аналогично для $T_2$.
+                \item Пусть $\cdot \tstl t_1: T_1$ и $\varphi(T_1)=\top$. Тогда если $\cdot \tstl \tinl t: T_1 + T_2$, то $\varphi(T_1 + T_2) = \top \lor \varphi(T_2) = \top$. Аналогично для $\tinr$.
+                \item Пусть 
+                \begin{enumerate}
+                    \item $\cdot \tstl t: T_1 + T_2$
+                    \item $x:T_1 \tstl u_1: U$
+                    \item $x:T_2 \tstl u_2: U$
+                    \item $\varphi(T_1 + T_2) = T_1\lor T_2 = \top$
+                    \item $\varphi(T_1) = \top \tstl \varphi(U) = \top$
+                    \item $\varphi(T_2) = \top \tstl \varphi(U) = \top$
+                \end{enumerate}
+                Тогда если $\cdot \tstl \tcase t \tof \set{\tinl x\mapsto u_1; \tinr x \mapsto u_2}: U$, то либо $T_1 = \top$, и тогда $\varphi(U) = \top$ по (v), либо $T_2 = \top$, и тогда $\varphi(U) = \top$ по (vi). В противном случае (iv) ложно.
+            \end{itemize}
+            Так как не существует правила, типизирующего $t$ как $\bot$, правило \textsc{Absurd} нерелевантно.
+        \end{mdframed}
+    \end{enumerate}
+
+    \item Пользуясь построенной Вами логической семантикой, докажите, что следующие высказывания являются тавтологиями:
+    \begin{tasks}(2)
+        \task $(A\to(B\to C))\leftrightarrow((A\land B)\to C)$;
+        \task $(A\to B)\to(A\to\neg B)\to\neg A$;
+        \task $(A\to C)\to(B\to C)\to((A\lor B)\to C)$;
+        \task $\neg(A\lor B)\leftrightarrow(\neg A\land\neg B)$.
+    \end{tasks}
+    Утверждения вида $\Gamma\tstl t:T$ следует доказывать, построив дерево вывода.
+
+    (Подсказка 1: в \LaTeX\;можно использовать пакет \texttt{bussproofs}.)
+
+    (Подсказка 2: $(A\leftrightarrow B)\colonequals(A\to B)\land(B\to A)$; $\neg A\equiv A\to\bot$; $\bot$ --- тождественно ложное утверждение.)
+
+    (Подсказка 3: Для самопроверки и помощи компьютера можно использовать любой известный Вам язык программирования, в котором есть аналоги $A\to B$, $A\times B$, $A + B$, $\top$ и $\bot$.)
+
+    \begin{mdframed}
+        Докажем, что существует типизируемый терм, соответствующий каждому из высказываний. В (a) и (d) докажем существование типизируемого терма для каждого из направлений эквивалентности. Правило \textsc{Var} писать не будем, имея в виду, что оно присутствует над каждым утверждением о типе переменной.\footnote{Будем использовать $\opair{t_1,t_2}$ вместо $(t_1, t_2)$ для отличения от скобок порядка действий.}
+        \begin{enumerate}[itemsep=12pt]
+            \item \begin{itemize}[itemsep=6pt]
+                \item[$\rightarrow$] $
+                \inferrule*[Right=Abs]{
+                    \inferrule*[Right=Abs]{
+                        \inferrule*[Right=App]{
+                            \inferrule*[Right=App]{
+                                \Gamma \tstl x: A\to(B\to C)\\
+                                \inferrule*[Right=Proj$_1$]{
+                                    \Gamma\tstl p: A\times B
+                                }
+                                {\Gamma\tstl \pi_1\ p: A}
+                            }
+                            {\Gamma\tstl x\ (\pi_1\ p): B\to C}\\
+                            \inferrule*[Right=Proj$_2$]{
+                            \Gamma\tstl p: A\times B
+                            }
+                            {\Gamma\tstl \pi_2\ p: B}
+                        }
+                        {x:A\to(B\to C), p:(A\times B) \tstl x\ (\pi_1\ p)\ (\pi_2\ p): C}
+                    }
+                    {x:A\to(B\to C) \tstl \lambda p.\; x\ (\pi_1\ p)\ (\pi_2\ p): (A\times B) \to C}
+                }
+                {\tstl \lambda xp.\; x\ (\pi_1\ p)\ (\pi_2\ p) : (A\to(B\to C))\to((A\times B)\to C)}
+                $
+                \item[$\leftarrow$] $\inferrule*[Right=Abs]{
+                    \inferrule*[Right=Abs]{
+                        \inferrule*[Right=Abs]{
+                            \inferrule*[Right=App]{
+                                \Gamma\tstl x: (A\times B) \to C\\
+                                \inferrule*[Right=Pair]{
+                                    \Gamma\tstl y: A\\
+                                    \Gamma\tstl z: B
+                                }
+                                {\Gamma\tstl \opair{y,z}: A\times B}
+                            }
+                            {x: (A\times B) \to C, y: A, z:B \tstl x\ (\opair{y,z} ) : C}
+                        }
+                        {x: (A\times B) \to C, y: A \tstl \lambda z.\; x\ (\opair{y,z} ) : B\to C}
+                    }
+                    {x: (A\times B) \to C \tstl \lambda yz.\; x\ (\opair{y,z} ) : A\to(B\to C)}
+                }
+                {\tstl \lambda xyz.\; x\ (\opair{y,z} ) : ((A\times B) \to C) \to (A\to(B\to C))}
+                $
+            \end{itemize}
+            \item $
+                \inferrule*[Right=Abs]{
+                    \inferrule*[Right=Abs]{
+                        \inferrule*[Right=Abs]{
+                            \inferrule*[Right=App]{
+                                \inferrule*[Right=App]{
+                                    \Gamma\tstl y: A\to B\to \bot\\
+                                    \Gamma\tstl z: A
+                                }
+                                {\Gamma\tstl y\ z: B\to\bot}\\
+                                \inferrule*[Right=App]{
+                                    \Gamma\tstl x: A\to B\\
+                                    \Gamma\tstl z: A
+                                }
+                                {\Gamma\tstl x\ z: B}
+                            }
+                            {x: (A\to B), y: (A\to B\to \bot),z:A\tstl y\ z\ (x\ z): \bot}
+                        }
+                        {x: (A\to B), y: (A\to B\to \bot)\tstl \lambda z.\;y\ z\ (x\ z): A\to \bot}
+                    }
+                    {x: (A\to B)\tstl \lambda yz.\;y\ z\ (x\ z): (A\to B\to \bot) \to A\to \bot}
+                }
+                {\tstl \lambda xyz.\;y\ z\ (x\ z): (A\to B) \to (A\to B\to \bot) \to A\to \bot}
+            $
+            \item $
+                \inferrule*[Right=Abs]{
+                    \inferrule*[Right=Abs]{
+                        \inferrule*[Right=Abs]{
+                        \inferrule*[Right=Cases]{
+                            \Gamma\tstl i: A + B\\
+                            \inferrule*[Right=App]{
+                                \Gamma\tstl x: A\to C\\
+                                \Gamma\tstl a: A
+                            }
+                            {\Gamma,a: A\tstl x\ a: C}\\
+                            \inferrule*[Right=App]{
+                                \Gamma\tstl y: B\to C\\
+                                \Gamma\tstl a: B
+                            }
+                            {\Gamma,a: B\tstl y\ a: C}
+                        }
+                        {x: A\to C, y: B\to C, i: A + B\tstl \tcase i\tof \set{ \tinl a\mapsto x\ a; \tinr a \mapsto y\ a} : C}   
+                        }
+                        {x: A\to C, y: B\to C\tstl \lambda i.\; \tcase i\tof \set{ \tinl a\mapsto x\ a; \tinr a \mapsto y\ a}: (A + B) \to C   }
+                    }
+                    {x: A\to C\tstl \lambda yi.\; \tcase i\tof \set{ \tinl a\mapsto x\ a; \tinr a \mapsto y\ a}: (B\to C) \to (A + B) \to C}
+                }
+                {\tstl \lambda xyi.;\ \tcase i\tof \set{ \tinl a\mapsto x\ a; \tinr a \mapsto y\ a}: (A\to C) \to (B\to C) \to (A + B) \to C}
+            $
+            \item
+                \begin{itemize}[itemsep=6pt]
+                    \item[\rightarrow] $
+                        \inferrule*[Right=Abs]{
+                            \inferrule*[Right=Pair]{
+                                \inferrule*[Right=Abs]{
+                                    \inferrule*[Right=App]{
+                                        \Gamma \tstl x: (A+B)\to\bot\\
+                                        \inferrule*[Right=InL]{
+                                            \Gamma \tstl a: A
+                                        }
+                                        {\Gamma \tstl \tinl a: A+B}
+                                    }
+                                    {\Gamma, a: A \tstl x\ (\tinl a): \bot}
+                                }
+                                {\Gamma\tstl \lambda a.\; x\ (\tinl a): A\to \bot }\\
+                                \inferrule*[Right=Abs]{
+                                    \inferrule*[Right=App]{
+                                        \Gamma \tstl x: (A+B)\to\bot\\
+                                        \inferrule*[Right=InR]{
+                                            \Gamma \tstl b: B
+                                        }
+                                        {\Gamma \tstl \tinr b: A+B}
+                                    }
+                                    {\Gamma, b: B \tstl x\ (\tinr b): \bot}
+                                }
+                                {\Gamma\tstl \lambda b.\; x\ (\tinr b): B\to \bot }
+                            }
+                            {x: (A + B) \to \bot \tstl \opair{\lambda a.\; x\ (\tinl a), \lambda b.\; x\ (\tinl b)}: (A\to \bot )\times (B\to \bot) }
+                        }
+                        {\tstl \lambda x.\;\opair{\lambda a.\; x\ (\tinl a), \lambda b.\; x\ (\tinl b)}: ((A + B) \to \bot) \to ((A\to \bot )\times (B\to \bot))}
+                    $
+                    \item[\leftarrow] $
+                        \inferrule*[Right=Abs]{
+                            \inferrule*[Right=Abs]{
+                                \inferrule*[Right=Cases]{
+                                    \Gamma\tstl i: A + B\\
+                                    (i)\\
+                                    (ii)
+                                }
+                                {x : (A\to \bot )\times (B\to \bot), i: A + B \tstl \tcase i\tof\set {\tinl a\mapsto \pi_1\ x\ a; \tinr a\mapsto \pi_2\ x\ a}: \bot}
+                            }
+                            {x : (A\to \bot )\times (B\to \bot) \tstl \lambda i.\;\tcase i\tof\set {\tinl a\mapsto \pi_1\ x\ a; \tinr a\mapsto \pi_2\ x\ a}: (A + B) \to \bot}
+                        }
+                        {\tstl \lambda xp.\; \tcase i\tof\set {\tinl a\mapsto \pi_1\ x\ a; \tinr a\mapsto \pi_2\ x\ a} : ((A\to \bot )\times (B\to \bot)) \to ((A + B) \to \bot)}
+                    $
+                    \begin{enumerate}
+                        \item $
+                            \inferrule*[Right=App,sep=25pt]{
+                                \inferrule*[Right=Proj$_1$]{
+                                    \Gamma\tstl x: (A\to\bot) \times (B\to\bot)
+                                }
+                                {\Gamma\tstl \pi_1\ x: A\to\bot}\\
+                                \Gamma\tstl a: A
+                            }
+                            {\Gamma, a: A\tstl \pi_1\ x\ a: \bot}
+                        $
+                        \item $
+                            \inferrule*[Right=App,sep=25pt]{
+                                \inferrule*[Right=Proj$_2$]{
+                                    \Gamma\tstl x: (A\to\bot) \times (B\to\bot)
+                                }
+                                {\Gamma\tstl \pi_2\ x: B\to\bot}\\
+                                \Gamma\tstl a: B
+                            }
+                            {\Gamma, a: B\tstl \pi_2\ x\ a: \bot}
+                        $
+                    \end{enumerate}
+                \end{itemize}
+        \end{enumerate}
+    \end{mdframed}
+
+
+    \item Докажите, что типизация сохраняется при редукциях, т.е. что
+    \[
+        \begin{cases}
+            \Gamma\tstl t:T\\
+            t\to t'
+        \end{cases}\Longrightarrow\quad\Gamma\tstl t':T
+    \]
+
+    \begin{mdframed}
+        Для каждого из правил редукции покажем, что если типизация сохраняется в посылке, она сохраняется и в выводе.
+        \begin{itemize}
+            \item \textsc{Lam}$^\to$:  Пусть $\Gamma \tstl t:T$ и $\Gamma \tstl t':T$. Тогда если $\Gamma\tstl\lambda x.\;t: S\to T$, то $\Gamma\tstl x: S$ и $\Gamma\tstl \lambda x.\; t': S\to T$.
+            \item \textsc{AppL}: Пусть $\Gamma\tstl f: T$ и $\Gamma\tstl f': T$. Тогда если $\Gamma\tstl f\ t: U$, то $\Gamma\tstl t: V$ и $T = V\to U$. Тогда $\Gamma\tstl f'\ t: U$.
+            \item \textsc{AppR}: Пусть $\Gamma\tstl t: T$ и $\Gamma\tstl t': T$. Тогда если $\Gamma\tstl f\ t: U$, то $\Gamma\tstl f: T\to U$. Тогда $\Gamma\tstl f\ t': U$.
+            \item \textsc{$\beta$}: Если $\Gamma\tstl (\lambda x.\; f)\ t: T$, то $\Gamma\tstl \lambda x.\; f: U\to T$ и $\Gamma\tstl t: U$. Тогда $\Gamma, x: U\tstl f: T$. Тогда $\Gamma, t: U\tstl [t/x]f$ и $\Gamma\tstl [t/x]f: T$, т. к. $\Gamma\tstl t:U$.
+            \item \textsc{PairL}: Пусть $\Gamma\tstl t_1: T$ и $\Gamma\tstl t'_1: T$. Тогда если $\Gamma\tstl\opair{t_1, t_2}: U$, то $\Gamma\tstl t_2: S$ и $U = T \times S$. Тогда $\Gamma\tstl \opair{t_1', t_2}: T\times S = U$. \textsc{PairR} аналогично.
+            \item \textsc{Proj$_1^\to$}: Пусть $\Gamma\tstl p: T$ и $\Gamma\tstl p': T$. Тогда если $\Gamma\tstl\pi_1\ p: U$, то $T = U \times V$. Тогда $\Gamma\tstl \pi_1\ p': U$. \textsc{Proj$_2^\to$} аналогично.
+            \item \textsc{Proj$_1$-$\beta$}: Если $\Gamma\tstl\pi_1\ \opair{t_1, t_2}: T$, то $\Gamma\tstl \opair{t_1, t_2} = T\times S$. Тогда $\Gamma\tstl t_1: T$. \textsc{Proj$_2$-$\beta$} аналогично.
+            \item \textsc{InL$^\to$}: Пусть $\Gamma\tstl t: T$ и $\Gamma\tstl t': T$. Тогда если $\Gamma\tstl\tinl t: U$, то $U = T + S$ для любого $S$. Тогда $\Gamma\tstl \tinl t': T + S$ для любого $S$. \textsc{InR$^\to$} аналогично.
+            \item \textsc{Cases$^\to$}: Пусть $\Gamma\tstl t: T$ и $\Gamma\tstl t': T$. Тогда если $\Gamma\tstl\tcase t\tof\set{\tinl x\mapsto u_1;\tinr x\mapsto u_2}: U$, то $T = T_1 + T_2$ и $\Gamma, x: T_1\tstl u_1: U$ и $\Gamma, x: T_2\tstl u_2: U$. Тогда $\Gamma\tstl\tcase t'\tof\set{\tinl x\mapsto u_1;\tinr x\mapsto u_2}: U$
+            \item \textsc{CaseL}: Если $\Gamma\tstl\tcase (\tinl t)\tof\set{\tinl x\mapsto u_1;\tinr x\mapsto u_2}: U$, то $\Gamma\tstl: \tinl(t): T_1 + T_2$ и $\Gamma, x: T_1\tstl u_1: U$. Тогда $\Gamma\tstl t: T_1$ и $\Gamma, t: T_1\tstl [t/x]u_1: U$. Тогда $\Gamma\tstl [t/x]u_1: U$, т. к. $\Gamma\tstl t: T_1$. \textsc{CaseR} аналогично.
+            \item \textsc{Absurd$^\to$}: Пусть $\Gamma\tstl t: T$ и $\Gamma\tstl t' : T$. Тогда если $\Gamma\tstl \tabsurd t: T$, то $T = \bot$. Тогда $\Gamma\tstl \tabsurd t': T$
+        \end{itemize}
+    \end{mdframed}
+
+
+    \item Докажите слабую нормализуемость STLC+ADT, т.е. что
+    \[\Gamma\tstl t:T\Rightarrow\exists t^*:\begin{cases}
+        \forall t':t^*\not\to t'\\
+        t\to^*t^*
+    \end{cases}\]
+
+
+    \item Можно ли доказать, что следующие высказывания являются тавтологиями, пользуясь построенной логической семантикой? Почему нет? (Если нельзя, докажите, что нельзя.)
+    \begin{tasks}(4)
+        \task $\bot$;
+        \task $A\lor\neg A$;
+        \task $((P\to Q)\to P)\to P$;
+        \task $\neg(A\land B)\leftrightarrow(\neg A\lor\neg B)$.
+    \end{tasks}
+    (Подсказка: докажите от противного, рассмотрев нормальную форму предполагаемых <<доказательств>>.)
+
+    \begin{mdframed}
+        \begin{enumerate}
+            \item Предположим, что $\exists t\ (\tstl t: \bot)$. Тогда он типизирован по одному из следующих правил:
+            \begin{itemize}
+                \item \textsc{Absurd}: $t=\tabsurd t'$ и $\tstl t': \bot$. Тогда необходимо найти терм $t'$ аналогично $t$.
+                \item \textsc{App}: $t= f\ t'$ и $\tstl f: T\to \bot$. Тогда $f$ (или $f'$ т. ч. $f'\to^* f$) типизирован с помощью \textsc{Abs}, т. е. $f=\lambda x.\; u$ и $x: T\tstl u: \bot$. Тогда необходимо аналогично найти терм $u$.
+                \item \textsc{Proj$_i$} и \textsc{Cases} аналогично.
+            \end{itemize}
+            Таким образом для типизации терма $t: \bot$ всегда необходим другой терм типа $\bot$.
+
+            \item Предположим, что $\exists t\ (\tstl t: A + (A\to\bot))$. Тогда верно одно из двух:
+            \begin{itemize}
+                \item $t = \tinl t'$ и $\tstl t': A$. Тогда $t': A\in \emptyset$ — из-за отсутствия применений \textsc{Abs} или \textsc{Cases} контекст пуст.
+                \item $t = \tinr t'$ и $\tstl t': A\to \bot$. Тогда $t'=\lambda x.\; u$ и $x: T\tstl u : \bot$, что невозможно, как было показано в (а).
+            \end{itemize}
+            \item Предположим, что $\exists t\ (\tstl t: ((P \to Q) \to P) \to P)$. Тогда $t = \lambda x.\; u$ и $x: (P\to Q) \to P \tstl u: P$. Тогда $u = x\ v$ (т. к. $x$ — единственная переменная в контексте) и $x: (P\to Q) \to P\tstl v: P\to Q$. Тогда $v = \lambda y.\;w$ и $x: (P\to Q) \to P, y: P\tstl z: Q$. Однако получить выражение типа $z$ невозможно, используя только $x$ и $y$ (функциональное применение $x$ результирует в тип $P$, но не $Q$; типизация $z:Q$ без контекста аналогична типизации $t:\bot$).
+            \item Предположим, что $\exists t\ (\tstl t: ((A\times B) \to \bot) \to ((A\to \bot) + (B\to \bot)))$. Тогда путь типизации:\\ $ 
+                \inferrule*[Right=Abs]{
+                    \inferrule*[Right=InL]{
+                        \inferrule*[Right=Abs]{
+                            x : (A\times B) \to \bot, a: A\tstl\ ???: \bot
+                        }
+                        {x : (A\times B) \to \bot\tstl\ \lambda a.\; ???: A\to\bot}
+                    }
+                    {x : (A\times B) \to \bot \tstl \tinl\ (\lambda a.\; ???): (A\to \bot) + (B\to \bot)}
+                }
+                {\tstl \lambda x.\; \tinl\ (\lambda a.\; ???): ((A\times B) \to \bot) \to ((A\to \bot) + (B\to \bot))}
+            $\\
+            Однако в контексте нет такого терма $u$, чтобы $u:B$, необходимого, чтобы типизировать $v: A \times B$. Поэтому невозможно насытить аргумент $x$ для получения $\bot$ и, следовательно, типизировать $???$.
+        \end{enumerate}
+    \end{mdframed}
+
+
+    \item Теорема Гливенко\footnote{\href{https://ru.wikipedia.org/wiki/\%D0\%A2\%D0\%B5\%D0\%BE\%D1\%80\%D0\%B5\%D0\%BC\%D0\%B0\_\%D0\%93\%D0\%BB\%D0\%B8\%D0\%B2\%D0\%B5\%D0\%BD\%D0\%BA\%D0\%BE}{\texttt{https://ru.wikipedia.org/wiki/Теорема\_Гливенко}}} гласит, что если в классическом исчислении высказываний выводима формула $F$, то в интуиционистском исчислении выводимо $\neg\neg F$. Оказывается, для STLC+ADT это тоже верно!
+    
+    Пользуясь нашей логической семантикой, докажите тавтологичность следующих высказываний:
+    \begin{tasks}(3)
+        \task $\neg\neg(A\lor\neg A)$;
+        \task $\neg\neg(((P\to Q)\to P)\to P)$;
+        \task $\neg\neg(\neg(A\land B)\to(\neg A\lor\neg B))$.
+    \end{tasks}
+    (Примечание: заметим, что доказательство утверждений с двойным отрицанием похоже на программирование в стиле передачи продолжений\footnote{\url{https://en.wikipedia.org/wiki/Continuation-passing_style}}, которое часто используется в оптимизирующих компиляторах.)
+
+    \begin{mdframed}
+        \begin{enumerate}
+            \item $
+                \inferrule*[Right=Abs]{
+                    \inferrule*[Right=App]{
+                        \Gamma\tstl x: (A + (A\to\bot)) \to \bot\\
+                        \inferrule*[Right=]{
+                            ...
+                        }
+                        {\Gamma\tstl ???: A + (A\to \bot)}
+                    }
+                    {x: (A + (A\to\bot)) \to \bot \tstl x\ ???: \bot}
+                }
+                {\tstl \lambda x.\; x\ ???: ((A + (A\to\bot)) \to \bot )\to \bot}
+            $
+            \item $
+                \inferrule*[Right=Abs]{
+                    \inferrule*[Right=App]{
+                        \Gamma\tstl x: (((P\to Q)\to P)\to P)\to \bot\\
+                        \inferrule*[Right=Abs]{
+                            \inferrule*[Right=App]{
+                                \Gamma\tstl y:(P\to Q)\to P\\
+                                \inferrule*[Right=Abs]{
+                                    \Gamma,z:P\tstl ???: Q
+                                }
+                                {\lambda z.\;???: P\to Q}
+                            }
+                            {\Gamma,y:(P\to Q)\to P\tstl y\ (\lambda z.\;???): P}
+                        }
+                        {\Gamma\tstl \lambda y.\; y\ (\lambda z.\;???) :((P\to Q)\to P)\to P}
+                    }
+                    {x: (((P\to Q)\to P)\to P)\to \bot\tstl x\ (\lambda y.\; y\ (\lambda z.\;???)): \bot}
+                }
+                {\tstl \lambda x.\; x\ (\lambda y.\; y\ (\lambda z.\;???)): ((((P\to Q)\to P)\to P)\to \bot)\to \bot}
+            $
+        \end{enumerate}
+        нет я не понимаю
+    \end{mdframed}
+
+\end{enumerate}
+\end{document}
+
