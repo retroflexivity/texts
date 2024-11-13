@@ -4,12 +4,12 @@
             top=3cm,
             bottom=3cm,
             bindingoffset=0cm]{geometry}
-% \usepackage{array}
-% \usepackage[indent=0pt]{parskip}
-\usepackage{hyphsubst}
 \usepackage{setspace}
 \onehalfspacing
 
+\usepackage[english]{babel}
+
+% FORMATTING
 \renewcommand{\thesection}{\arabic{section}.}
 \renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
 \setlength{\columnsep}{1.6cm}
@@ -21,24 +21,22 @@
 {0pt}{2ex plus 0ex minus .2ex}{0ex plus .2ex}
 \titlespacing*{\subsection}
 {0pt}{2ex plus 0ex minus .2ex}{0ex plus .2ex}
-
-
 \usepackage{hyperref}
-% \usepackage{float}
-% \usepackage{graphicx}
-% \graphicspath{ {./images/} }
-% \usepackage{subfig}
-% \usepackage{enumerate}
-\usepackage[normalem]{ulem} % underlining
-% \usepackage{booktabs} % tables
-% \PassOptionsToPackage{table}{xcolor}% coloring tables
-\usepackage{csquotes}
-\MakeOuterQuote{"}
-% \MakeInnerQuote{'}
-\usepackage[english]{babel}
+
+% TYPOGRAPHY
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+% \usepackage{mathspec}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+
+\setmainfont{Libertinus Serif}
+\setsansfont{Libertinus Sans}
+\setmathfont{Libertinus Math}
+
+\usepackage[normalem]{ulem}
 
 % LINGUISTICS 
-
 \usepackage{expex}
 % \lingset{aboveglftskip=0ex, belowglpreambleskip=0ex, belowexskip=1ex, aboveexskip=1ex, interpartskip=0ex}
 \gathertags
@@ -51,30 +49,22 @@
 \newleipzig{sprl}{sprl}{Superlative}
 \newleipzig{indef}{indef}{Indefinite}
 
-% TYPOGRAPHY
 
-\usepackage{amsmath}
-\usepackage{stmaryrd}
-% \usepackage{mathspec}
-\usepackage{fontspec}
-\usepackage{unicode-math}
-
-\setmainfont{Libertinus Serif}
-\setsansfont{Libertinus Sans}
-\setmathfont{Libertinus Math}
+% SUBSTITUTION
+\usepackage{hyphsubst}
+\usepackage{csquotes}
+\MakeOuterQuote{"}
 
 % BIBLIOGRAPHY		    
+\usepackage[style=authoryear,url=false,doi=false,isbn=false,eprint=false,date=year]{biblatex}
+\addbibresource{../../ref.bib}
 
 % \usepackage{natbib}
 % \renewcommand{\bibsection}{~\\\textbf{References}}
 % \bibpunct[: ]{[}{]}{;}{a}{}{,}
 % \bibliographystyle{rusnat}
 
-\usepackage[style=authoryear,url=false,doi=false,isbn=false,eprint=false,date=year]{biblatex}
-\addbibresource{../../ref.bib}
-
 % DRAWING
-
 \usepackage{tikz}
 \usepackage{tikz-qtree}
 \usetikzlibrary{shapes.geometric}
@@ -88,37 +78,42 @@
 
 \thispagestyle{empty}
 \begin{center}
-\noindent  \textbf{ПРАВИТЕЛЬСТВО РОССИЙСКОЙ ФЕДЕРАЦИИ}\\
-\textbf{Федеральное государственное автономное образовательное учреждение высшего образования}\\
+    SRPC 2024 paper
+    \vfill
+    \textbf{Untyped semantics of kind reference}\\
+    \vfill
+    \textbf{Keywords}: kind reference, definiteness, formal semantics, lambda calculus, proper names
+% \noindent  \textbf{ПРАВИТЕЛЬСТВО РОССИЙСКОЙ ФЕДЕРАЦИИ}\\
+% \textbf{Федеральное государственное автономное образовательное учреждение высшего образования}\\
 
-\textbf{Национальный исследовательский университет}\\
-\textbf{«Высшая школа экономики»}\\
-\textbf{Факультет гуманитарных наук}\bigskip\\
+% \textbf{Национальный исследовательский университет}\\
+% \textbf{«Высшая школа экономики»}\\
+% \textbf{Факультет гуманитарных наук}\bigskip\\
 
-\textbf{Образовательная программа}\\
-\textbf{«Фундаментальная и компьютерная лингвистика»}\\
-\vfill
+% \textbf{Образовательная программа}\\
+% \textbf{«Фундаментальная и компьютерная лингвистика»}\\
+% \vfill
 
 
-\textbf{КУРСОВАЯ РАБОТА}\\
+% \textbf{КУРСОВАЯ РАБОТА}\\
 
-На тему «Семантика имен собственных для видов»\\
-Название темы на английском  «A proper name semantics for kinds»\\
-\vfill
-\vfill
-\begin{flushright}
-Студент $3$ курса\\
-группы №$213$ \\
-Шалдов Аркадий\bigskip\\
+% На тему «Семантика имен собственных для видов»\\
+% Название темы на английском  «A proper name semantics for kinds»\\
+% \vfill
+% \vfill
+% \begin{flushright}
+% Студент $3$ курса\\
+% группы №$213$ \\
+% Шалдов Аркадий\bigskip\\
                        
-Научный руководитель\\
-Ивлиева Наталья Владимировна\\
-(Доцент)
-\end{flushright}
-\vfill
-\begin{center}
-Москва, 2024 г.
-\end{center}
+% Научный руководитель\\
+% Ивлиева Наталья Владимировна\\
+% (Доцент)
+% \end{flushright}
+% \vfill
+% \begin{center}
+% Москва, 2024 г.
+% \end{center}
 
 \end{center}
 \pagebreak
@@ -128,16 +123,16 @@
 
 \section{Introduction}
 
-Noun phrases in natural languages can refer not only to individuals, but to certain rigid sets of them. These sets are called \emph{kinds}. Probably the most characteristic example of kind reference is the generic reading of singular \textit{the} \parencite{carlson1977referencekindsenglish}, illustrated in (\nextx).
+Noun phrases in natural languages can refer not only to individuals, but to certain rigid sets of them, usually referred to as \emph{kinds}. Probably the most characteristic example of kind reference is the generic reading of singular \textit{the} \parencite{carlson1977referencekindsenglish}, illustrated in (\nextx).
 
-\pex<>
-\a<> The anteater eats ants.
-\a<> The mammoth is extinct.
+\pex<clasthe>
+\a<a> The anteater eats ants.
+\a<b> The mammoth is extinct.
 \xe
 
-Neither of the \textit{the anteater} and \textit{the mammoth} refers to a single individual, as we would expect given the semantics of \textit{the} and the Singular. The first refers to every anteater in the world --- or, at least, to the predominant part of anteaters. The second one refers to the mammoths as a whole --- since there are no mammoths in the world, it cannot be said that \textit{extinct} asserts something about individual mammoths --- what \textit{extinct} does, it seems, is exactly asserting that the extension of \textit{mammoth} is empty. Predicates like \textit{extinct} are called kind-level predicates \parencite{krifka1995genericityintroduction}. Others include \textit{rare}, \textit{evolve}, and \textit{invent}.
+Neither of the \textit{the anteater} and \textit{the mammoth} refers to a single individual, as we would expect given the Russellian semantics of \textit{the} \parencite{russell1905denoting} and the Singular \parencite{link1983logicalanalysisplurals}. The first refers to every anteater in the world --- or, at least, to the predominant part of anteaters. The second refers to the mammoths as a concept --- since there are no mammoths in the world, it cannot be said that \textit{extinct} asserts something about individual mammoths --- what \textit{extinct} does, it seems, is exactly asserting that the extension of \textit{mammoth} is empty. Predicates like \textit{extinct} are called kind-level predicates \parencite{krifka1995genericityintroduction}. Others include \textit{rare}, \textit{evolve}, and \textit{invent}.
 
-It is not only \textit{the} that can participate in kind reference \parencite{dayal2004numbermarkingdefiniteness}. In fact, any determiner can (\nextx). The determiners in the examples quantify over subkinds of anteaters, i.e., the set \{\textsc{giant anteater, silky anteater, northern tamandua, southern tamandua}\}\footnote{I follow the tradition established by \textcite{chierchia1998referencekindslanguages} to write kinds in small caps.}. 
+It is not only \textit{the} that can participate in kind reference --- in fact, any English determiner can \parencite{dayal2004numbermarkingdefiniteness}. The determiners in the examples (\nextx) quantify over subkinds of anteaters, i.e., the set \{\textsc{giant anteater, silky anteater, northern tamandua, southern tamandua}\}\footnote{I follow the tradition established by \textcite{chierchia1998referencekindslanguages} to spell kinds in small caps.}. 
 
 \pex<clasdet>
 \a<every> Every anteater inhabits South America.
@@ -146,33 +141,31 @@ It is not only \textit{the} that can participate in kind reference \parencite{da
 \a<thepl> The anteaters are divided into two families.
 \xe
 
-This is not how individuals work: singular DPs with \textit{the} do not refer to the totality of individuals, unlike here, where \textit{the anteater} is the totality of subkinds, making \textit{the anteater} and \textit{the anteaters} extensionally equivalent. Apart from this, the behavior of kinds is quite similar to the behavior of individuals.\footnotemark{}
+Notice how DPs in (\getfullref{clasthe.a}) and (\getfullref{clasdet.thepl}) have the same extension, in spite of different number marking. This is not how individuals work: singular DPs with \textit{the} do not refer to the totality of individuals, unlike here, where \textit{the anteater} is the totality of subkinds, making \textit{the anteater} and \textit{the anteaters} extensionally equivalent. Apart from this, the behavior of kinds is quite similar to the behavior of individuals.\footnotemark{}
 
-\footnotetext{Languages differ in whether they allow singular nouns for kind reference. \textcite{sereikaite2017kindreferencedps} notes that in Lithuanian bare nouns cannot refer to kinds at all. In Russian, it is considered bureaucratic style with predicates such as `rare' and is rarely used in colloquial speech. But it is accepted and even preferred in sentences where it is stated to have a particular property as a subkind of a certain kind (\nextx).
+\footnotetext{Languages differ in whether they allow singular nouns for kind reference. \textcite{sereikaite2017kindreferencedps} notes that in Lithuanian bare nouns cannot refer to kinds at all. In Russian, it is considered bureaucratic style with predicates such as `rare' and is seldom used in colloquial speech. But it is accepted and even preferred in sentences where it is stated to have a particular property as a subkind of a certain kind (\nextx).
 
 \pex<>
     \a \begingl
-        \gla Dikobraz redkoje životnoje//
-        \glb Porcupine rare animal//
+        \gla Dikobraz redkoje životnoje.//
+        \glb porcupine rare animal//
         \glft `The porcupine is a rare animal.'//
     \endgl
     \a \begingl
-        \gla Inžener horošaja professija//
-        \glb Engineer good profession//
+        \gla Inžener horošaja professija.//
+        \glb engineer good profession//
         \glft `The engineer is a good profession.'//
     \endgl
 \xe
 }
 
-Kind reference is not limited to such "taxonomic" readings of NPs. \textcite{chierchia1998referencekindslanguages} also argues, based on the lack of high scope, that bare plurals in English denote kinds, which are given individual-referring interpretation by a composition principle called DKP (\nextx).
+These entities are more properly referred to as \emph{well-established kinds} \parencite{krifka1995genericityintroduction}. Such kinds are inherently given in the common ground, hence allow the usage of \textit{the}. But kind reference is not limited to well-established kinds. First, \textcite{chierchia1998referencekindslanguages} argues, based on the lack of high scope (\nextx), that bare plurals in English must also denote kinds.
 
 \ex<>
     Everyone met anteaters.\trailingcitation{only $\forall$ > \textsc{anteaters}, *\textsc{anteaters} > $\forall$}
 \xe
 
-These entities are more properly referred to as \emph{well-established kinds} \parencite{krifka1995genericityintroduction}. Such kinds are inherently given in the common ground, hence allow using \textit{the}. But the idea of kinds can be expanded further, as \textcite{mendia2019referenceadhoc} shows. 
-
-First, obviously, bare plural is available with any noun phrases, not only those that refer to well-established kinds.
+Obviously, bare plural is available with any noun phrases, not only those that refer to well-established kinds.
 
 \pex<>
     \a Everyone met huge enraged anteaters.
@@ -186,44 +179,36 @@ Second, most kind-denoting predicates are similarly available with non-singular-
     \a This morning Fred invented a/*the pumpkin crusher.\trailingcitation{\parencite{dayal2004numbermarkingdefiniteness}}
 \xe
 
-
-\textcite{mendia2019referenceadhoc} provides the following minimal pair (\nextx). Both sentences make statements about kinds, but these kinds are different. In (\getfullref{rats.we}), the singular DP refers to some well-established subkind of \textsc{rat}, for which it is common to transmit leptospirosis, e.g. the \textsc{brown rat}. The plural DP in (\getfullref{rats.ah}), on the other hand, does not necessarily have to refer to a single biological subkind --- the rats that belong to the kind may only have in common the ability to transmit leptospirosis.
+\textcite{mendia2019referenceadhoc} provides the following minimal pair of a well-established and what he calls an \emph{ad-hoc} kind (\nextx). Both sentences make statements about kinds, but these kinds are different. In (\getfullref{rats.we}), the singular DP refers to some prior known subkind of \textsc{rat}, for which it is common to transmit leptospirosis, e.g. the \textsc{brown rat}. The plural DP in (\getfullref{rats.ah}), on the other hand, does not necessarily have to refer to a single biological subkind --- the rats that belong to the kind may only have in common the ability to transmit leptospirosis.
 
 \pex<rats>
     \a<we> The rat that transmitted leptospirosis was just reaching Australia in 1770.  
     \a<ah> The rats that transmitted leptospirosis were just reaching Australia in 1770.
 \xe
         
-It is unclear what the onthological nature of kinds is. Starting with \parencite{chierchia1998referencekindslanguages}, kinds are treated as intensional totalities of individuals. This paper aims to confront this view with the data from interaction of classificatory adjectives and relational nouns. It proposes to return to the view of kinds as simple individuals that correspond to nominalized predicates, using the semi-untyped HST* semantic framework developed by \textcite{cocchiarella1974fregeansemanticsrealist,chierchia1984topicssyntaxsemantics}. It also aims to provide an analysis for relational adjectives and capture the taxonomic readings of noun phrases. It only concerns well-established kinds, although the \textit{ad-hoc} ones are no less of interest.
+Overall, while being closely related to predicates logically, kinds show notable similarities to individuals linguistically. Still, it is unclear what the onthological nature of kinds is. Starting with \parencite{chierchia1998referencekindslanguages}, kinds are treated as intensional totalities of individuals. This paper aims to confront this view with the data from interaction of classificatory adjectives and relational nouns. It proposes to return to the view of kinds as simple individuals that correspond to nominalized predicates, using the semi-untyped HST* semantic framework developed by \textcite{cocchiarella1974fregeansemanticsrealist,chierchia1984topicssyntaxsemantics}. It also aims to provide an analysis for relational adjectives and capture the taxonomic readings of noun phrases. It only concerns well-established kinds, although the \textit{ad-hoc} ones are no less of interest.
 
 The paper is organized as follows. Section \ref{chierchia} presents the HST* framework, as well as \textcite{chierchia1998referencekindslanguages}'s Neocarlsonian onthology. Section \ref{cladj} presents and analyzes the data from classificatory adjectives. Section \ref{pn} explores the idea that well-established kinds can be treated as proper names. Section \ref{conc} concludes.
 
 \section{Kinds and predicates}\label{chierchia}
 
-The mainstream view on the compositional derivation of kind reference is based on \citeauthor{chierchia1984topicssyntaxsemantics}'s $^\cap $ and $^\cup $ operators. The first one turns predicates into kinds; the second one does the opposite. However, what $^\cap $ really yields and what $^\cup $ picks up has evolved between \parencite{chierchia1984topicssyntaxsemantics} and (\citeyear{chierchia1998referencekindslanguages}). This section begins with exploring the early framework, HST*, and proceeds by looking at the reinterpretations introduced by the Neocarlsonian semantics.
+The mainstream view on the compositional derivation of kind reference, the Neocarlsonian semantics \parencite{chierchia1998referencekindslanguages}, is based on \textcite{chierchia1984topicssyntaxsemantics}'s $^\cap $ (\emph{down}) and $^\cup $ (\emph{up}) operators. $^\cap $ turns predicates into kinds; $^\cup $ does the opposite. However, what $^\cap $ really yields and what $^\cup $ picks up has evolved between \parencite{chierchia1984topicssyntaxsemantics} and (\citeyear{chierchia1998referencekindslanguages}). This section begins with exploring the early framework, HST*, and proceeds by looking at the reinterpretations introduced by the Neocarlsonian semantics.
 
 \subsection{HST*}
 
-\textcite{chierchia1984topicssyntaxsemantics}, building upon \textcite{cocchiarella1974fregeansemanticsrealist}, proposes a framework for semantics called HST*, which is, as opposed to \textcite{montague1973propertreatmentquantification}, untyped. It draws distinction between singular terms (traditional type $e$), predicates (type $\langle \alpha,t\rangle$ for any $\alpha$) and functors (other types).  Only singular terms can be used as arguments to other expressions (\nextx).
+\textcite{chierchia1984topicssyntaxsemantics}, building upon \textcite{cocchiarella1974fregeansemanticsrealist}, proposes a semantic framework called HST*, which is, as opposed to \textcite{montague1973propertreatmentquantification}, untyped. It draws distinction between singular terms (traditional type $e$), predicates (type $\langle \alpha,t\rangle$ for any $\alpha$) and functors (other types).  Only singular terms can be used as arguments to other expressions (\nextx).
 
 \ex<>
     If $\beta$ is an n-place predicative expression and $\alpha_1,...,\alpha_n$ are singular terms, then $\beta(\alpha_1,...,\alpha_n)$ is a well-formed formula.
 \xe
 
-To allow functions to range over predicates, the nominalizer $^\cap$ is introduced. Following Frege's idea that every property has an individual counterpart, it maps predicates injectively into the domain of individuals. Chierchia compares it to the English suffix \textit{-ness} and the complementizer \textit{that}. The opposite operator $^\cup $ maps individuals to n-place predicates.
+The nominalizer $^\cap$ allows functions to range over predicates. Following Frege's idea that every property has an individual counterpart, it maps predicates injectively into the domain of individuals. (Chierchia compares it to the English suffix \textit{-ness} and the complementizer \textit{that}.) The opposite operator $^\cup $ is a partial function from individuals to n-place predicates.\footnotemark{}
 
 \ex<>
-    If $\beta$ is an n-place predicative expression, $^\cap\beta$ is a singuar term.
+    If $\beta$ is an n-place predicative expression, then $^\cap\beta$ is a singuar term.
 \xe
 
-HST* then imposes certain limitations on compositional principles that aim to avoid Russell's paradox. Russell had shown that allowing any predicate to be an argument of any predicate leads to a contradiction, if we assume Frege's Comprehension Principle (\getfullref{comprp.cp}), which states that for any language formula there exists a corresponding property (set). (\getfullref{comprp.contr}) presents the paradox.
-
-\pex<comprp>
-    \a<cp> CP (as of Chierchia): $\exists \beta\forall\mu_1\dots\mu_n[\beta(\mu_1\dots\mu_n)\leftrightarrow \psi]$
-    \a<contr> $\exists P \forall x[P(x)\leftrightarrow \neg x(x)]$
-\xe
-
-(\getfullref{comprp.contr}) --- where the property $\psi$ is false of itself ($\neg x(^\cap x)$) --- is a proper instantiation of CP, hence $P$ is an available predicate. However, $P$ would both hold and not hold of itself. What Chierchia proposes to deal with the paradox is limiting properties to those that can be \emph{homogeniously stratified} (\emph{h-stratified}). H-stratification holds for a formula when all expressions in the formula can be assigned natural numbers so that
+\footnotetext{HST* also imposes a requirement on its formulas called \emph{homogenious stratification}, which aims to avoid Russell's paradox. A formula is homogeniously stratified iff all expressions in the formula can be assigned natural numbers so that
 
 \begin{enumerate}
     \item any predicative $\beta$ and $^\cap\beta$ are assigned the same number,
@@ -231,39 +216,40 @@ HST* then imposes certain limitations on compositional principles that aim to av
     \item predicates are assigned higher numbers than their arguments.
 \end{enumerate}
 
-(\getfullref{comprp.cp}) should then be complemented by the requirement that the whole equivalence is h-stratified. Since $x(^\cap x)$ is not h-stratified, the paradox does not hold. H-stratification can be viewed basically as assigning types to expressions --- with the exception that it is only used when defining possible properties. Thus, nothing forbids us to apply a predicative expression upon itself: there are properties that are true of themselves, i.e., the universal property (\nextx).
+In a sense, this is similar to assigning types to expressions, but only used for defining possible formulas instead of restricting denotations of predicates.}
+% (\getfullref{comprp.cp}) should then be complemented by the requirement that the whole equivalence is h-stratified. Since $x(^\cap x)$ is not h-stratified, the paradox does not hold. H-stratification can be viewed basically as assigning types to expressions --- with the exception that it is only used when defining possible properties. Thus, nothing forbids us to apply a predicative expression upon itself: there are properties that are true of themselves, i.e., the universal property (\nextx).}
 
-\ex<>
-    $\exists P\forall x\,[P(x) \leftrightarrow x=x]$
-\xe
+% \ex<>
+%     $\exists P\forall x\,[P(x) \leftrightarrow x=x]$
+% \xe
 
-Similarly, any expression is able to take as its argument expressions of different types. E.g., when the syntax allows it, there is no difference between $e$'s, $\langle e,t\rangle$'s and $\langle et,t\rangle$'s as arguments. 
+This framework is powerful in allowing any expression to take as its argument expressions of different types. E.g., when the syntax allows it, there is no difference between $e$'s, $\langle e,t\rangle$'s and $\langle et,t\rangle$'s as arguments in HST* semantics. Being able to treat predicates as individuals is straightforwardly useful for analyzing the dual nature of kinds.
 
 \subsection{The Neocarlsonian view}\label{neocar}
 
-After nearly fifteen years, in \citeyear{chierchia1998referencekindslanguages}, when untyped theories of natural language semantics are sorely unpopular and type-shifters thrive, Chierchia presents a novel Neocarlsonian theory of kinds. It borrows from his earlier work the $^\cap $ and $^\cup $ operators, which turn predicates into individuals and back, but now in form of type-shifters. At the same time, Chierchia makes an attempt to redefine the property-denoting individuals to be more consistent with contemporary theories of reference.
+After nearly fifteen years, in \citeyear{chierchia1998referencekindslanguages}, when untyped theories of natural language semantics are sorely unpopular and type-shifters thrive, Chierchia presents a novel Neocarlsonian theory of kinds. It borrows from his earlier work the $^\cap $ and $^\cup $ operators, but now in form of type-shifters. At the same time, Chierchia makes an attempt to redefine the property-denoting individuals to be more consistent with contemporary theories of reference.
 
 \begin{quote}
     It seems natural to identify a kind in any given world (or situation) with the totality of its instances. Thus, the dog-kind in our world can be identified with the totality of dogs, the scattered entity that comprises all dogs, or the fusion of all dogs around. In our framework this entity is modeled by the set of dogs. This means that we can model kinds as individual concepts of a certain sort: functions from worlds (or situations) into pluralities, the sum of all instances of the kind.\hfill\parencite[349]{chierchia1998referencekindslanguages}
 \end{quote}
 
-Since kinds are now just pluralities, they interact with proper individuals via standard Linkian semantics for pluralities \parencite{link1983logicalanalysisplurals}. The domain of individuals is a join semilattice $\langle E,\oplus\rangle$, where elements at the bottom are singular individuals, and elements above are plural. A single dog $d_1$ is a part of a plurality of three dogs $D=d_1\oplus d_2\oplus d_3$, which is represented as $d_1\le D$. Similarly, a single dog is a part of the \textsc{dog} kind $d_1\le\,^\cap \text{dog}$.
+Since kinds are now simply intentional pluralities, they relate to proper individuals via standard Linkian semantics for pluralities \parencite{link1983logicalanalysisplurals}. The domain of individuals is a join semilattice $\langle E,\oplus\rangle$, where elements at the bottom are singular individuals, and elements above are plural. A single dog $d_1$ is a part of a plurality of three dogs $D=d_1\oplus d_2\oplus d_3$, which is represented as $d_1\le D$. Similarly, a single dog is a part of the \textsc{dog} kind $d_1\le\,^\cap \text{dog}$.
 
-Kind operators can then be defined by the same means (\nextx). $^\cap $ turns a one-place predicate into the maximal plurality of individuals in a situation. $^\cup $ turns a kind (a maximal plurality) back into a function that checks whether an individual is a part of this plurality.\footnote{Chierchia also departs from the original theory by making $^\cap $ non-total: only "classes of objects with a sufficiently regular function and/or behavior" are kinds, and non-customary properties expressed by complex noun phrases do not have a corresponding kind. This is confounded by \parencite{mendia2019referenceadhoc}, so we do not consider it here.}
+Kind operators can then be defined by the same means (\nextx). $^\cap $ turns a one-place predicate into the maximal plurality of individuals in a situation. $^\cup $ turns a kind (a maximal plurality) back into a function that is true for individuals that are parts of this plurality.\footnote{Chierchia also departs from the original theory by making $^\cap $ non-total: only "classes of objects with a sufficiently regular function and/or behavior" are kinds, and non-customary properties expressed by complex noun phrases do not have a corresponding kind. This is confounded by \parencite{mendia2019referenceadhoc}, so I do not consider it here.}
 
 \pex<chop>
 \a<down> $^\cap P = \lambda s\,\iota x\in D_k.\,P_s(x)$
 \a<up> $^\cup d = \lambda x.\,x\le d_s$
 \xe
 
-What can be immediately noticed is that this system is more limiting than HST*: it only allows one-place predicates to be nominalized. This might seem most adequate for an analysis of kind reference: at a first approximation, kinds characterize individuals and nothing else. However, as we will show in section \ref{reln}, the effects of kind reference are not limited to one-place predicative nouns.
+What can be immediately noticed is that this system is more restrictive than HST*: it only allows one-place predicates to be nominalized. This might seem most adequate for an analysis of kind reference: at a first approximation, kinds characterize individuals and nothing else. However, as I will show in section \ref{reln}, the effects of kind reference are not limited to one-place predicative nouns.
 
 
 % It should be noted that $^\cap$ (and $^\cup$, analogously) is no unit of compositional semantics; it is not the meaning of any expression. It is merely a metalinguistic tool of the compositional rules of HST* that replaces the type system. When I use this character in a formula, I do not posit any null operator in the structure: it comes for free. What is more, I believe that it differs from canonical type shifters like \textsc{iota} or \textsc{ex} in that there is no natural language expression that would do its job, accessing the mapping between predicates and individuals. There is \textcolor{red}{(saw somewhere; Dayal? to confirm)} significant lack of evidence towards distinction between individual and kind reference in languages, which leads us to assume no "shifting" takes place.
 
 \section{Classificatory adjectives and kinds}\label{cladj}
 
-We will now explore a concept tightly related to kinds: classificatory adjectives. This class is, in a slightly narrower sense, also called relational \parencite{mcnally2004relationaladjectivesproperties}. For \Citeauthor{mcnally2004relationaladjectivesproperties}, it encompasses adjectives like those in (\getfullref{cla.a}-\getref{cla.b}). For \textcite{rutkowski2005classificationprojectionpolish,rutkowski2006classifyingadjectivesnoun}, these also include those like (\getfullref{cla.c}), which are called `complex common names' by \textcite{gunkel2009classifyingmodifierscommon}.
+I will now explore a concept tightly related to kinds: classificatory adjectives. This class is, in a slightly narrower sense, also called relational \parencite{mcnally2004relationaladjectivesproperties}. For \Citeauthor{mcnally2004relationaladjectivesproperties}, it encompasses adjectives like those in (\getfullref{cla.a}-\getref{cla.b}). For \textcite{rutkowski2005classificationprojectionpolish,rutkowski2006classifyingadjectivesnoun}, these also include those like (\getfullref{cla.c}), which are called `complex common names' by \textcite{gunkel2009classifyingmodifierscommon}.
 
 \pex<cla>
     \a<a> technical architect
@@ -271,7 +257,7 @@ We will now explore a concept tightly related to kinds: classificatory adjective
     \a<c> brown bear
 \xe
 
-The first two are exclusively classificatory, while the third can be both, but with a change in meaning. These adjectives are not plainly interjective: a \textit{technical architect} is not someone who is an architect and --- whatever it means --- technical; a \textit{brown bear} can be an albino and still remain true to its kin. They do not look like Larsonian event modifiers either: a \textit{good dancer} is one who dances beautifully, but a \textit{brown bear} does not realize its bear-ness in a brown way. The intuititon is that they classify the noun (hence the name): the technical architect is a kind of architect, and the brown bear is a kind of bear.
+The first two are exclusively classificatory, while the third can be both, but with a change in meaning. These adjectives are not plainly intersective: a \textit{technical architect} is not someone who is an architect and --- whatever it means --- technical; a \textit{brown bear} can be an albino and still remain true to its kin. They do not look like Larsonian event modifiers either: a \textit{good dancer} is one who dances beautifully, but a \textit{brown bear} does not realize its bear-ness in a brown way. The intuititon is that they classify the noun (hence the name): the technical architect is a kind of architect, and the brown bear is a kind of bear.
 
 It might seem that these noun-adjective pairs are non-compositional compounds of some kind, receiving their meaning as a whole; however, classificatory adjectives are available in the predicative position and can therefore be separated from nouns (\nextx). Still, this usage is somehow limited: it is only allowed when the argument is referred to by the noun the adjective is compatible with (\anextx) \parencite[cf.][a.m.o.]{levi1978syntaxsemanticscomplex}.
 
@@ -305,13 +291,13 @@ Structurally, these adjectives are always the closest to the noun \parencite{rut
     \endgl
 \xe
 
-A number of languages distinguish classificatory adjectives from attributive structurally. In Polish \parencite{rutkowski2005classificationprojectionpolish}, all other adjectives precede the noun, while classificatory follow it. In Serbian \parencite{rutkowski2005classificationprojectionpolish}, Lithuanian \parencite{rutkowski2006classifyingadjectivesnoun,holvoet2012semanticmapdefinite}, and Latvian \parencite{holvoet2012semanticmapdefinite} they are marked by a special suffix, usually referred to as "long form" by Serbian and Lithuanian grammars, and as "definite ending" by Latvian \parencite{kalnaca2021latviangrammar}. We will further employ examples from Latvian, where such suffix takes the form of \textit{-ai-}\footnote{All examples from Latvian are elicited from native speakers.}.
+A number of languages distinguish between attributive and classificatory adjectives structurally. In Polish \parencite{rutkowski2005classificationprojectionpolish}, attributive adjectives precede the noun, while classificatory follow it. In Serbian \parencite{rutkowski2005classificationprojectionpolish}, Lithuanian \parencite{rutkowski2006classifyingadjectivesnoun,holvoet2012semanticmapdefinite}, and Latvian \parencite{holvoet2012semanticmapdefinite} they are marked by a special suffix, usually referred to as "long form" by Serbian and Lithuanian grammars, and as "definite ending" by Latvian \parencite{kalnaca2021latviangrammar}. I will further employ examples from Latvian, where such suffix takes the form of \textit{-ai-}\footnote{All examples from Latvian are elicited from native speakers.}.
 
 \pex<>
     \a Polish:\\
     \begingl
-        \gla dyrektor generalny / generalny dyrektor//
-        \glb director general / \ljudge*general director//
+        \gla dyrektor generalny / \ljudge*generalny dyrektor//
+        \glb director general / general director//
     \endgl
     \a Latvian:\\
     \begingl
@@ -321,7 +307,7 @@ A number of languages distinguish classificatory adjectives from attributive str
     \endgl
 \xe
 
-This suffix is not limited to classificatory adjectives. Both Baltic languages and Serbian, like most Balto-Slavic, do not have definite or indefinite articles: a bare noun might both introduce a new discourse referent and refer to a previously established (\getfullref{lvnp.bare}). But if an adjective is present, the suffix is used to mark definiteness (\getfullref{lvnp.attr}-\getref{lvnp.def})\footnote{By using the English definite and indefinite articles in translations, I only assume rough similarity of usage contexts, not complete semantic equivalence. It is a matter of discussion whether the notion of definiteness in article and articless languages can be compared (see e.g. \cite{simik2021uniquenessmaximalitygerman} for critics), but I believe this will suffice for present purposes. For a detailed research on definiteness effects in languages with adjectival definiteness see e.g. \textcite{holvoet2012semanticmapdefinite}.}. When used with classificatory adjectives, this effect does not arise: nouns with classificatory adjectives are ambiguous for definiteness, just like bare nouns (\getfullref{lvnp.clas}).
+This suffix is not limited to classificatory adjectives. Both Baltic languages and Serbian, like most Balto-Slavic, do not have definite or indefinite articles: a bare noun might both introduce a new discourse referent and refer to a previously established (\getfullref{lvnp.bare}). But if an adjective is present, the suffix is used to mark definiteness (\getfullref{lvnp.attr}-\getref{lvnp.def})\footnote{By using the English definite and indefinite articles in translations, I only assume rough similarity of usage contexts, not complete semantic equivalence. It is a matter of discussion whether the notion of definiteness in article and articless languages can be compared (see e.g. \cite{simik2021uniquenessmaximalitygerman} for critics), but I believe this will suffice for present purposes. For a detailed research on definiteness effects in Baltic languages see \textcite{holvoet2012semanticmapdefinite}.}. When used with classificatory adjectives, this effect does not arise: nouns with classificatory adjectives are ambiguous for definiteness, just like bare nouns (\getfullref{lvnp.clas}).
 
 \pex<lvnp>
     \a<bare> \begingl
@@ -346,9 +332,9 @@ This suffix is not limited to classificatory adjectives. Both Baltic languages a
     \endgl
 \xe
 
-\Citeauthor{rutkowski2005classificationprojectionpolish} propose a unified syntactic account for Polish and Serbian. It is centered around the idea of the N head moving to a higher position, tentatively named ClassP by the authors. ClassP is located above the merge point of classificatory adjectives and below the others. Hence the noun is to the left of the classificatory adjective in Polish, but to the right of the attributive. The Serbian long form is treated as a reflex of such movement, although covert. In definite noun phrases, the marker is licensed by N-to-D movement, a phenomenon suggested by \textcite{longobardi1994referencepropernames} and some others.
+\textcite{rutkowski2005classificationprojectionpolish} propose a unified syntactic account for Polish and Serbian. It is centered around the idea of the N head moving to a higher position, tentatively named ClassP by the authors. ClassP is located above the merge point of classificatory adjectives and below the others. Hence the noun is to the left of the classificatory adjective in Polish, but to the right of the attributive. The Serbian long form is treated as a reflex of such movement, although covert. In definite noun phrases, the marker is licensed by N-to-D movement, a phenomenon suggested by \textcite{longobardi1994referencepropernames} and some others.
 
-This approach has several downsides. First, there is much stipulation: it postulates covert movement to a projection existence of which is not independently motivated. It also suggests that a marker is a reflex of movement (this alone makes the hypothesis heavily theory-dependent) that only happens to be covert. Second, it leaves unexplained the limited availability in predicative position. Finally, it says nothing about the definiteness effect the long form creates with attributive adjectives. The correspondence between classificatory adjectives and definites might seem accidental. As we will see, it is likely not.
+This approach has several downsides. First, there is much stipulation: it postulates covert movement to a projection existence of which is not independently motivated. Second, it leaves unexplained the limited availability in predicative position. Most crucially, it says nothing about the definiteness effect the long form creates with attributive adjectives. The correspondence between classificatory adjectives and definites might seem accidental. It will be shown that it is likely not.
 
 \textcite{mcnally2004relationaladjectivesproperties} argue that classificatory adjectives denote properties of (well-established) kinds. They propose that common nouns are two-place predicates: they pick a kind argument first and an individual argument second and denote that 1) a property is true for the kind, and 2) the individual belongs to the kind (\nextx).
 
@@ -362,21 +348,21 @@ This approach has several downsides. First, there is much stipulation: it postul
     $\llbracket \text{technical architect} \rrbracket = \lambda y_o.\,\exists x_k[\textsc{architect}(x)\land\textsc{technical}(x)\land R(y,x)]$
 \xe
 
-This idea is supported by the fact that the classificatory adjective-noun combinations are always well-established kinds (\nextx). Furthermore, classificatory adjectives are the only tool to denote a well-established subkind of a kind (e.g. \textit{\emph{giant} anteater}), unless it has its own name (e.g. \textit{tamandua}).
+This idea is supported by the fact that the classificatory adjective-noun combinations are always well-established kinds (\nextx). Furthermore, classificatory adjectives are the only tool to denote a well-established subkind of a kind (e.g. \textit{giant anteater}), unless it has its own name (e.g. \textit{tamandua}).
 
 \ex<>
     The technical architect is a respected profession.
 \xe
 
-A reader might notice that this theory does not answer the question of what the semantic nature of classificatory adjectives really is. They modify a kind --- but what does it mean to modify a kind? Why can a kind be \textit{technical} if an individual cannot? This stems from the unclarity of the nature of kinds themselves. Still, it might encounter compatibility problems with treating kinds as total individuals. If an individual or a group of individuals cannot be \textit{technical}, why would a totality be able to? It is implausible that it is a subcategorization restriction similar to that of \textit{rare} and other kind-level predicates: those may be thought of as applying to a plurality, unlike classificatory adjectives.
+A reader might notice that this theory does not answer the question of what the semantic nature of classificatory adjectives really is. They modify a kind --- but what does it mean to modify a kind? Why can a kind be \textit{technical} if an individual cannot? This stems from the unclarity of the nature of kinds themselves. Still, such treatment of classificatory adjectives might encounter compatibility problems with analyzing kinds as total individuals. If an individual or a group of individuals cannot be \textit{technical}, why would a totality be able to? It is implausible that it is a subcategorization restriction similar to that of \textit{rare} and other kind-level predicates: those can be seen as applying to a plurality, but it is not precisely clear what is so plurality-specific about classificatory adjectives.
 
 The next subsection adapts \textcite{mcnally2004relationaladjectivesproperties}'s for the current purposes and presents an analysis of \textit{-ai-} and other similar suffixes.
 
-\subsection{The analysis}
+\subsection{The analysis of \textit{-ai-}}
 
-\Citeauthor{mcnally2004relationaladjectivesproperties}'s approach can be easily integrated into the framework proposed earlier, with significant simplifications. It also explains --- and, even more, predicts --- the obligatory usage of the definite ending with classificatory adjectives in Baltic and Serbian. The idea that definite endings are related to kind reference is also pursued by \parencite{sereikaite2017kindreferencedps}.
+\Citeauthor{mcnally2004relationaladjectivesproperties}'s approach can be easily integrated into the framework proposed earlier, with significant simplifications. It also explains --- and, even more, predicts --- the obligatory usage of the definite ending with classificatory adjectives in Baltic and Serbian. The idea that definite endings are related to kind reference is also pursued by \textcite{sereikaite2017kindreferencedps}.
 
-I propose that nouns are one-place predicates ranging over kind-level arguments (\getfullref{classem.n}). One way to do this could be to say that a kind is in a noun \textit{N}'s extension if being a part of the kind means having the property \textit{n} the noun denotes (i.e. $N(k)\iff \forall x[^\cup k(x)\Rightarrow n(x)]$). I will not maintain this idea, as I will suggest a completely different one below.
+I propose that nouns are one-place predicates ranging over kind-level arguments (\getfullref{classem.n}). One way to do this could be to say that a kind is in a noun \textit{N}'s extension if being a part of the kind means having the property \textit{n} the noun denotes (i.e. $N(k)\iff \forall x[^\cup k(x)\Rightarrow n(x)]$). I will assume this for now, but will suggest a different approach below.
 
 Classificatory adjectives similarly range over kinds and combine with nouns by simple Predicate Modification (\getfullref{classem.a}-\getfullref{classem.pm}). This is similar to \Citeauthor{mcnally2004relationaladjectivesproperties}, but without the second argument for the noun.
 
@@ -386,7 +372,7 @@ Classificatory adjectives similarly range over kinds and combine with nouns by s
     \a<pm> $\llbracket \text{giant anteater} \rrbracket = \lambda k.\,\textsc{giant}(k) \land \textsc{anteater}(k)$
 \xe
 
-This is a predicate over kinds, that is, over predicates. But clearly what proceeds further in the derivation of an NP must be a predicate over individuals, that is, a kind. For this, we need a typeshifter or a null determiner --- the same tool that turns noun phrases into arguments in articleless languages. This is what, we believe, is the role of \textit{-ai-}. As a suffix of an attributive adjective, it presupposes the definiteness of an individual, the DP referent; when combining  with a classificatory adjective, it presupposes the definiteness of a kind.
+This is a predicate over kinds, that is, over predicates. But clearly what proceeds further in the derivation of an NP must be a predicate over individuals, that is, a kind. For this, we need a typeshifter or a null determiner --- the same tool that turns noun phrases into arguments in articleless languages. This is what, I believe, is the role of \textit{-ai-}. As a suffix of an attributive adjective, it presupposes the definiteness of an individual, the DP referent; when combining  with a classificatory adjective, it presupposes the definiteness of a kind.
 
 This is compatible with any theory of definiteness, be it a theory of uniqueness \parencite{russell1905denoting,strawson1950referring} or familiarity \parencite{heim1982semanticsdefiniteindefinite}. (\nextx) demonstrates the mechanism with the simple $\iota$ semantics \parencite{partee1986nounphraseinterpretation}. The uniqueness presupposition is trivially satisfied because nouns with classifying adjectives always refer to a well-established kind (similar to \Citeauthor{mcnally2004relationaladjectivesproperties}'s contextual saturation). The resulting unique kind can then be used predicatively to combine with attributive adjectives, individual-level determiners and any other content of a DP. In languages without adjectival definiteness, this process would be realized via the \textsc{iota} type-shifter, again, similar to noun phrases in articleless languages \parencite{dayal2004numbermarkingdefiniteness}.
 
@@ -396,17 +382,17 @@ This is compatible with any theory of definiteness, be it a theory of uniqueness
 \a $^\cup \llbracket \text{-ai-} \rrbracket(\llbracket \text{liel- skudrlāci-} \rrbracket) = \lambda x.\, (\iota k.\,\textsc{giant}(k) \land \textsc{anteater}(k))(x)$
 \xe
 
-Alternatively, in the spirit of \parencite{coppock2015definitenessdeterminacy}, we can assume that, like English \textit{the}, \textit{-ai-} only introduces the presupposition, while the type shift is then induced by \textsc{iota} in every language. Again, this fully corresponds to how DPs behave.
+Alternatively, in the spirit of \textcite{coppock2015definitenessdeterminacy}, one can assume that, like English \textit{the}, \textit{-ai-} only introduces the presupposition, while the type shift is then induced by \textsc{iota}. Again, this fully corresponds to how DPs behave.
 
 The reader might wonder what is the import of a presupposition that is always trivially satisfied. Indeed, combining \textit{-ai-} with a classificatory adjective would never lead to a presupposition failure because of the nature of classificatory adjectives. Why would a language introduce a presuppositional element that adds nothing to the presupposition of the whole expression?
 
-There are two answers to this question. First, the suffix does not occur at this place for some specific reason. On the contrary, it can combine with any adjective, but only appears when the presupposition is satisfied. The suffix does serve a specific purpose --- e.g., resolving anafora --- when it combines with an attributive adjective; its appearing with classificatory adjectives is simply a by-product of morphological properties of adjectives.
+There are two answers to this question. First, the suffix does not occur at this place for some specific reason. On the contrary, it can combine with any adjective, but only appears when the presupposition is satisfied. The suffix does serve a specific purpose --- e.g., resolving anafora --- when it combines with an attributive adjective; its appearing with classificatory adjectives is simply a side effect of morphological properties of Latvian adjectives.
 
 Second, the suffix in this position does, in fact, serve a purpose of disambiguating between deep structures of a noun phrase. An indefinite noun phrase, e.g., \textit{some giant anteater}, is ambiguous between one with a classificatory adjective (`some \textit{Myrmecophaga tridactyla}') and with an attributive one (`some very large \textit{Myrmecophaga}'). \textit{-ai-} deals with this ambiguity effectively. Different languages might do it by different means --- Polish, in particular, uses different word orders.
 
 \subsection{Relational nouns as evidence for predicative kinds}\label{reln}
 
-Now that the main properties of classificatory noun marking in Latvian have been discussed,  we can move to the main argument against looking at kinds as pluralities. At this point, it is still unclear whether we cannot employ \textcite{chierchia1998referencekindslanguages}'s model. Suppose nouns are functions over pluralities, and classificatory adjectives restrict the extension to a sub-plurality, in the spirit of \textcite{mendia2019referenceadhoc}.
+Now that the main properties of classificatory noun marking in Latvian have been discussed,  I can move to the main argument against looking at kinds as pluralities. At this point, it is still unclear whether one cannot employ \textcite{chierchia1998referencekindslanguages}'s model. Suppose nouns are functions over pluralities, and classificatory adjectives restrict the extension to a sub-plurality, in the spirit of \textcite{mendia2019referenceadhoc}.
 
 However, not all nouns describe pluralities: relational nouns do not. It is unclear what totalities of individuals are the kinds \textsc{son}, \textsc{fan}, or \textsc{affiliation}, because the extensions of the corresponding predicates are relative to a possessor. Should we say that we do not expect relational nouns to refer to kinds, then? Or that we first need to saturate its argument?
 
@@ -438,20 +424,22 @@ This section has looked at the semantics of classificatory adjectives and their 
 
 \section{Kinds and proper names}\label{pn}
 
+In the previous section, I raised a problem of the unclarity of classificatory adjectives. In this section, I will suggest a possible explanation based on the treatment of kind-referring expressions via proper name semantics.
+
 The idea that at least some kinds can be treated as proper names comes from \textcite{carlson1977referencekindsenglish} and is further explored by \textcite{heyer1985genericdescriptionsdefault} and \textcite{krifka1995genericityintroduction}, a.o. \Citeauthor{carlson1977referencekindsenglish} observes that well-established kinds are available in the so-called \textit{so-called} constructions. This construction seems to be available with proper names, but not with definite or indefinite descriptions (\nextx).
 
 \pex<>
     \a<> \textit{Google} is so called because the creators dreamed of parsing a googol of pages.
-    \a<> \ljudge* My neighbour is so called because he is the only living soul for miles.
+    \a<> \ljudge* My neighbour is so called because he is the only living soul in miles.
     \a<> The polar bear is so called because it lives beyond the polar circle.
 \xe
 
-Well-established kinds and proper names are also conceptually similar \parencite[65]{krifka1995genericityintroduction}. They are (normally) definite, and their interpretation does not depend on the current world or context. They are \emph{rigid designators} in the sense of \parencite{kripke1980namingnecessity}. We can imagine a world where the \textit{giant anteater} comprises of a different plurality; and we can imagine a world where anteaters do not eat ants; or where it is called \textit{bald echidna}; but looking from our world, we would still refer to the genus as the \textit{giant anteater}.
+Well-established kinds and proper names are also conceptually similar \parencite[65]{krifka1995genericityintroduction}. They are (normally) salient, and their interpretation does not depend on the current world or context. They are \emph{rigid designators} in the sense of \parencite{kripke1980namingnecessity}. One can imagine a world where the \textit{giant anteater} comprises of a different plurality; and one can imagine a world where anteaters do not eat ants; or where it is called \textit{bald echidna}; but looking from our world, one would still refer to the genus as the \textit{giant anteater}.
 
 \textcite{burge1973referencepropernames} proposes a view on proper names, further developed by \parencite[a.m.o.]{elbourne2005situationsindividuals,maier2015referencebindingpresupposition}, wherein proper names are metalinguistic predicates that hold of all entities that bear a certain name. That is, \textit{Zachary} is true for any person called Zachary --- any person who was baptized, nicknamed, or otherwise assigned the name of Zachary. This idea finds evidence in sentences where names are used predicatively, under quantifiers, etc. (\nextx).
 
 \pex<>
-    \a<> He is certainly a Zachary.
+    \a<> I'm Zachary.
     \a<> All Zacharies are psychos.
     \a<> I saw a Zachary today.
     \a<> There are many Zacharies here.
@@ -470,11 +458,11 @@ Determiners in these sentences obviously quantify over individuals called Zachar
 %     \endgl
 % \xe
 
-I have suggested earlier that common names and classificatory adjectives range over predicates, but I have not stated anything about what is their extension. The main difficulty in approaching this problem is the incredible polisemy classificatory adjectives undergo. \textit{White} in \textit{white tiger} is not the same as in \textit{white tea}. Of course, it is clear why these subkinds are called so, but it would give us no more than the etymology of these names; the names themselves are rigid and do not seem to be compositionally formed --- probably the best answer to the question of why a certain pair of a classificatory adjective and a name refers to a particular kind is because the speakers have decided so.
+The main difficulty in approaching semantics of classificatory adjectives problem is the incredible polisemy they undergo. \textit{White} in \textit{white tiger} is not the same as in \textit{white tea}. Of course, it is clear why these subkinds are called so, but it would give us no more than the etymology of these names; the names themselves are rigid and do not seem to be compositionally formed --- probably the best answer to the question of why a certain pair of a classificatory adjective and a name refers to a particular kind is because the speakers have decided so.
 
 This rigidity is also what unites kind names with proper names: although there might be a clear explanation to why a person carries a name (a nickname, in particular), the fact that they do is only a result of speakers' decision. In the spirit of \parencite{kripke1980namingnecessity}, I propose that common names \emph{are} proper names, albeit not for individuals, but for predicates (kinds): they are metalinguistically predicative in the sense of \parencite{burge1973referencepropernames}, being true for all kinds that carry a certain name. A classificatory adjective similarly asserts that a subkind is called by that adjective.
 
-Consider \textit{the anteater}. It passes the \textit{so-called} test successfully (\nextx), which points that it asserts something about the name of a kind. There is an anaphoric device \textit{so} in the construction --- it must refer to something before it. We would not expect to have, on the level of semantic interpretation, any access to how the sentence is pronounced; hence there must be something in the derivation of the sentence that states that the anteater, the kind, is called \textit{anteater}. Basically, \textit{anteater} might be paraphrased as \textit{the kind that is called anteater}.
+Consider \textit{the anteater}. It passes the \textit{so-called} test successfully (\nextx), which points that it asserts something about the name of a kind. There is an anaphoric device \textit{so} in the construction --- it must refer to something before it. We would not expect to have, on the level of semantic interpretation, any access to how the sentence is pronounced; hence there must be something in the derivation of the sentence that states that the anteater, as the kind, is called \textit{anteater}. Basically, \textit{anteater} might be paraphrased as \textit{the kind that is called anteater}.
 
 \ex<>
     The anteater is so called because it eats ants.
@@ -482,8 +470,8 @@ Consider \textit{the anteater}. It passes the \textit{so-called} test successful
 
 Consider next \textit{the giant anteater}. It also passes the \textit{so-called} test (\nextx). In the similar terms, it can be paraphrased as \textit{the kind of anteater that is called giant}. Notice that the truly intersective interpretation --- \textit{the kind that is called anteater and giant} --- does not seem legitimate. This asymmetry is a property of classificatory adjectives: the giant anteater is \textit{a kind of anteater}, but it is not *\textit{a kind of giant}.
 
-\ex<>
-    The giant anteater is so called because it can be more than two meters long.
+\pex<ca.name>
+    \a The giant anteater is so called because it can be more than two meters long.
 \xe
 
 This behavior is recursive. The number of classificatory adjectives is not limited to one, and upon adding a new one, the old one loses its name-denoting function and becomes taxonomic. \textit{The Scandinavian red fox}, for example, is \textit{the kind of red fox that is called Scandinavian}.
@@ -495,15 +483,15 @@ Furthermore, among the anteaters, there is also \textit{the tamandua}. Its name 
     \item Before combining with a classificatory adjective, a noun (as well as a classificatory adjective-noun pair) becomes a taxonomic predicate, true of all subkinds of a certain kind.
 \end{enumerate}
 
-How do we model it compositionally? The easiest way is to say that the \textsc{iota} type shift, introduced in the previous section, is applied to nouns as well. This leads us to the following semantics of classificatory adjective-noun pair (\nextx).
+How do we model it compositionally? The easiest way is to say that the \textsc{iota} type shift, introduced for kinds in the previous section, is applied to nouns as well. This leads us to the following semantics of classificatory adjective-noun pair (\nextx).
 
 \ex<>
 $\llbracket \text{giant anteater} \rrbracket = \lambda k.\, \textsc{called}(\text{giant})(k)\land \,^\cup(\iota k'.\, \textsc{called}(\text{anteater})(k'))(k)$\footnotemark
 \xe
 
-\footnotetext{Curiously, this also predicts that, for example, \textit{the northern anteater} can refer to \textsc{the northern tamandua}, a subkind of \textsc{tamandua} and hence a subkind of \textsc{anteater} as well. This might probably be dealt with by some informativity requirement. I leave this for future research.}
+\footnotetext{Curiously, this also predicts that, for example, \textit{the northern anteater} can refer to \textsc{the northern tamandua}, a subkind of \textsc{tamandua} and hence a subkind of \textsc{anteater} as well. This might probably be dealt with by some informativity requirement.}
 
-Now, I argued in the previous section that the kind that results when applying \textsc{iota} to a classificatory adjective-noun pair (or simply the noun) is a predicate over individuals. This is needed for further composition of an NP. However, we now use this kind to quantify over subkinds: \textit{anteater} is true of \textit{giant anteater}. Recall, however, that our semantics is now untyped: there is nothing that forbids a predicate from being true both of individuals and other predicates (kinds). This still does not answer why it is exactly so that a kind is \emph{always} true for its subkinds --- which seems to be exactly the case. We can solve this by adding the following principle to our onthology (\nextx).
+Now, I argued in the previous section that the kind that results when applying \textsc{iota} to a classificatory adjective-noun pair (or simply the noun) is a predicate over individuals. This is needed for further composition of an NP. However, this kind is now used to quantify over subkinds: \textit{anteater} is true of \textit{giant anteater}. Recall, however, that our semantics is now untyped: there is nothing that forbids a predicate from being true both of individuals and other predicates (kinds). This still does not answer why it is exactly so that a kind is \emph{always} true for its subkinds --- which seems to be exactly the case. This can be solved by adding the following principle to the onthology (\nextx).
 
 \ex<>
     \textbf{The Subkind Principle.}\\For any predicates $p$ and $q$, if $\forall x_1,...,x_n[p(x_1,...,x_n)\implies q(x_1,...,x_n)]$, then $q(^\cap p)$\footnotemark{}
@@ -522,7 +510,7 @@ Analyzing kinds this way also sheds some light upon the peculiar behavior of cla
     \a<>\ljudge*Misha is called polar.
 \xe
 
-The availability of a classificatory adjective corresponds to the availability of \textit{called}. This is exactly what we would expect, considering that classificatory adjectives assert their argument has a certain name. The exact implementation of this --- in particular, how the adjectives manages to assert something about the kind, bypassing the individual --- is to be developed outside of this work, but I believe this is the right way to go.
+The availability of a classificatory adjective corresponds to the availability of \textit{called}. This is exactly what we would expect, considering that classificatory adjectives assert their argument has a certain name. The exact implementation of this --- in particular, how the adjective manages to assert something about the kind, bypassing the individual --- is to be developed outside of this work, but I believe this is the right way to go.
 
 \subsection{Taxonomic NPs}
 
@@ -540,9 +528,9 @@ The \textit{the}-DP in (\getfullref{clasdet.the}) refers to the whole kind \text
 
 \textcite{dayal2004numbermarkingdefiniteness} argues that this behavior can be derived compositionally. When nouns quantify over kinds, "context determines what level of the hierarchy will be relevant to the interpretation in a particular case". That is, the denotation of \textit{anteater} in the kind-referring function can be either \{\textsc{giant anteater, silky anteater, northern tamandua, southern tamandua}\} or simply \{\textsc{anteater}\}. In the first case, interpretations like (\getfullref{clasdet.every}-\getref{clasdet.thepl}) are achieved. \textit{The} in (\getfullref{clasdet.thepl}) picks, by maximality, the totality of anteater subkinds. In the second case, \textit{the} picks the only kind in the extension of the predicate --- the \textsc{anteater}.
 
-The Subkind Principle captures this ambiguity. As noted earlier, each kind holds both of its subkinds and of itself. When quantifiers like \textit{some} or \textit{a} are used, it is interpreted as quantification over subkinds due to a scalar implicature: if it were to quantify over the singleton set \{\textsc{anteater}\}, it would necessarily receive the total interpretation, which would be blocked by a stronger quantifier, like \textit{all} \parencite{horn1976semanticpropertieslogical} or \textit{the} (which I will discuss now).
+The Subkind Principle captures this ambiguity. It follows from it that each kind holds both of its subkinds and of itself. When a quantifier like \textit{some} or \textit{a} are used, it is interpreted as quantifying over subkinds due to a scalar implicature: if it were to quantify over the singleton set \{\textsc{anteater}\}, it would necessarily receive the total interpretation, which would be blocked by \textit{the} according to the Maximize Presupposition principle.
 
-\textit{The}, on the other hand, necessarily receives the total interpretation, even when used in the Singular. The maximal plurality of kinds of \textsc{anteater}, the \textsc{$\text{ga}\oplus\text{sa}\oplus\text{nt}\oplus\text{st}$}, is extensionally equal to the kind \textsc{anteater} itself. And, since the predicate holds of the kind \textsc{anteater} and \textsc{anteater} is a single kind, the Singular is available. If we employ the theory of \textcite{sauerland2005pluralsemanticallyunmarked}, wherein the Singular introduces the singularity presupposition and the Plural is used elsewhere, we can explain why the singular is heavily preferred in sentences like (\getfullref{clasdet.the}). The singular is, however, unavailable in distributive contexts like in (\getfullref{clasdet.thepl}), since it does not denote a totality of subkinds, as opposed to singulars like \textit{team}, so the plural is used.
+\textit{The} necessarily receives the total interpretation, even when used in the Singular. The maximal plurality of kinds of \textsc{anteater}, the \textsc{$\text{ga}\oplus\text{sa}\oplus\text{nt}\oplus\text{st}$}, is extensionally equal to the kind \textsc{anteater} itself. And, since the predicate holds of the kind \textsc{anteater} and \textsc{anteater} is a single kind, the Singular is available. If we employ the theory of \textcite{sauerland2005pluralsemanticallyunmarked}, wherein the Singular introduces the singularity presupposition and the Plural is used elsewhere, we can explain why the singular is heavily preferred in sentences like (\getfullref{clasdet.the}). The singular is, however, unavailable in distributive contexts like in (\getfullref{clasdet.thepl}), since it does not denote a totality of subkinds, as opposed to singulars like \textit{team}, so the plural is used.
 
 In this section, I have suggested that nouns and classificatory adjectives should be analyzed as proper names. When a classificatory adjective combines with a noun, the former is interpreted as a predicate over kinds somehow named, while the latter is shifted to a predicate over individuals and subkinds of a particular kind. To capture the individual-subkind ambiguity, I have introduced the Subkind Principle which states that a kind is true of its subkinds. This principle allows for an elegant account of the taxonomic quantification and the singular kind-level \textit{the}.
 
@@ -569,11 +557,13 @@ In this section, I have suggested that nouns and classificatory adjectives shoul
 
 \section{Conclusion}\label{conc}
 
-This work pursued two goals. The first one is negative: to claim that the Neocarlsonian semantics, developed by \textcite{chierchia1998referencekindslanguages}, is incompatible with an important fact about kind reference: that it is available with relational nouns. I proved this fact by appealing to definiteness marking on classificatory adjectives in languages like Latvian. I first showed, reflecting on previous work, that classificatory adjectives are best analyzed as kind-referring and the suffixes as marking definiteness of a kind, and then demonstrated that it is compatible with relational adjectives, proving that relational adjectives can refer to kinds.
+This work pursued two goals. The first is negative: to claim that the Neocarlsonian semantics, developed by \textcite{chierchia1998referencekindslanguages}, is incompatible with an important fact about kind reference: that it is available with relational nouns. I proved this fact by appealing to definiteness marking on classificatory adjectives in languages like Latvian. I first showed, reflecting on previous work, that classificatory adjectives are best analyzed as kind-referring and the suffixes as marking definiteness of a kind, and then demonstrated that it is compatible with relational nouns, proving that relational nouns can refer to kinds. This poses a serious problem for totality-based approaches to kind reference, since relational nouns are true not of individuals but of pairs of individuals, and hence do not have a corresponding totality.
 
-The second one is positive: to provide a semantics that would capture, first, the behavior of classificatory adjectives, and second, the taxonomic interpretation of kinds. I formalized the intuition of \textcite{carlson1977referencekindsenglish}, a.o., that kinds can be thought as proper names. I suggested that both nominals and classificatory adjectives assert that the kind they refer to bears a certain name. This is evidenced by the compatibility with \textit{so-called} constructions. Thus, a noun phrase like \textit{giant anteater} can be analyzed as asserting belonging to the kind that is a subkind of \textsc{anteater} and called \textit{giant}. The theory also encompasses taxonomic readings of noun phrases in sentences like \textit{An anteater is extinct}, as well as the total reading of singular noun phrases with \textit{the} like \textit{The anteater inhabits South America}.
+This also means that untyped lambda calculus is still of use in modern formal semantics. Given how little evidence there is to type mismatches leading to ungrammaticality, it might even turn out preferrable, provided more explanations of linguistic phenomena find it useful.
 
-The work only caputers a small part of the data related to kind reference. It does not concern \textit{ad-hoc} kinds, which are described and analyzed by \textcite{mendia2019referenceadhoc}. It also does not explore such kind reference--related phenomena as bare nouns or the \textit{kind-of} construction. A broader theory of kind reference would require a much longer form factor. However, I believe, this provides a solid ground for further research.
+The second goal is positive: to provide a semantics that would capture, first, the behavior of classificatory adjectives, and second, the taxonomic interpretations of kind-referring nominals. I formalized the intuition of \textcite{carlson1977referencekindsenglish}, a.o., that kinds can be thought of as proper names. I suggested that both nominals and classificatory adjectives assert that the kind they refer to bears a certain name. This is evident from the compatibility with the \textit{so-called} construction. Thus, a noun phrase like \textit{giant anteater} can be analyzed as asserting belonging to the kind that is a subkind of \textsc{anteater} and called \textit{giant}. The theory also encompasses taxonomic readings of noun phrases in sentences like \textit{An anteater is extinct}, as well as the total reading of singular noun phrases with \textit{the} like \textit{The anteater inhabits South America}.
+
+The work only caputers a small part of the data related to kind reference. It does not concern \textit{ad-hoc} kinds, which are described and analyzed by \textcite{mendia2019referenceadhoc}. It also does not explore such kind reference--related phenomena as bare nouns or the \textit{kind-of} construction. A broader theory of kind reference would require a much longer form factor.
 
 \pagebreak
 \printbibliography
