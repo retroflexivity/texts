@@ -1,0 +1,403 @@
+\documentclass[
+    9pt,
+]{beamer}
+\usecolortheme[named=black]{structure}
+\setbeamertemplate{footline}[frame number]{}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}{>}
+
+\setlength{\parskip}{0.5em}
+
+\usepackage[russian,english]{babel}
+
+
+% TYPOGRAPHY
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+% \usepackage{mathspec}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+
+\setmainfont{Libertinus Serif}
+\setsansfont{Libertinus Sans}
+\setmathfont{Libertinus Math}
+
+\usepackage[normalem]{ulem}
+
+\usepackage[dvipsnames]{xcolor}
+\let\emph\relax
+\DeclareTextFontCommand{\emph}{\color{BrickRed}}
+
+
+% LINGUISTICS 
+\usepackage{expex}
+\lingset{aboveglftskip=0ex, belowglpreambleskip=0ex, belowexskip=1ex, aboveexskip=1ex, interpartskip=0ex}
+\gathertags
+\let\expexgla\gla % dumb unicode-math conflict
+\AtBeginDocument{\let\gla\expexgla}
+
+\usepackage[glossaries]{leipzig}
+\newleipzig{cmpr}{cmpr}{Comparative}
+\newleipzig{sprl}{sprl}{Superlative}
+\newleipzig{indef}{indef}{Indefinite}
+
+
+% SUBSTITUTION
+\usepackage{hyphsubst}
+\usepackage{csquotes}
+\MakeOuterQuote{"}
+
+
+% BIBLIOGRAPHY		    
+\usepackage[style=authoryear,url=false,doi=false,isbn=false,eprint=false,date=year]{biblatex}
+\addbibresource{../../ref.bib}
+
+
+% DRAWING
+% \usepackage{tikz}
+% \usetikzlibrary{shapes.geometric}
+% \usetikzlibrary{trees,arrows}
+% \usetikzlibrary{positioning}
+\usepackage[linguistics]{forest}
+
+
+%ALIASES
+\ExplSyntaxOn
+
+\NewDocumentCommand{\splist}{ s m m m} {
+    #3\mspace{2mu}
+    \clist_set:Nn \l_tmpa_clist { #2 }
+    \clist_use:Nn \l_tmpa_clist {,\mspace{3mu plus 1mu minus 1mu} \IfBooleanT{#1}{\allowbreak}}
+    \mspace{2mu}#4
+}
+
+\NewDocumentCommand{\opair}{ s m }{
+    \IfBooleanTF{#1}{ \splist*{#2}{\langle}{\rangle} }{ \splist{#2}{\langle}{\rangle} }
+}
+
+\NewDocumentCommand{\set}{ s m } {
+    \IfBooleanTF{#1}{ \splist*{#2}{\{}{\}} }{ \splist{#2}{\{}{\}} }
+}
+\ExplSyntaxOff
+
+\newcommand{\denote}[1]{\llbracket #1 \rrbracket}
+
+
+%META
+\title{Функциональные прочтения вопросов\\\parencite{heim2018functionalreadingstypeshifted,haldar2024middlegroundengdahl}}
+\author{Аркадий Шалдов}
+\date{27 Nov 2024, НИС «Синсем», НИУ ВШЭ}
+
+\begin{document}
+
+% -------------------------- текстиктекстиктекстик -----------------------------
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}
+    \frametitle{О чем это?}
+
+    Некоторые вопросы исчисляют по отношениям между индивидами — $\opair{e,e} $
+    \ex<>
+        — Какого своего родственника не позвала ни одна девочка?\\
+        `Какая функция $f_{ee}$ из индивидов в их родственников такова, что ни одна девочка $x$ не позвала $f(x)$'\\
+        — Мать / брата / кума / \dots / \#Петю
+    \xe    
+
+    Здесь две проблемы
+    \begin{itemize}
+        \item Во-первых, реляционность ИГ просачивается доверху
+        \item Во-вторых, рефлексив не с-коммандуется антецедентом
+    \end{itemize}
+\end{frame}
+
+\section{Введение}
+
+\begin{frame}
+    \frametitle{Значение}
+
+    \ex<>
+        Какого своего родственника не позвала ни одна девочка?
+    \xe
+
+    \textcite{engdahl1986constituentquestionssyntax}:
+    
+    \begin{itemize}
+        \item $\set{p: \exists f_{\opair{e,e}}\; [\forall x\; [\textsc{родств}(f(x), x) = 1] \land p = (\lambda w_s.\; \neg\exists x\; [\textsc{девочка}(x) = 1 \land \textsc{позвала}(x, f(x) = 1)])]}$
+        \item множество пропозиций $p$, для которых есть функция из индивидов в их родственников $f$ такая, что в интенсионале $p$ ни одна девочка не позвала своего $f$
+        \item напр. в интенсионале \textit{Ни одна девочка не позвала кума} есть такая функция \textsc{кум}
+    \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Оригинальное решение \parencite{engdahl1986constituentquestionssyntax}}
+
+    
+    Что для этого нужно? 
+    \begin{itemize}
+        \item Семантическое связывание нулевым оператором $E$
+                    $\denote{E_y\ \xi}^g = \lambda f_{ee}.\; \forall x.\; \denote{\xi}^{g^{x/y}}(f(x)) = 1$
+        \item Полиморфичное \textit{какой} (принимает втч. функции $\opair{e,e}$)\\
+                    $\denote{\text{какой}} = \lambda P_{\sigma t}.\; \lambda Q_{\sigma t}.\; \exists x_\sigma [P(x) = 1 \land Q(x) = 1]$
+        \item Слоистые следы (из нескольких частей, связываемых в разных местах)
+    \end{itemize}
+
+    Структура поверхностная
+
+    \pex<>
+        \a<> [$\lambda p$ [какого [$E_y$ [своего$_y$ родственника]] $\lambda f$ [[$Q(p)$] [$\lambda w$ ни одна девочка] [$\lambda x$ [$t_x$ не позвала \emph{$t_{f(x)}$}]]]]]\footnote{$Q$ — Карттуненов прото-вопросный оператор $\lambda p_{st}.\; \lambda q_{st}.\; p = q$}
+        \a $\denote{E_y \text{[своего родственника]}} = \lambda f_{ee}.\; \forall z.\; \textsc{родственник}(z)(f(z)) = 1$
+    \xe
+    
+\end{frame}
+
+\section{\cite{heim2018functionalreadingstypeshifted}}
+\begin{frame}
+    \frametitle{Проблемы особого оператора связывания}
+
+    \textcite{heim2018functionalreadingstypeshifted}:
+
+    \begin{enumerate}
+        \item Откуда берутся $\phi$-признаки?
+        \ex<>
+            Which picture of herself / *himself did no girl submit?
+        \xe
+        \item Что лицензирует рефлексив?
+        \ex<>
+            Какого ее / *своего родственника нет на фотокарточке ни одной девочки?
+        \xe
+    \end{enumerate}
+
+    Все указывает на необходимость с-коммандования. Решение Гейм: \emph{реконструкция}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Рестриктор in-situ}
+
+    Рестриктор wh-слова \textit{своего родственника} теперь интерпретируется в базовой позиции:
+
+    \ex<>
+        [\textsubscript{CP} какого [\textsubscript{TP} [\textsubscript{DP} ни одна девочка] [\textsubscript{VP} не позвала [\textsubscript{DP} своего родственника]]]]
+    \xe
+
+    Следствие: \textit{какой} теперь принимает \emph{только один аргумент}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Композиция по \textcite{heim2018functionalreadingstypeshifted}}
+
+    \only<1>{
+        Конверсия следов \parencite{fox2000economysemanticinterpretation}: между копированием и удалением происходит вставление переменной и связывающего оператора:
+        \begin{enumerate}
+            \item \emph{Изначальная структура:} [$\lambda p$. [[$Q(p)$] [$\lambda w$. Саша позвала [какого студента]]]]
+            \item \emph{Копирование:} [$\lambda p$. [[\emph{какого студента}] [[$Q(p)$] [$\lambda w$. Саша позвала [какого студента]]]]]
+            \item \emph{Вставление переменной:} [$\lambda p$. [[какого студента] [\emph{$\lambda x$}. [[$Q(p)$] [$\lambda w$. Саша позвала [какого студента \emph{$x$}]]]]]]
+            \item \emph{Удаление:} [$\lambda p$. [какого [$\lambda x$. [[$Q(p)$] [$\lambda w$. Саша позвала [студента $x$]]]]]]
+        \end{enumerate}
+    }
+    
+    Затайпшифтим:
+
+    \pex<stud>
+        \a<full> [$\lambda p$. [какого [$\lambda x$. [[$Q(p)$] [$\lambda w$. Саша позвала [\emph{\textsc{the}} студента [\emph{\textsc{ident}} $x$]]]]]]]
+        \a<> $\denote{\textsc{the}} = \lambda P_{et}: \exists! x_\sigma\; [P(x)].\; \iota x_\sigma\; [P(x)]$
+        \a<> $\denote{\textsc{ident}} = \lambda x_\sigma.\; \lambda y_\sigma.\; x = y$
+        \a<> $\denote{\text{какой}} = \lambda P_{\sigma t}.\; \exists x_\sigma\; [P(x)]$\trailingcitation{одноместное wh-слово}
+    \xe
+    
+    \only<2>{
+        Деривация:
+    
+        \pex<>
+            \a<> $\denote{\textsc{ident } x}^g = \lambda y_e.\; g(x) = y$
+            \a<> $\denote{\text{студента \textsc{ident }} x}^g = \lambda y_e.\; g(x) = y \land \text{студент}(y)$
+            \a<> $\denote{\text{\textsc{the} студента \textsc{ident} } x}^g = g(x)$ е.т.е. \textsc{студент}($g(x)$)
+            \a<> $\denote{\text{[$\lambda x$. [[$Q(p)$] [$\lambda w$. Саша позвала [\textsc{the} студента [\textsc{ident} $x$]]]]]}}^g = \lambda x.\; g(p) = \lambda w: \textsc{студент}(g(x)).\; \textsc{позвала}_w(M, g(x))$
+            \a<> $\denote{(\text{\getfullref{stud.full})}}\allowbreak = \set{p: \exists x\; [\textsc{студент}(x) \land p = \lambda w.\; \textsc{позвала}_w(M, x)]} \cup \set{\emptyset}$
+        \xe
+    }
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{А функциональные?}
+
+    Позволим \emph{вставку pro на ЛФ} и вставим pro как аргумент $\opair{e,e}$-следа:
+
+    \pex<reltv>
+        \a<full> [$\lambda p$. [какого [$\lambda f$. [[$Q(p)$] [$\lambda w$. ни одна девочка] [$\lambda x$. [$t_x$ не позвала [\textsc{the} своего родственника \textsc{ident} [\emph{$f$ pro$_x$}]]]]]]]]
+        \a<> $\denote{\text{[\textsc{the} своего родственника \textsc{ident} [$f$ pro$_x$]]}}^g = g(f)(g(y))$ е.т.е. $g(y) \in \text{dom}(g(f)) \land \textsc{родственник}(g(f)(g(y)), g(y))$
+        \a<> $\denote{\text{[$\lambda f$. \dots]}} = \lambda f.\; g(p) = \lambda w.: \text{пресуппозиция}.\; \forall y\; [\textsc{девочка}(y) \to \neg \textsc{позвала}(y, f(y))]$
+        \a<> $\denote{(\getfullref{reltv.full})} =\linebreak[0] \set{p: \exists f\; [\textcolor{gray}{\forall y\; [\textsc{девочка}(y) \to y\in\text{dom}(f) \land \textsc{родственник}(f(y), y)]} \allowbreak\land p = \lambda w.\; \forall y\; [\textsc{девочка}(y) \to \neg \textsc{позвала}(y, f(y))]]}$
+    \xe
+
+\end{frame}
+
+\section{\cite{haldar2024middlegroundengdahl}}
+
+\begin{frame}
+    \frametitle{Проблема одноместного \textit{какой} \parencite{haldar2024middlegroundengdahl}}
+
+    В вопросах с функциональными прочтениями возможен эффект избежания реконструкции
+
+    \ex<>
+        Какого родственника, которого знает Петя$_i$, он не видел ни у одной девочки в гостях?\\
+        `Какая функция $f_{ee}$ из индивидов в их родственников, которых знает Петя, такова, что ни для одной девочки $x$ не верно, что Петя видел у $x$ в гостях $f(x)$?'
+    \xe
+
+    \begin{itemize}
+        \item Одноместный \textit{какой} предполагает, что весь рестриктор реконструируется
+        \item Однако при реконструкции \textit{которого знает Петя} нарушается принцип С теории связывания
+    \end{itemize}
+
+    \ex<>
+        Какого [\dots{} [\emph{он$_i$} не видел \dots{} [родственника, которого знает \emph{Петя$_i$}]]]
+    \xe
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Известная проблема}
+
+    Как объясняют контраст между (\nextx)?
+
+    \pex<>
+        \a<> \ljudge*Какую картину Пикассо$_i$ он$_i$ решил купить \sout{какую картину Пикассо}?
+        \a<> \ljudge{\textsuperscript{\textsc{ok}}} Какую картину, которую написал Пикассо$_i$, он$_i$ решил купить?
+    \xe
+
+    \textcite{sportiche2016neglectdoingaway}:
+    \pex
+        \a<> \emph{Неучет (Neglect)}: любой материал на любом интерфейсе возможно игнорировать, если это не приводит к провалу
+        \a<> \emph{Принцип Полной интерпретации (FI)}: Все синтаксические объекты должны быть интерпретированы хотя бы однажды
+        \a<> \emph{Локальное насыщение предикатов}: На LF любой предикат должен быть насыщен аргументами локально
+    \xe
+
+    \begin{itemize}
+        \item ЛНП: необходимо интерпретировать \textit{Пикассо} (аргумент \textit{картину}, аргумента \textit{купить}) втч. снизу $\implies$ принцип С нарушен
+        \item Относительные клаузы не аргументы — их нижние копии могут не учитываться
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Разбиваем рестриктор}
+
+    \begin{itemize}
+        \item ИГ необходимо интерпретировать снизу (классические данные)
+        \item Относительную клаузу необходимо интерпретировать сверху (данные Халдар)
+    \end{itemize}
+
+    \pex<>
+        \a<> Какого родственника, которого знает Петя$_i$, он$_i$ не видел ни у одной девочки в гостях?
+        \a<> [$\lambda p$. [какого [\emph{которого знает Петя$_i$}] [$\lambda f$. [[$Q(p)$] [$\lambda w$. [[ни одной девочки] [$\lambda y$. [он$_i$ не видел у $t_y$ в гостях [\textsc{the} \emph{родственника} \textsc{ident} [$f pro_y$]]]]]]]]]]
+    \xe
+
+    Двухместный \textit{какой}!
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Сразу сложности}
+
+    \pex<>
+        \a<> Какого родственника, которого знает Петя$_i$, он$_i$ не видел ни у одной девочки в гостях?
+        \a<> [$\lambda p$. [какого [которого знает Петя$_i$] [$\lambda f$. [[$Q(p)$] [$\lambda w$. [[ни одной девочки] [$\lambda y$. [он$_i$ не видел у $t_y$ в гостях [\textsc{the} родственника \textsc{ident} [$f pro_y$]]]]]]]]]]
+    \xe
+
+    Какие аргументы у \textit{какого}?
+
+    \begin{itemize}
+        \item $\lambda f.\ \dots$ — $\opair{ee, t}$
+        \item{} [которого знает Петя] — $\opair{e,t}$
+    \end{itemize}
+
+    Типы разные! Оригинальный \textit{какой} Энгдаль такого не поддерживает
+    
+    \ex<>
+        $\denote{\text{какой}} = \lambda P_{\sigma t}.\; \lambda Q_{\sigma t}.\; \exists x_\sigma [P(x) = 1 \land Q(x) = 1]$\trailingcitation{\parencite{engdahl1986constituentquestionssyntax}}
+    \xe
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Новый тайпшифтер}
+
+    Какие аргументы у \textit{какого}?
+
+    \begin{itemize}
+        \item $\lambda f.\ \dots$ — $\opair{ee, t}$
+        \item{} [которого знает Петя] — $\opair{e,t}$
+    \end{itemize}
+    \ex<>
+        $\denote{\text{какой}} = \lambda P_{\sigma t}.\; \lambda Q_{\sigma t}.\; \exists x_\sigma [P(x) = 1 \land Q(x) = 1]$\trailingcitation{\parencite{engdahl1986constituentquestionssyntax}}
+    \xe
+
+    У Энгдаль то же самое
+
+    \pex<>
+        \a<> $\denote{E_y\ \xi}^g = \lambda f_{ee}.\; \forall x.\; \denote{\xi}^{g^{x/y}}(f(x)) = 1$
+        \a<> $\denote{E_y \text{[своего родственника]}} = \lambda f_{ee}.\; \forall z.\; \textsc{родственник}(z)(f(z)) = 1$
+    \xe
+
+    Но нам больше не нужно связывать рефлексив
+
+    Поэтому можно проще — тайпшифтер из \textcite{jacobson2002directcompositionalityvariablefree}
+    
+    \ex<>
+        $\denote{E^J} = \lambda P_{et}.\; \lambda f_{ee}.\; \forall x\; [x\in \text{dom}(f) \to P(f(x)) = 1]$
+        $\denote{E^J \text{[которого знает Петя]}} = \lambda f_{ee}.\; \forall x.\; [x\in \text{dom}(f) \to \textsc{знает}(f(x))(\text{П}) = 1]$
+    \xe
+
+    N. B. Если рестриктора нет, первый аргумент \textit{какой} можно связать контекстным рестриктором
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Последний слайд}
+
+    Сравним два тайпшифтера
+
+    \pex<>
+        \a<> $\denote{E_y\ \xi}^g = \lambda f_{ee}.\; \forall x.\; \denote{\xi}^{g^{x/y}}(f(x)) = 1$\trailingcitation{\parencite{engdahl1986constituentquestionssyntax}}
+        \a<> $\denote{E^J} = \lambda P_{et}.\; \lambda f_{ee}.\; \forall x\; [x\in \text{dom}(f) \to P(f(x)) = 1]$\trailingcitation{\parencite{haldar2024middlegroundengdahl}}
+    \xe
+
+    Первый изменяет функцию присваивания, второй нет
+    
+    Халдар: тайп-шифтеров (как и языковых выражений), которые изменяют функцию присваивания, в нашей семантике не должно существовать
+    
+    \ex<>
+        \textbf{Гипотеза об изменимости присваиваний}: единственные связыватели переменных, доступные в естественном языке — это $\lambda$-связыватели, присоединенные к структуре при передвижении в А-позицию.
+    \xe
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Итоги}
+
+    \begin{itemize}
+        \item Функциональные вопросы ставят вопросы, во-первых, о месте интерпретации выражений, а во-вторых — о композиции выражений разных типов
+        \item \textcite{engdahl1986constituentquestionssyntax}: рестриктор интерпретируется наверху и связывается семантически (проблемы — эффекты синтаксического связывания)
+        \item \textcite{heim2018functionalreadingstypeshifted}: рестриктор интерпретируется снизу, \textit{какой} одноместен (проблемы — избежание реконструкции относительными клаузами)
+        \item \textcite{haldar2024middlegroundengdahl}: рестриктор разбивается: основной интерпретируется снизу, относительные клаузы сверху; тайп-шифтер для композиции предикатов над индивидами и функциями
+        \item Сложная машинерия: свободная вставка \textit{pro}, два тайпшифтера внизу, один тайпшифтер наверху
+        \item И почему мы вообще считаем, что \textit{мать} имеет тип $\opair{e, e}$?
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ссылки}
+
+    \printbibliography
+
+\end{frame}
+
+\end{document}

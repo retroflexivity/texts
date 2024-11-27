@@ -1,0 +1,71 @@
+\documentclass[9pt]{beamer}
+\usecolortheme[named=black]{structure}
+\setbeamertemplate{footline}[frame number]{}
+\setbeamertemplate{navigation symbols}{}
+
+\setlength{\parskip}{0.5em}
+
+\usepackage[english]{babel}
+
+
+% FORMATTING
+\usepackage{hyperref}
+
+
+% TYPOGRAPHY
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+% \usepackage{mathspec}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+
+\setmainfont{Libertinus Serif}
+\setsansfont{Libertinus Sans}
+\setmathfont{Libertinus Math}
+
+\usepackage[normalem]{ulem}
+
+
+% LINGUISTICS 
+\usepackage{expex}
+\lingset{aboveglftskip=0ex, belowglpreambleskip=0ex, belowexskip=1ex, aboveexskip=1ex, interpartskip=0ex}
+\gathertags
+\let\expexgla\gla % dumb unicode-math conflict
+\AtBeginDocument{\let\gla\expexgla}
+
+\usepackage[glossaries]{leipzig}
+\newleipzig{cmpr}{cmpr}{Comparative}
+\newleipzig{sprl}{sprl}{Superlative}
+\newleipzig{indef}{indef}{Indefinite}
+
+
+% SUBSTITUTION
+\usepackage{hyphsubst}
+\usepackage{csquotes}
+\MakeOuterQuote{"}
+
+% BIBLIOGRAPHY		    
+\usepackage[style=authoryear,url=false,doi=false,isbn=false,eprint=false,date=year]{biblatex}
+\addbibresource{../../ref.bib}
+
+% DRAWING
+% \usepackage{tikz}
+% \usetikzlibrary{shapes.geometric}
+% \usetikzlibrary{trees,arrows}
+% \usetikzlibrary{positioning}
+\usepackage[linguistics]{forest}
+
+%META
+\title{TITLE}
+\author{Аркадий Шалдов}
+\date{22 Nov 2024, PLACE}
+
+\begin{document}
+
+% -------------------------- текстиктекстиктекстик -----------------------------
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\end{document}
