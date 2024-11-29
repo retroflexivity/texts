@@ -1,0 +1,749 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global}
+    \entry{burge1973referencepropernames}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=ee2b2e0f6a8a2121defcab8a9c7bc244}{%
+           family={Burge},
+           familyi={B\bibinitperiod},
+           given={Tyler},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Journal of Philosophy, Inc.}%
+      }
+      \strng{namehash}{ee2b2e0f6a8a2121defcab8a9c7bc244}
+      \strng{fullhash}{ee2b2e0f6a8a2121defcab8a9c7bc244}
+      \strng{bibnamehash}{ee2b2e0f6a8a2121defcab8a9c7bc244}
+      \strng{authorbibnamehash}{ee2b2e0f6a8a2121defcab8a9c7bc244}
+      \strng{authornamehash}{ee2b2e0f6a8a2121defcab8a9c7bc244}
+      \strng{authorfullhash}{ee2b2e0f6a8a2121defcab8a9c7bc244}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{jstor}
+      \field{issn}{0022-362X}
+      \field{journaltitle}{The Journal of Philosophy}
+      \field{number}{14}
+      \field{title}{Reference and {{Proper Names}}}
+      \field{urlday}{23}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{volume}{70}
+      \field{year}{1973}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{425\bibrangedash 439}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.2307/2025107
+      \endverb
+      \verb{eprint}
+      \verb 2025107
+      \endverb
+      \verb{file}
+      \verb /home/ark/Articles/Burge 1973. Reference and Proper Names.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.jstor.org/stable/2025107
+      \endverb
+      \verb{url}
+      \verb https://www.jstor.org/stable/2025107
+      \endverb
+    \endentry
+    \entry{chierchia1984topicssyntaxsemantics}{thesis}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=36f119f7eb58f15c6421bda15adde193}{%
+           family={Chierchia},
+           familyi={C\bibinitperiod},
+           given={Gennaro},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {University of Massachusetts}%
+      }
+      \list{location}{1}{%
+        {Amherst}%
+      }
+      \strng{namehash}{36f119f7eb58f15c6421bda15adde193}
+      \strng{fullhash}{36f119f7eb58f15c6421bda15adde193}
+      \strng{bibnamehash}{36f119f7eb58f15c6421bda15adde193}
+      \strng{authorbibnamehash}{36f119f7eb58f15c6421bda15adde193}
+      \strng{authornamehash}{36f119f7eb58f15c6421bda15adde193}
+      \strng{authorfullhash}{36f119f7eb58f15c6421bda15adde193}
+      \field{extraname}{1}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Topics in the Syntax and Semantics of Infinitives and Gerunds}
+      \field{year}{1984}
+      \field{dateera}{ce}
+      \verb{file}
+      \verb /home/ark/Articles/Chierchia 1984. Topics in the syntax and semantics of infinitives and gerunds.pdf
+      \endverb
+    \endentry
+    \entry{chierchia1998referencekindslanguages}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=36f119f7eb58f15c6421bda15adde193}{%
+           family={Chierchia},
+           familyi={C\bibinitperiod},
+           given={Gennaro},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{36f119f7eb58f15c6421bda15adde193}
+      \strng{fullhash}{36f119f7eb58f15c6421bda15adde193}
+      \strng{bibnamehash}{36f119f7eb58f15c6421bda15adde193}
+      \strng{authorbibnamehash}{36f119f7eb58f15c6421bda15adde193}
+      \strng{authornamehash}{36f119f7eb58f15c6421bda15adde193}
+      \strng{authorfullhash}{36f119f7eb58f15c6421bda15adde193}
+      \field{extraname}{2}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0925854X}
+      \field{journaltitle}{Natural Language Semantics}
+      \field{number}{4}
+      \field{title}{Reference to Kinds across Languages}
+      \field{urlday}{27}
+      \field{urlmonth}{4}
+      \field{urlyear}{2024}
+      \field{volume}{6}
+      \field{year}{1998}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{339\bibrangedash 405}
+      \range{pages}{67}
+      \verb{doi}
+      \verb 10.1023/A:1008324218506
+      \endverb
+      \verb{file}
+      \verb /home/ark/Articles/Chierchia 1998. Reference to kinds across languages.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://link.springer.com/10.1023/A:1008324218506
+      \endverb
+      \verb{url}
+      \verb http://link.springer.com/10.1023/A:1008324218506
+      \endverb
+    \endentry
+    \entry{cocchiarella1974fregeansemanticsrealist}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=515aa1e09439d6e08fef7f5e55391dd2}{%
+           family={Cocchiarella},
+           familyi={C\bibinitperiod},
+           given={Nino},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{515aa1e09439d6e08fef7f5e55391dd2}
+      \strng{fullhash}{515aa1e09439d6e08fef7f5e55391dd2}
+      \strng{bibnamehash}{515aa1e09439d6e08fef7f5e55391dd2}
+      \strng{authorbibnamehash}{515aa1e09439d6e08fef7f5e55391dd2}
+      \strng{authornamehash}{515aa1e09439d6e08fef7f5e55391dd2}
+      \strng{authorfullhash}{515aa1e09439d6e08fef7f5e55391dd2}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{1}
+      \field{journaltitle}{Notre Dame Journal of Formal Logic}
+      \field{month}{10}
+      \field{shortjournal}{Notre Dame Journal of Formal Logic}
+      \field{title}{Fregean Semantics for a Realist Ontology}
+      \field{volume}{15}
+      \field{year}{1974}
+      \field{dateera}{ce}
+      \verb{doi}
+      \verb 10.1305/ndjfl/1093891489
+      \endverb
+      \verb{file}
+      \verb /home/ark/Articles/Cocchiarella 1974. Fregean semantics for a realist ontology.pdf
+      \endverb
+    \endentry
+    \entry{coppock2015definitenessdeterminacy}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=cf572c45c0cc3439cb96d2bc27fb622a}{%
+           family={Coppock},
+           familyi={C\bibinitperiod},
+           given={Elizabeth},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=47c79066659eea1fee7a3cf293afe3d6}{%
+           family={Beaver},
+           familyi={B\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{0542addf2f50244831b6d1c9d0bbe73c}
+      \strng{fullhash}{0542addf2f50244831b6d1c9d0bbe73c}
+      \strng{bibnamehash}{0542addf2f50244831b6d1c9d0bbe73c}
+      \strng{authorbibnamehash}{0542addf2f50244831b6d1c9d0bbe73c}
+      \strng{authornamehash}{0542addf2f50244831b6d1c9d0bbe73c}
+      \strng{authorfullhash}{0542addf2f50244831b6d1c9d0bbe73c}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper distinguishes between definiteness and determinacy. Definiteness is seen as a morphological category which, in English, marks a (weak) uniqueness presupposition, while determinacy consists in denoting an individual. Definite descriptions are argued to be fundamentally predicative, presupposing uniqueness but not existence, and to acquire existential import through general type-shifting operations that apply not only to definites, but also indefinites and possessives. Through these shifts, argumental definite descriptions may become either determinate (and thus denote an individual) or indeterminate (functioning as an existential quantifier). The latter option is observed in examples like ‘Anna didn’t give the only invited talk at the conference’, which, on its indeterminate reading, implies that there is nothing in the extension of ‘only invited talk at the conference’. The paper also offers a resolution of the issue of whether possessives are inherently indefinite or definite, suggesting that, like indefinites, they do not mark definiteness lexically, but like definites, they typically yield determinate readings due to a general preference for the shifting operation that produces them.}
+      \field{issn}{0165-0157, 1573-0549}
+      \field{journaltitle}{Linguistics and Philosophy}
+      \field{langid}{english}
+      \field{month}{10}
+      \field{number}{5}
+      \field{shortjournal}{Linguist and Philos}
+      \field{title}{Definiteness and Determinacy}
+      \field{urlday}{31}
+      \field{urlmonth}{1}
+      \field{urlyear}{2024}
+      \field{volume}{38}
+      \field{year}{2015}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{377\bibrangedash 435}
+      \range{pages}{59}
+      \verb{doi}
+      \verb 10.1007/s10988-015-9178-8
+      \endverb
+      \verb{file}
+      \verb /home/ark/Articles/Coppock, Beaver 2015. Definiteness and determinacy.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://link.springer.com/10.1007/s10988-015-9178-8
+      \endverb
+      \verb{url}
+      \verb http://link.springer.com/10.1007/s10988-015-9178-8
+      \endverb
+    \endentry
+    \entry{dayal2004numbermarkingdefiniteness}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d1c50e5a2e1f5d9fd714b6eadf9ab34a}{%
+           family={Dayal},
+           familyi={D\bibinitperiod},
+           given={Veneeta},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{d1c50e5a2e1f5d9fd714b6eadf9ab34a}
+      \strng{fullhash}{d1c50e5a2e1f5d9fd714b6eadf9ab34a}
+      \strng{bibnamehash}{d1c50e5a2e1f5d9fd714b6eadf9ab34a}
+      \strng{authorbibnamehash}{d1c50e5a2e1f5d9fd714b6eadf9ab34a}
+      \strng{authornamehash}{d1c50e5a2e1f5d9fd714b6eadf9ab34a}
+      \strng{authorfullhash}{d1c50e5a2e1f5d9fd714b6eadf9ab34a}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper explores the link between number marking and (in)definiteness in nominals and their interpretation. Differences between bare singulars and plurals in languages without determiners are explained by treating bare nominals as kind terms. Differences arise, it is argued, because singular and plural kinds relate differently to their instantiations. In languages with determiners, singular kinds typically occur with the definite determiner, but plural/mass kinds can be bare in some languages and definite in others. An account of singular kinds in terms of taxonomic readings is proposed, with number marking playing a crucial role in explaining the obligatory presence of the determiner. The variation between languages with respect to plural/mass kinds is explained by positing a universal scale of definiteness, with individual languages choosing different cut-off points for lexicalization of the definite determiner. The possibility of further cross-linguistic variation is also considered.}
+      \field{issn}{0165-0157}
+      \field{journaltitle}{Linguistics and Philosophy}
+      \field{langid}{english}
+      \field{month}{8}
+      \field{number}{4}
+      \field{shortjournal}{Linguistics and Philosophy}
+      \field{title}{Number {{Marking}} and (in){{Definiteness}} in {{Kind Terms}}}
+      \field{urlday}{31}
+      \field{urlmonth}{1}
+      \field{urlyear}{2024}
+      \field{volume}{27}
+      \field{year}{2004}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{393\bibrangedash 450}
+      \range{pages}{58}
+      \verb{doi}
+      \verb 10.1023/B:LING.0000024420.80324.67
+      \endverb
+      \verb{file}
+      \verb /home/ark/Articles/Dayal 2004. Number marking and (in)definiteness in kind terms.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://link.springer.com/10.1023/B:LING.0000024420.80324.67
+      \endverb
+      \verb{url}
+      \verb http://link.springer.com/10.1023/B:LING.0000024420.80324.67
+      \endverb
+    \endentry
+    \entry{heim1991artikelunddefinitheit}{incollection}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=af07c40a1e2a7097f65e88894232630c}{%
+           family={Heim},
+           familyi={H\bibinitperiod},
+           given={Irene},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{2}{}{%
+        {{useprefix=true,hash=853f91cce9892762652b7aca892dc2fb}{%
+           family={Stechow},
+           familyi={S\bibinitperiod},
+           given={Arnim},
+           giveni={A\bibinitperiod},
+           prefix={von},
+           prefixi={v\bibinitperiod}}}%
+        {{hash=9d18b342529a553be499c9878bbd884e}{%
+           family={Wunderlich},
+           familyi={W\bibinitperiod},
+           given={Dieter},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {De Gruyter Mouton}%
+      }
+      \strng{namehash}{af07c40a1e2a7097f65e88894232630c}
+      \strng{fullhash}{af07c40a1e2a7097f65e88894232630c}
+      \strng{bibnamehash}{af07c40a1e2a7097f65e88894232630c}
+      \strng{authorbibnamehash}{af07c40a1e2a7097f65e88894232630c}
+      \strng{authornamehash}{af07c40a1e2a7097f65e88894232630c}
+      \strng{authorfullhash}{af07c40a1e2a7097f65e88894232630c}
+      \strng{editorbibnamehash}{17cddfabf31ef1cdba4769eb5e076c09}
+      \strng{editornamehash}{17cddfabf31ef1cdba4769eb5e076c09}
+      \strng{editorfullhash}{17cddfabf31ef1cdba4769eb5e076c09}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Semantik / {{Semantics}}: {{Ein}} Internationales {{Handbuch}} Zeitgenössischer {{Forschung}}}
+      \field{isbn}{978-3-11-020336-3}
+      \field{langid}{english}
+      \field{title}{Artikel Und {{Definitheit}}}
+      \field{urlday}{29}
+      \field{urlmonth}{11}
+      \field{urlyear}{2024}
+      \field{year}{1991}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{487\bibrangedash 535}
+      \range{pages}{49}
+      \verb{doi}
+      \verb 10.1515/9783110126969.7.487
+      \endverb
+      \verb{urlraw}
+      \verb https://www.degruyter.com/document/doi/10.1515/9783110126969.7.487/html?lang=de
+      \endverb
+      \verb{url}
+      \verb https://www.degruyter.com/document/doi/10.1515/9783110126969.7.487/html?lang=de
+      \endverb
+    \endentry
+    \entry{holvoet2012semanticmapdefinite}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=389f24ea296c107432dfaa2548dfdd19}{%
+           family={Holvoet},
+           familyi={H\bibinitperiod},
+           given={Axel},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=174131783fdf93f42bbdc39495c258be}{%
+           family={Spraunienė},
+           familyi={S\bibinitperiod},
+           given={Birutė},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{45552793f13d65e11a19b9536faa651a}
+      \strng{fullhash}{45552793f13d65e11a19b9536faa651a}
+      \strng{bibnamehash}{45552793f13d65e11a19b9536faa651a}
+      \strng{authorbibnamehash}{45552793f13d65e11a19b9536faa651a}
+      \strng{authornamehash}{45552793f13d65e11a19b9536faa651a}
+      \strng{authorfullhash}{45552793f13d65e11a19b9536faa651a}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The paper deals with semantic developments in the Lithuanian and Latvian definite adjectival forms. The basic function of definite adjectival forms in Baltic is to mark the definiteness of the noun phrase. However, the adjectival marking of definiteness creates an interesting situation in which the noun phrase has several slots for the marking of (in)definiteness. In certain cases, different values for definiteness may appear in different slots: the adjective may be in the definite form whereas the noun phrase as a whole may be viewed as indefinite and can occur with formal markers of indefiniteness such as indefinite pronouns. These cases afford certain insights into the periphery of definiteness and the mechanisms of extension of definiteness markers into the domain of indefiniteness. The factors involved in this spill-over of definiteness markers are (i) genericity, realised in the form of so-called definite generics, whose definite markers are often retained when descending from the level of kind-reference to that of individual reference (this is referred to here as rigid or fossilised generic definiteness), and (ii) nominalisation of the adjective, which enables the retention of definite marking when a noun phrase shifts from definite plural description to singular or plural indefinite description. An important factor in the spread of definite adjectives beyond the domain of definiteness of the noun phrase seems to be their ability to evoke ad hoc taxonomies. The instances of extended definiteness marking discussed in this paper have parallels in article languages that have only one slot for (in)definiteness marking. The presence of two slots for definiteness marking in Baltic brings to light the layered nature of the definiteness of many noun phrases,which leads to what is here called ‘definiteness conflicts’ and indeterminacy between the semantic zones of definiteness and indefiniteness.}
+      \field{day}{31}
+      \field{issn}{2081-7533}
+      \field{journaltitle}{Baltic Linguistics}
+      \field{langid}{english}
+      \field{month}{12}
+      \field{title}{Towards a Semantic Map for Definite Adjectives in {{Baltic}}}
+      \field{urlday}{1}
+      \field{urlmonth}{3}
+      \field{urlyear}{2024}
+      \field{volume}{3}
+      \field{year}{2012}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{65\bibrangedash 99}
+      \range{pages}{35}
+      \verb{doi}
+      \verb 10.32798/bl.420
+      \endverb
+      \verb{file}
+      \verb /home/ark/Articles/Holvoet, Spraunienė 2012. Towards a semantic map for definite adjectives in Baltic.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.journals.polon.uw.edu.pl/index.php/bl/article/view/420
+      \endverb
+      \verb{url}
+      \verb https://www.journals.polon.uw.edu.pl/index.php/bl/article/view/420
+      \endverb
+      \keyw{definite adjectives,definiteness,genericity,Latvian,Lithuanian}
+    \endentry
+    \entry{krifka1995genericityintroduction}{incollection}{}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=168386282d37c19b9345de16f45fae39}{%
+           family={Krifka},
+           familyi={K\bibinitperiod},
+           given={Manfred},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=be0aff553c1b1abae839b95150ca04d0}{%
+           family={Pelletier},
+           familyi={P\bibinitperiod},
+           given={Francis},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6b4b795a3e042a5868f1929cc667b474}{%
+           family={Carlson},
+           familyi={C\bibinitperiod},
+           given={G.N.},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=63ee5630853a0ee87f110aea3be84682}{%
+           family={Meulen},
+           familyi={M\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a909f4a668af710a2aaaef92208a4ac2}{%
+           family={Chierchia},
+           familyi={C\bibinitperiod},
+           given={G},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=62e691fcb486b357561c4d5aa94ee14f}{%
+           family={Link},
+           familyi={L\bibinitperiod},
+           given={G},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a676b07954c54b3e578511319250cd4a}
+      \strng{fullhash}{ae1d8d5123d1111c275bb61e24dc0c4d}
+      \strng{bibnamehash}{a676b07954c54b3e578511319250cd4a}
+      \strng{authorbibnamehash}{a676b07954c54b3e578511319250cd4a}
+      \strng{authornamehash}{a676b07954c54b3e578511319250cd4a}
+      \strng{authorfullhash}{ae1d8d5123d1111c275bb61e24dc0c4d}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{booktitle}{The {{Generic Book}}}
+      \field{day}{1}
+      \field{month}{1}
+      \field{shorttitle}{Genericity}
+      \field{title}{Genericity: {{An}} Introduction}
+      \field{year}{1995}
+      \field{dateera}{ce}
+      \field{pages}{1\bibrangedash 124}
+      \range{pages}{124}
+      \verb{file}
+      \verb /home/ark/Articles/Krifka et al 1995. Genericity - An introduction.pdf
+      \endverb
+    \endentry
+    \entry{link1983logicalanalysisplurals}{incollection}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=f931a3a0194d10b1fb0f5505dd42d6c5}{%
+           family={Link},
+           familyi={L\bibinitperiod},
+           given={Godehard},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=836b2a3e8b3bf39e93dca353a39d2e36}{%
+           family={Bäuerle},
+           familyi={B\bibinitperiod},
+           given={Rainer},
+           giveni={R\bibinitperiod}}}%
+        {{hash=601dd5b0ad8db949aa407ee385389f66}{%
+           family={Schwarze},
+           familyi={S\bibinitperiod},
+           given={Christoph},
+           giveni={C\bibinitperiod}}}%
+        {{hash=e32d01fecd0c3ec7f4211d2a18e15000}{%
+           family={Stechow},
+           familyi={S\bibinitperiod},
+           given={Arnim\bibnamedelima Von},
+           giveni={A\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {De Gruyter}%
+      }
+      \strng{namehash}{f931a3a0194d10b1fb0f5505dd42d6c5}
+      \strng{fullhash}{f931a3a0194d10b1fb0f5505dd42d6c5}
+      \strng{bibnamehash}{f931a3a0194d10b1fb0f5505dd42d6c5}
+      \strng{authorbibnamehash}{f931a3a0194d10b1fb0f5505dd42d6c5}
+      \strng{authornamehash}{f931a3a0194d10b1fb0f5505dd42d6c5}
+      \strng{authorfullhash}{f931a3a0194d10b1fb0f5505dd42d6c5}
+      \strng{editorbibnamehash}{a3f6f7347df779e68d2eb666763828a8}
+      \strng{editornamehash}{a3f6f7347df779e68d2eb666763828a8}
+      \strng{editorfullhash}{a3f6f7347df779e68d2eb666763828a8}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{booktitle}{Meaning, {{Use}}, and {{Interpretation}} of {{Language}}}
+      \field{day}{31}
+      \field{isbn}{978-3-11-008901-1}
+      \field{month}{12}
+      \field{shorttitle}{The {{Logical Analysis}} of {{Plurals}} and {{Mass Terms}}}
+      \field{title}{The {{Logical Analysis}} of {{Plurals}} and {{Mass Terms}}: {{A Lattice-theoretical Approach}}}
+      \field{urlday}{17}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{year}{1983}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{302\bibrangedash 323}
+      \range{pages}{22}
+      \verb{doi}
+      \verb 10.1515/9783110852820.302
+      \endverb
+      \verb{file}
+      \verb /home/ark/Zotero/storage/QX3EWU7V/Link 1983. The logical analysis of plurals and mass terms (summary).pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.degruyter.com/document/doi/10.1515/9783110852820.302/html
+      \endverb
+      \verb{url}
+      \verb https://www.degruyter.com/document/doi/10.1515/9783110852820.302/html
+      \endverb
+    \endentry
+    \entry{mcnally2004relationaladjectivesproperties}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=13b46c5c51e2c5187d53b88fd3dd6cb1}{%
+           family={McNally},
+           familyi={M\bibinitperiod},
+           given={Louise},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1cf980b5363c2a95767f2e531f0cf0a9}{%
+           family={Boleda},
+           familyi={B\bibinitperiod},
+           given={Gemma},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{3983962ea13a6de572e31a5b8966dac4}
+      \strng{fullhash}{3983962ea13a6de572e31a5b8966dac4}
+      \strng{bibnamehash}{3983962ea13a6de572e31a5b8966dac4}
+      \strng{authorbibnamehash}{3983962ea13a6de572e31a5b8966dac4}
+      \strng{authornamehash}{3983962ea13a6de572e31a5b8966dac4}
+      \strng{authorfullhash}{3983962ea13a6de572e31a5b8966dac4}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{series}{Empirical {{Issues}} in {{Syntax}} and {{Semantics}} 5}
+      \field{title}{Relational Adjectives as Properties of Kinds}
+      \field{year}{2004}
+      \field{dateera}{ce}
+      \verb{file}
+      \verb /home/ark/Articles/McNally, Boleda 2004. Relational adjectives as properties of kinds.pdf
+      \endverb
+    \endentry
+    \entry{mendia2019referenceadhoc}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=2132e826ef4a263f9a384359263d625b}{%
+           family={Mendia},
+           familyi={M\bibinitperiod},
+           given={Jon\bibnamedelima Ander},
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{2132e826ef4a263f9a384359263d625b}
+      \strng{fullhash}{2132e826ef4a263f9a384359263d625b}
+      \strng{bibnamehash}{2132e826ef4a263f9a384359263d625b}
+      \strng{authorbibnamehash}{2132e826ef4a263f9a384359263d625b}
+      \strng{authornamehash}{2132e826ef4a263f9a384359263d625b}
+      \strng{authorfullhash}{2132e826ef4a263f9a384359263d625b}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Although there is no consensus about what kinds are, there is a common understanding that kinds can be regarded as collections of objects that share certain properties. What these properties exactly are is often left unspecified. This paper explores the semantics of ad hoc kind-referring terms, where the determination of the relevant set of shared properties does not rely on "natural" properties or world knowledge. Rather, information provided by a nominal modifier, typically a relative clause, is used to impute the required regular behavior on the kind-referring NP. Building on Carlson (1977b)’s disjointness condition, I show that we can not only account for the ubiquity of these expressions, but we can also extend the analysis to other constructions that have traditionally not been taken to be kind-referring, such as Amount and Degree Relative constructions.}
+      \field{issn}{0165-0157, 1573-0549}
+      \field{journaltitle}{Linguistics and Philosophy}
+      \field{langid}{english}
+      \field{number}{6}
+      \field{shortjournal}{Linguist and Philos}
+      \field{title}{Reference to Ad Hoc Kinds}
+      \field{urlday}{31}
+      \field{urlmonth}{1}
+      \field{urlyear}{2024}
+      \field{volume}{43}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{589\bibrangedash 631}
+      \range{pages}{43}
+      \verb{doi}
+      \verb 10.1007/s10988-019-09280-9
+      \endverb
+      \verb{file}
+      \verb /home/ark/Articles/Mendia 2019. Ad hoc kinds.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://link.springer.com/10.1007/s10988-019-09280-9
+      \endverb
+      \verb{url}
+      \verb http://link.springer.com/10.1007/s10988-019-09280-9
+      \endverb
+    \endentry
+    \entry{rutkowski2005classificationprojectionpolish}{incollection}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=69aa1aa66986ac3dac4a5b65b21fd67d}{%
+           family={Rutkowski},
+           familyi={R\bibinitperiod},
+           given={Paweł},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6570691a5f1dd1cc176f5a7b584483c6}{%
+           family={Progovac},
+           familyi={P\bibinitperiod},
+           given={Ljiljana},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=250567658f4a5bf56e1ceb21ffdd02e5}{%
+           family={Franks},
+           familyi={F\bibinitperiod},
+           given={Steven},
+           giveni={S\bibinitperiod}}}%
+        {{hash=6b19c5ac9ad3609b4235f34f2c642136}{%
+           family={Gladney},
+           familyi={G\bibinitperiod},
+           given={Frank\bibnamedelima Y.},
+           giveni={F\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+        {{hash=69a358a73875628e322b7c6cceaca39a}{%
+           family={Tasseva-Kurktchieva},
+           familyi={T\bibinithyphendelim K\bibinitperiod},
+           given={Mila},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Ann Arbor, MI}%
+      }
+      \list{publisher}{1}{%
+        {Michigan Slavic Publications,}%
+      }
+      \strng{namehash}{5345d9b50ffc172964dd0ed7ae955631}
+      \strng{fullhash}{5345d9b50ffc172964dd0ed7ae955631}
+      \strng{bibnamehash}{5345d9b50ffc172964dd0ed7ae955631}
+      \strng{authorbibnamehash}{5345d9b50ffc172964dd0ed7ae955631}
+      \strng{authornamehash}{5345d9b50ffc172964dd0ed7ae955631}
+      \strng{authorfullhash}{5345d9b50ffc172964dd0ed7ae955631}
+      \strng{editorbibnamehash}{9f3919ee29529d8ddda8958314542ff7}
+      \strng{editornamehash}{9f3919ee29529d8ddda8958314542ff7}
+      \strng{editorfullhash}{9f3919ee29529d8ddda8958314542ff7}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{booktitle}{Formal {{Approaches}} to {{Slavic Linguistics}} 13: {{The South Carolina Meeting}}}
+      \field{shorttitle}{Classification Projection in {{Polish}} and {{Serbian}}}
+      \field{title}{Classification Projection in {{Polish}} and {{Serbian}}: {{The}} Position and Shape of Classifying Adjectives}
+      \field{urlday}{16}
+      \field{urlmonth}{5}
+      \field{urlyear}{2024}
+      \field{year}{2005}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{289\bibrangedash 299}
+      \range{pages}{11}
+      \verb{file}
+      \verb /home/ark/Articles/Rutkowski, Progovac 2005. Classification projection in Polish and Serbian - The position and shape of.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.plm.uw.edu.pl/wp-content/uploads/2012/10/Rutkowski-Progovac-Classification-Projection-in-Polish-and-Serbian.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.plm.uw.edu.pl/wp-content/uploads/2012/10/Rutkowski-Progovac-Classification-Projection-in-Polish-and-Serbian.pdf
+      \endverb
+    \endentry
+    \entry{sereikaite2017kindreferencedps}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=2856cdd6c0ee3e151c405a3322329397}{%
+           family={Šereikaitė},
+           familyi={Š\bibinitperiod},
+           given={Milena},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{2856cdd6c0ee3e151c405a3322329397}
+      \strng{fullhash}{2856cdd6c0ee3e151c405a3322329397}
+      \strng{bibnamehash}{2856cdd6c0ee3e151c405a3322329397}
+      \strng{authorbibnamehash}{2856cdd6c0ee3e151c405a3322329397}
+      \strng{authornamehash}{2856cdd6c0ee3e151c405a3322329397}
+      \strng{authorfullhash}{2856cdd6c0ee3e151c405a3322329397}
+      \field{sortinit}{Š}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Kind Reference within {{DPs}}.Pdf}
+      \field{year}{2017}
+      \field{dateera}{ce}
+      \verb{file}
+      \verb /home/ark/Articles/Šereikaitė 2017. Kind reference within DPs.pdf
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

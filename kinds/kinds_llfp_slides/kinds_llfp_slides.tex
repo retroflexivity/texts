@@ -1,0 +1,489 @@
+\documentclass[
+    9pt,
+]{beamer}
+\usecolortheme[named=black]{structure}
+\setbeamertemplate{footline}[frame number]{}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}{$\cdot$}
+
+\setlength{\parskip}{0.5em}
+
+\usepackage[russian,english]{babel}
+
+
+% TYPOGRAPHY
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+% \usepackage{mathspec}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+
+\setmainfont{Libertinus Serif}
+\setsansfont{Libertinus Sans}
+\setmathfont{Libertinus Math}
+
+\usepackage[normalem]{ulem}
+
+\usepackage[dvipsnames]{xcolor}
+\let\emph\relax
+\DeclareTextFontCommand{\emph}{\color{BrickRed}}
+
+
+% LINGUISTICS 
+\usepackage{expex}
+\lingset{aboveglftskip=-1ex, belowglpreambleskip=0ex, belowexskip=1ex, aboveexskip=1ex, interpartskip=0ex}
+\gathertags
+\let\expexgla\gla % dumb unicode-math conflict
+\AtBeginDocument{\let\gla\expexgla}
+
+\usepackage[glossaries]{leipzig}
+\newleipzig{cmpr}{cmpr}{Comparative}
+\newleipzig{sprl}{sprl}{Superlative}
+\newleipzig{indef}{indef}{Indefinite}
+% \newleipzig{def}{def}{Definite}
+
+
+% SUBSTITUTION
+\usepackage{hyphsubst}
+\usepackage{csquotes}
+\MakeOuterQuote{"}
+
+
+% BIBLIOGRAPHY		    
+\usepackage[style=authoryear,url=false,doi=false,isbn=false,eprint=false,date=year]{biblatex}
+\addbibresource{../../ref.bib}
+
+
+% DRAWING
+% \usepackage{tikz}
+% \usetikzlibrary{shapes.geometric}
+% \usetikzlibrary{trees,arrows}
+% \usetikzlibrary{positioning}
+\usepackage[linguistics]{forest}
+
+
+%ALIASES
+\ExplSyntaxOn
+
+\NewDocumentCommand{\splist}{ s m m m} {
+    #3\mspace{2mu}
+    \clist_set:Nn \l_tmpa_clist { #2 }
+    \clist_use:Nn \l_tmpa_clist {,\mspace{3mu plus 1mu minus 1mu} \IfBooleanT{#1}{\allowbreak}}
+    \mspace{2mu}#4
+}
+
+\NewDocumentCommand{\opair}{ s m }{
+    \IfBooleanTF{#1}{ \splist*{#2}{\langle}{\rangle} }{ \splist{#2}{\langle}{\rangle} }
+}
+
+\NewDocumentCommand{\set}{ s m } {
+    \IfBooleanTF{#1}{ \splist*{#2}{\{}{\}} }{ \splist{#2}{\{}{\}} }
+}
+\ExplSyntaxOff
+
+\newcommand{\denote}[1]{\llbracket #1 \rrbracket}
+
+\newcommand{\up}{\ensuremath{{}^\cup}}
+\newcommand{\down}{\ensuremath{{}^\cap}}
+
+%META
+\title{Видовая референция}
+\author{Аркадий Шалдов}
+\date{27.11.2024, МЛ ЛогЛинФФ}
+
+\begin{document}
+% -------------------------- текстиктекстиктекстик -----------------------------
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+
+\section{Введение}
+
+\begin{frame}
+    \frametitle{Введение}
+
+    Именные группы могут реферерировать не только к индивидам, но и к таксономическим единицам — \emph{видам}.
+
+    Такие прочтения возможны со специальными предикатами видового уровня (\getfullref{intr.kl}-\getref{intr.inv}), с прилагательными (\getfullref{intr.adj}) и с генерическими предикатами (\getfullref{intr.hab}).
+
+    \pex<intr>
+    \a<kl> \emph{The mammoth} is extinct.\\
+            \emph{Мамонт} вымер.
+    \a<inv> Babbage invented \emph{the computer}.\\
+            Бэббидж изобрел \emph{компьютер}.
+    \a<adj> \emph{The engineer} is a good profession.\\
+            \emph{Инженер} — хорошая профессия.
+    \a<hab> \emph{The anteater} eats ants.\\
+            \emph{Муравьед} питается муравьями.
+    \xe
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Таксономическая иерархия}
+
+    Кроме того, язык позволяет квантифицировать по подвидам.
+
+    \pex<>
+        \a<> Every anteater inhabits South America.\\
+        Все муравьеды обитают в Южной Америке.
+        \a<> Some anteaters are extinct.\\
+        Некоторые муравьеды вымерли.
+        \a<> An / one anteater's conservation status says "threatened".\\
+        Охранный статус одного муравьеда — "угрожаемый".
+        \a<> The anteaters are divided into two families.\\
+        Муравьеды делятся на два семейства.
+    \xe
+
+    Также: квантификация по видам масс.
+
+    \ex<>
+        В ресторане подается три разных супа.
+    \xe
+
+    Таксономическая предикация очень напоминает обычную, индивидную.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Два типа отношений}
+
+    Предикативное отношение между двумя именами может иметь две разных природы (contra \textcite{dayal2004numbermarkingdefiniteness})
+
+    \begin{itemize}
+        \item собственно предикативная
+        \begin{itemize}
+            \item между индивидом и видом: бульдог(Шарик), инженер(Михаил Петрович)
+            \item между видом и видом вида: порода(бульдог), профессия(инженер)
+        \end{itemize}
+        \item таксономическая
+        \begin{itemize}
+            \item между подвидом и видом: собака(бульдог), суп(солянка)
+            \item НЕ между индивидом и множеством индивидов: Могучая\_кучка(Кюи)?
+        \end{itemize}
+    \end{itemize}
+
+    Последнее к тому же, видимо, ограничено биологическими таксонами и именами масс
+
+    \pex<>
+        \a<> Бульдог — хорошая собака.
+        \a<> Солянка — хороший суп.
+        \a<> \ljudge* Семантист — хороший лингвист.
+    \xe
+
+    \textcite[и мн. др.]{krifka1995genericityintroduction}: это ингерентное свойство имен
+    \begin{itemize}
+        \item $\denote{\text{муравьед}}_P = \lambda x.\; \text{муравьед}(x)$
+        \item $\denote{\text{муравьед}}_T = \lambda p.\; p\subset \text{муравьед} \land p\in K$
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Устоявшиеся и адгоковые виды}
+
+    \begin{itemize}
+        \item Видовые предикаты сочетаются не только с ед. ч.
+        \item Не в единственном числе они сочетаются как с таксономическими сущностями, так и с \textit{адгоковыми видами} \parencite{mendia2019referenceadhoc}
+    \end{itemize}
+    
+    \ex<>
+        Тигры с белой шерстью очень редки.
+    \xe
+
+    По адгоковым видам нельзя квантифицировать.
+    
+    \ex<>
+        \ljudge\# В зоопарке два тигра: с белой шерстью и с рыжей.
+    \xe
+
+    Я предполагаю, что онтологически устоявшиеся виды входят в домен видов, а адгоковые не входят. Про них мы говорить не будем.
+
+\end{frame}
+
+
+\section{Формализации}
+
+\begin{frame}
+    \frametitle{Вид = предикат}
+
+    Например, \parencite{cocchiarella1974fregeansemanticsrealist,chierchia1984topicssyntaxsemantics} — логика HST*
+    \begin{itemize}
+        \item Каждому предикату онтологически соответсвует индивид
+        \item Функции принимают индивидов, в т. ч. «номинализованные» предикаты
+    \end{itemize}
+
+    Менее радикальный подход — частный полиморфизм
+    \pex<>
+        \a<> $\denote{the} = \lambda p_{\langle\sigma,\; \tau\rangle}.\; \lambda x_\sigma: |p|\le 1 \land p(x)$\trailingcitation{адапт. \parencite{coppock2015definitenessdeterminacy}}
+        \a<> \dots
+    \xe
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Неокарлсоновская семантика \parencite{chierchia1998referencekindslanguages}}
+
+    Попытка интегрировать виды в современную лингвистическую онтологию — семантику множественного числа \textcite{link1983logicalanalysisplurals}
+
+    \begin{itemize}
+        \item Домен индивидов — верхняя полурешетка $\opair{E, \oplus}$ по мереологической сумме
+        \item Нижние элементы — единичные индивиды, соотв. именам в ед. ч., элементы над ними — множественные индивиды
+    \end{itemize}
+
+    \textcite{chierchia1998referencekindslanguages}:
+
+    \begin{itemize}
+        \item Виды — это интенсиональные максимальные индивиды (верхние грани полурешеток)
+        \item Два тайпшифтера:
+        \begin{itemize}
+            \item $\down P = \lambda s .\; \iota x \in D_k.\; P_s(x)$ — превращает предикат в вид
+            \item $\up d = \lambda x.\; x\le d_s$ — превращает вид в предикат
+        \end{itemize}
+    \end{itemize}
+
+    \ex<>
+        $\denote{\down{\text{собака}}}^s = d_1\oplus d_2\oplus \dots$
+    \xe
+\end{frame}
+
+
+\section{Классифицирующие прилагательные}
+
+\begin{frame}
+    \frametitle{Классифицирующие прилагательные}
+
+    Явление, тесно связанное с идеей (под)видов.
+
+    \pex<rel>
+        \a<be> белый медведь
+        \a<> технический архитектор
+        \a<> легочное заболевание
+    \xe
+
+    Очень тесно связаны с модифицируемыми ими именами
+    \begin{itemize}
+        \item семантически: некомпозициональны — вклад прилагательного определяется существительным
+        \pex<>
+            \a<> белый чай
+            \a<> белый медведь
+        \xe
+        \item синтаксически: неразрываемы другими прилагательными
+        \ex<>
+            маленький серый гигантский муравьед / \#маленький гигантский серый муравьед
+        \xe
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Классифицирующие прилагательные как модификаторы видов}
+
+    \textcite{mcnally2004relationaladjectivesproperties}: как обычные прилагательные модифицируют индивидов, так классифицирующие прилагательные модифицируют виды.
+
+    \begin{itemize}
+        \item[$\implies$] В именной группе сперва происходит рестрикция на уровне видов, затем — на уровне индивидов.
+    \end{itemize}
+
+    \pex<>
+        \a маленький серый гигантский муравьед\\
+        = `маленький серый представитель вида гигантских муравьедов'
+        \a пожилой технический архитектор\\
+        = `пожилой представитель профессии технических архитекторов'
+    \xe
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Языки с определенностью на прилагательных}
+
+    В некоторых языках (сербский \parencite{rutkowski2005classificationprojectionpolish}; литовский, латышский \parencite{holvoet2012semanticmapdefinite}) прилагательные могут иметь суффикс, прим. соответствующий англ. \textit{the}.
+    
+    Латышский:
+    \pex<>
+        \a<> \begingl
+            \gla lācis//
+            \glb медведь//
+            \glft `a/the bear'//
+        \endgl
+        \a<> \begingl
+            \gla liels lācis//
+            \glb большой медведь//
+            \glft `a big bear'//
+        \endgl
+        \a<> \begingl
+            \gla liel-ai-s lācis//
+            \glb большой-\Def{} медведь//
+            \glft `the big bear'//
+        \endgl
+    \xe
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Определенность классифицирующих прилагательных}
+
+    При этом тот же самый маркер обязателен на классифицирующих прилагательных, даже если вся именная группа неопределенная
+
+    \pex<>
+        \a \begingl
+            \gla balt-ai-s lācis//
+            \glb белый-\Def{} медведь//
+            \glft `a/the polar bear'//
+        \endgl
+        \a \begingl
+            \gla \ljudge\#balts lācis//
+            \glb белый медведь//
+            \glft только `a white-colored bear'//
+        \endgl
+    \xe
+
+    Интуиция: классифицирующие прилагательные с существительными выражают устоявшийся, т. е. определенный, вид $\implies$ определенность $\implies$ маркер определенности
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Формализация интуиции}
+
+    \pex<>
+        \a $\denote{\text{-ai-}} = \denote{the} = \lambda P.\; \lambda x: |P|\le 1.\; P(x)$\trailingcitation{\parencite{coppock2015definitenessdeterminacy}}
+        \a $\denote{\text{-ai-}}(\text{большой медведь}) = \lambda x_e: |\text{большой} \cap \text{медведь}_P| \le 1.\allowbreak \text{большой}(x) \land \text{медведь}_P(x)$\trailingcitation{определенность индивида}
+        \a $\denote{\text{-ai-}}(\text{белый медведь}) = \lambda p_{\opair{e, t}}: |\text{белый} \cap \text{медведь}_T| \le 1.\allowbreak \text{белый}(p) \land \text{медведь}_T(p)$\trailingcitation{определенность вида}
+    \xe
+
+    \emph{Максимизируй пресуппозицию \parencite{heim1991artikelunddefinitheit}}: из двух эквивалентных предложений использовать то, которое имеет более сильную пресуппозицию (если она удовлетворяется).
+
+    Далее — экзистенциальное / йота-замыкание \parencite{coppock2015definitenessdeterminacy} превращает предикат по видам в вид (предикат по индивидам)
+
+    \ex<>
+        $\textsc{iota}(\denote{\text{-ai-}}(\text{белый медведь})) = \lambda x_{e}.\; (\iota p.\;\text{белый}(p) \land \text{медведь}_T(p))_P(x) = \lambda x_e.\; \text{белый\_медведь}_P(x)$
+    \xe
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{В неокарлсоновской семантике}
+
+    Имена изначально — предикаты по видам, к которым применяется сначала \textsc{iota}\footnotemark, затем — $\up$ \parencite[ср.][]{sereikaite2017kindreferencedps}.
+
+    \footnotetext{\textsc{iota} = \lambda p. \iota x.\; p(x) \parencite{partee1986nounphraseinterpretation}}
+
+    \pex<>
+    \a $\denote{\text{-ai-}} = \denote{the} = \lambda p.\; \lambda x: |p|\le 1.\; p(x)$\trailingcitation{\parencite{coppock2015definitenessdeterminacy}}
+    \a $\denote{\text{-ai-}}(\text{большой медведь}) = \lambda x_e: |\text{большой} \cap \text{медведь}_P| \le 1.\allowbreak \text{большой}(x) \land x \le \text{медведь}_P$\trailingcitation{определенность индивида}
+    \a<> $\denote{\text{-ai-}}(\text{белый медведь}) = \lambda k: |\text{белый} \cap \text{медведь}_T| \le 1.\allowbreak \text{белый}(p) \land \text{медведь}_T(p)$\trailingcitation{определенность вида}
+    \a<> $\up \denote{\text{-ai-}}(\text{белый медведь}) = \lambda x_{e}.\; x \le (\iota p.\;\text{белый}(p) \land \text{медведь}_T(p))$
+    \xe
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Проблема: реляционные имена}
+
+    Реляционные имена имеют арность 2, поэтому не соответствуют множеству индивидов.
+    
+    При этом реляционные имена также сочетаются с классфицирующими прилагательными
+
+    \ex<>
+        \begingl
+            \gla vecāk-ai-s brālis//
+            \glb старший-\Def{} брат//
+            \glft `a/the older brother'//
+        \endgl
+    \xe
+
+    В неокарлсоновском подходе
+    \begin{itemize}
+        \item вид — множество индивидов, но \textit{брат} не соответствует множеству индивидов.
+        \item $\up$ с необходимостью возвращает одноместный предикат, но \textit{старший брат} — двуместный предикат.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Суммируя}
+
+    \begin{itemize}
+        \item Классифицирующие прилагательные хочется анализировать как модификаторы видов
+        \item Это хорошо объясняет данные из языков с определенностью на прилагательных
+        \item Эти же данные показывают, что классифицирующие прилагательные сочетаются с реляционными именами
+        \item Но неокарлсоновская семантика противоречит тому, что реляционные имена соответствуют видам
+    \end{itemize}
+
+\end{frame}
+
+
+\section{К значению}
+
+\begin{frame}
+    \frametitle{К значению}
+
+    Все еще вопрос: что же такое белый в $\lambda x_{e}.\; (\iota p.\;\text{белый}(p) \land \text{медведь}_T(p))_P(x)$?
+
+    \parencite{krifka1995genericityintroduction}: виды как имена
+
+    \textit{так-называемый}-тест:
+
+    \pex<>
+        \a<> Медведи так называются, потому что они хорошо ищут мед.
+        \a<> \ljudge* Красивые медведи так называются, потому что у них большие черные глаза.
+        \a<> Белые медведи так называются, потому что у них белая шерсть.
+    \xe
+
+    Сочетания из классифицирующего прилагательного и существительного (по крайней мере некоторые) — имена собственные, в отличие от сочетаний с аттрибутивными прилагательными.
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{К значению}
+
+    При этом существительное в таком сочетании проваливает тест:
+
+    \pex<>
+        \a<> \ljudge{\textsuperscript{??}}Белые медведи так называются, потому что хорошо ищут мед.
+        \a<> Белый медведь — вид медведя.
+        \a<> \ljudge*Белый медведь — вид белого.
+    \xe
+
+    \emph{Белый медведь — вид медведя, который называется белым.}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Имена}
+
+    Именной предикативизм \parencite{burge1973referencepropernames}: имя — предикат, утверждающий крещение.
+    \pex<>
+        \a<> Я Петя. = $N$("Петя")(я)
+        \a<> У нас на курсе ни одной Светы. = $\neg\exists x\;(\text{у\_нас\_на\_курсе}(x)\ \land N(\text{"Света"})(x))$
+        \a<> Я видел Бориса. = $\text{видел}(\text{я})(\iota x.\; N(\text{"Борис"})(x))$
+    \xe
+
+    С видами так же
+
+    \pex<>
+        \a<> $\denote{\text{медведь}} = \lambda x.\; N(\text{медведь})(x) $
+        \a<> $\textsc{iota}(\denote{\text{медведь}}) = \iota x.\; N(\text{медведь})(x) = \lambda y.\; \text{медведь}(y)$
+        \a<> $\denote{\text{белый}} = \lambda y.\; N(\text{белый})(y)$
+        \a<> $\denote{\text{белый медведь}} = \lambda y.\; N(\text{белый})(y) \land \text{медведь}_T(y)$
+        \a<> $\textsc{iota}\denote{\text{белый медведь}} = \iota y.\; N(\text{белый})(y) \land \text{медведь}_T(y) = \lambda w.\; \text{белый\_медведь}(w)$
+    \xe
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Заключение}
+
+    \begin{itemize}
+        \item Мы посмотрели на то, как можно смотреть на виды
+        \item Неокарлсоновская семантика относится к видам как к максимальным индивидам
+        \item Это сталкивается с проблемами, если учесть, что видам соответсвуют в т. ч. реляционные имена
+        \item Мы также посмотрели, как можно смотреть на классифицирующие прилагательные
+        \item Для некоторых из них кажется правдоподобным крипкеанский анализ
+        \item Но не для всех
+    \end{itemize}
+
+\end{frame}
+
+\end{document}
